@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rj7-kd-hm8">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Discovered Sensors-->
+        <scene sceneID="RK3-GX-O6N">
+            <objects>
+                <tableViewController id="32m-CE-dft" customClass="SensorListViewController" customModule="SwiftySensorsExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yXJ-xw-RnD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SensorCell" id="brD-4H-XOH">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="brD-4H-XOH" id="B4d-jh-jTf">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="MR2-aN-IGU" kind="show" id="FP8-8j-Lfp"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="32m-CE-dft" id="7DW-xx-0UO"/>
+                            <outlet property="delegate" destination="32m-CE-dft" id="X6p-Im-4s7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Discovered Sensors" id="aXr-hg-KUe">
+                        <barButtonItem key="backBarButtonItem" title="Sensors" id="9El-Z3-fE3"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tqk-He-Y52" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="606" y="205"/>
+        </scene>
+        <!--Sensor Details View Controller-->
+        <scene sceneID="fkk-fg-t1b">
+            <objects>
+                <viewController id="MR2-aN-IGU" customClass="SensorDetailsViewController" customModule="SwiftySensorsExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nbe-cf-mYH"/>
+                        <viewControllerLayoutGuide type="bottom" id="aX3-ZY-EvB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="suJ-8z-4ww">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2k-av-Fjj">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <state key="normal" title="Connect"/>
+                                <connections>
+                                    <action selector="connectButtonHandler:" destination="MR2-aN-IGU" eventType="touchUpInside" id="TFi-Ib-qqI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBp-5C-C7n">
+                                <rect key="frame" x="20" y="72" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7SQ-wk-eev">
+                                <rect key="frame" x="0.0" y="101" width="600" height="453"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServiceCell" id="8Do-2K-vqc">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Do-2K-vqc" id="524-oR-6xc">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="MR2-aN-IGU" id="2Vu-W9-oNl"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="u2k-av-Fjj" firstAttribute="leading" secondItem="suJ-8z-4ww" secondAttribute="leadingMargin" id="5oR-TG-uRf"/>
+                            <constraint firstItem="mBp-5C-C7n" firstAttribute="top" secondItem="nbe-cf-mYH" secondAttribute="bottom" constant="8" id="73F-QU-ON2"/>
+                            <constraint firstItem="7SQ-wk-eev" firstAttribute="top" secondItem="mBp-5C-C7n" secondAttribute="bottom" constant="8" id="N26-vL-YOo"/>
+                            <constraint firstItem="7SQ-wk-eev" firstAttribute="leading" secondItem="suJ-8z-4ww" secondAttribute="leading" id="SRC-NT-L6b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mBp-5C-C7n" secondAttribute="trailing" id="TJl-AR-ki0"/>
+                            <constraint firstItem="aX3-ZY-EvB" firstAttribute="top" secondItem="u2k-av-Fjj" secondAttribute="bottom" constant="8" id="Ttu-Q7-nHA"/>
+                            <constraint firstItem="u2k-av-Fjj" firstAttribute="top" secondItem="7SQ-wk-eev" secondAttribute="bottom" constant="8" id="aeq-v6-yPW"/>
+                            <constraint firstItem="mBp-5C-C7n" firstAttribute="leading" secondItem="suJ-8z-4ww" secondAttribute="leadingMargin" id="qv5-d6-enb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="u2k-av-Fjj" secondAttribute="trailing" id="rhO-wT-fPE"/>
+                            <constraint firstAttribute="trailing" secondItem="7SQ-wk-eev" secondAttribute="trailing" id="ugQ-3e-JYd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="connectButton" destination="u2k-av-Fjj" id="ZEr-bB-CdU"/>
+                        <outlet property="nameLabel" destination="mBp-5C-C7n" id="KNq-tG-gsS"/>
+                        <outlet property="tableView" destination="7SQ-wk-eev" id="i99-d1-rn4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Pj-no-8l2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1308" y="205"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="SKN-Ah-wtI">
+            <objects>
+                <navigationController id="Rj7-kd-hm8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yTQ-Wd-kbJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="32m-CE-dft" kind="relationship" relationship="rootViewController" id="Y0j-f7-RKl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yvj-rM-O8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-80" y="205"/>
+        </scene>
+    </scenes>
+</document>
