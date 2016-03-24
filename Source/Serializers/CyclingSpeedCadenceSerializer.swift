@@ -2,8 +2,6 @@
 //  CyclingSpeedCadenceSerializer.swift
 //  SwiftySensors
 //
-//  https://github.com/kinetic-fit/sensors-swift
-//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -12,7 +10,7 @@ import Foundation
 public class CyclingSpeedCadenceSerializer {
     
     struct MeasurementFlags: OptionSetType {
-        let rawValue: UInt16
+        let rawValue: UInt8
         
         static let WheelRevolutionDataPresent   = MeasurementFlags(rawValue: 1 << 0)
         static let CrankRevolutionDataPresent   = MeasurementFlags(rawValue: 1 << 1)
@@ -30,11 +28,16 @@ public class CyclingSpeedCadenceSerializer {
         }
     }
     
-    public struct MeasurementData: CyclingMeasurementData {
+    public struct MeasurementData: CyclingMeasurementData, CustomDebugStringConvertible {
+        public var timestamp: Double = 0
         public var cumulativeWheelRevolutions: UInt32?
         public var lastWheelEventTime: UInt16?
         public var cumulativeCrankRevolutions: UInt16?
         public var lastCrankEventTime: UInt16?
+        
+        public var debugDescription: String {
+            return "\(cumulativeWheelRevolutions ?? 0)  \(lastWheelEventTime ?? 0)  \(cumulativeCrankRevolutions ?? 0)  \(lastCrankEventTime ?? 0)"
+        }
     }
     
     
@@ -50,7 +53,7 @@ public class CyclingSpeedCadenceSerializer {
         let bytes = UnsafePointer<UInt8>(data.bytes)
         var index: Int = 0
         
-        let rawFlags: UInt16 = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+        let rawFlags: UInt8 = bytes[index++=]
         let flags = MeasurementFlags(rawValue: rawFlags)
         
         if flags.contains(.WheelRevolutionDataPresent) {
@@ -62,6 +65,8 @@ public class CyclingSpeedCadenceSerializer {
             measurement.cumulativeCrankRevolutions = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
             measurement.lastCrankEventTime = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
         }
+        
+        measurement.timestamp = NSDate.timeIntervalSinceReferenceDate()
         
         return measurement
     }

@@ -2,8 +2,6 @@
 //  CyclingPowerSerializer.swift
 //  SwiftySensors
 //
-//  https://github.com/kinetic-fit/sensors-swift
-//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -56,6 +54,7 @@ public class CyclingPowerSerializer {
     }
     
     public struct MeasurementData: CyclingMeasurementData {
+        public var timestamp: Double = 0
         public var instantaneousPower: Int16 = 0
         public var pedalPowerBalance: UInt8?
         public var pedalPowerBalanceReference: Bool?
@@ -143,6 +142,7 @@ public class CyclingPowerSerializer {
             measurement.accumulatedEnergy = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
         }
         
+        measurement.timestamp = NSDate.timeIntervalSinceReferenceDate()
         return measurement
     }
     

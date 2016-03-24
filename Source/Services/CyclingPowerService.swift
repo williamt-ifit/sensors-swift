@@ -45,7 +45,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
                 instantaneousPower = UInt(current.instantaneousPower)
                 
                 guard let previous = oldValue else { return }
-                speedKPH = CyclingSerializer.calculateWheelKPH(current, previous: previous, wheelCircumferenceCM: wheelCircumferenceCM)
+                speedKPH = CyclingSerializer.calculateWheelKPH(current, previous: previous, wheelCircumferenceCM: wheelCircumferenceCM, wheelTimeResolution: 2048)
                 crankRPM = CyclingSerializer.calculateCrankRPM(current, previous: previous)
             }
         }

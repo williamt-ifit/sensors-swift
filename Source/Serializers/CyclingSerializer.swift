@@ -2,14 +2,13 @@
 //  CyclingSerializer.swift
 //  SwiftySensors
 //
-//  https://github.com/kinetic-fit/sensors-swift
-//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
 import Foundation
 
 public protocol CyclingMeasurementData {
+    var timestamp: Double { get }
     var cumulativeWheelRevolutions: UInt32? { get }
     var lastWheelEventTime: UInt16? { get }
     var cumulativeCrankRevolutions: UInt16? { get }
@@ -44,7 +43,7 @@ public class CyclingSerializer {
     }
     
     
-    public static func calculateWheelKPH(current: CyclingMeasurementData, previous: CyclingMeasurementData, wheelCircumferenceCM: Double) -> Double? {
+    public static func calculateWheelKPH(current: CyclingMeasurementData, previous: CyclingMeasurementData, wheelCircumferenceCM: Double, wheelTimeResolution: Int) -> Double? {
         guard let cwr1 = current.cumulativeWheelRevolutions else { return nil }
         guard let cwr2 = previous.cumulativeWheelRevolutions else { return nil }
         guard let lwet1 = current.lastWheelEventTime else { return nil }
@@ -53,7 +52,7 @@ public class CyclingSerializer {
         let wheelRevsDelta: UInt32 = deltaWithRollover(cwr1, old: cwr2, max: UInt32.max)
         let wheelTimeDelta: UInt16 = deltaWithRollover(lwet1, old: lwet2, max: UInt16.max)
         
-        let wheelTimeSeconds = Double(wheelTimeDelta) / 1024
+        let wheelTimeSeconds = Double(wheelTimeDelta) / Double(wheelTimeResolution)
         if wheelTimeSeconds > 0 {
             let wheelRPM = Double(wheelRevsDelta) / (wheelTimeSeconds / 60)
             let cmPerKm = 0.00001

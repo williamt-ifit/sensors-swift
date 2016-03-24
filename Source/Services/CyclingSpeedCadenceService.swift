@@ -2,8 +2,6 @@
 //  CyclingSpeedCadenceService.swift
 //  SwiftySensors
 //
-//  https://github.com/kinetic-fit/sensors-swift
-//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -39,8 +37,13 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
             didSet {
                 guard let previous = oldValue else { return }
                 guard let current = currentMeasurement else { return }
-                speedKPH = CyclingSerializer.calculateWheelKPH(current, previous: previous, wheelCircumferenceCM: wheelCircumferenceCM)
-                crankRPM = CyclingSerializer.calculateCrankRPM(current, previous: previous)
+                
+                if let kph = CyclingSerializer.calculateWheelKPH(current, previous: previous, wheelCircumferenceCM: wheelCircumferenceCM, wheelTimeResolution: 1024) {
+                    speedKPH = kph
+                }
+                if let rpm = CyclingSerializer.calculateCrankRPM(current, previous: previous) {
+                    crankRPM = rpm
+                }
             }
         }
         
@@ -52,7 +55,23 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         override func valueUpdated() {
             if let value = cbCharacteristic.value {
-                currentMeasurement = CyclingSpeedCadenceSerializer.readMeasurement(value)
+                
+                // Certain sensors (*cough* Mio Velo *cough*) will send updates in bursts
+                // so we're going to do a little filtering here to get a more stable reading
+                
+                let now = NSDate.timeIntervalSinceReferenceDate()
+                // calculate the expected interval of wheel events based on current speed
+                // This results in a small "bump" of speed typically at the end. need to fix that...
+                var reqInterval = 0.8
+                if let speedKPH = speedKPH {
+                    let speedCMS = speedKPH * 27.77777777777778
+                    // A slower speed of around 5 kph would expect a wheel event every 1.5 seconds.
+                    // These values could probably use some tweaking ...
+                    reqInterval = max(0.5, min((wheelCircumferenceCM / speedCMS) * 0.9, 1.5))
+                }
+                if currentMeasurement == nil || now - currentMeasurement!.timestamp > reqInterval {
+                    currentMeasurement = CyclingSpeedCadenceSerializer.readMeasurement(value)
+                }
             }
             super.valueUpdated()
         }
