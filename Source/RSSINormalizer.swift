@@ -1,8 +1,9 @@
 //
 //  RSSINormalizer.swift
-//  Fit
+//  SwiftySensors
 //
-//  Created by Joel Stewart on 3/23/16.
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 //  Derived from Android's RSSI signal level calculator

@@ -2,6 +2,8 @@
 //  Sensor.swift
 //  SwiftySensors
 //
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -65,18 +67,19 @@ public class Sensor: NSObject {
             break
         case .Disconnected:
             services.removeAll()
-            onServiceDiscovered.clearLastData()
-            onCharacteristicDiscovered.clearLastData()
         case .Disconnecting:
             break
         }
-        SensorManager.onLogMessage => "Sensor: peripheralStateChanged: \(peripheral.state.rawValue)"
+        SensorManager.logSensorMessage?("Sensor: peripheralStateChanged: \(peripheral.state.rawValue)")
         onStateChanged => self
     }
     
     public private(set) var services = Dictionary<String, Service>()
     
-    public func findService<T: Service>() -> T? {
+    public func service<T: Service>(uuid: String? = nil) -> T? {
+        if let uuid = uuid {
+            return services[uuid] as? T
+        }
         for service in services.values {
             if let s = service as? T {
                 return s
@@ -96,13 +99,13 @@ public class Sensor: NSObject {
             let charUUIDs: [CBUUID] = service.characteristicTypes.keys.map { uuid in
                 return CBUUID(string: uuid)
             }
-            SensorManager.onLogMessage => "Sensor: Service Created: \(service)"
+            SensorManager.logSensorMessage?("Sensor: Service Created: \(service)")
             peripheral.discoverCharacteristics(charUUIDs, forService: cbs)
         }
     }
     private func characteristicDiscovered(cbc: CBCharacteristic, cbs: CBService) {
         guard let service = services[cbs.UUID.UUIDString] else { return }
-        if let characteristic = service.characteristics[cbc.UUID.UUIDString] where characteristic.cbCharacteristic == cbc {
+        if let characteristic = service.characteristic(cbc.UUID.UUIDString) where characteristic.cbCharacteristic == cbc {
             return
         }
         
@@ -121,7 +124,7 @@ public class Sensor: NSObject {
                 }
             }
             
-            SensorManager.onLogMessage => "Sensor: Characteristic Created: \(characteristic)"
+            SensorManager.logSensorMessage?("Sensor: Characteristic Created: \(characteristic)")
             onCharacteristicDiscovered => (self, characteristic)
         }
     }

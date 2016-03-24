@@ -18,6 +18,7 @@
 		8D22FDE31CA0A31B00B4CC0B /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */; };
 		8D4FA77E1C9C87A2000285BA /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76B1C9C8658000285BA /* Sensor.swift */; };
 		8D4FA77F1C9C87A4000285BA /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76C1C9C8658000285BA /* SensorManager.swift */; };
+		8D5093771CA46C53006C10E7 /* WahooTrainerCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5093761CA46C53006C10E7 /* WahooTrainerCharacteristic.swift */; };
 		8D5595141CA0AE1D00F8BD72 /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */; };
 		8D659A701C9C88FB00CF3C60 /* WahooTrainerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76E1C9C8658000285BA /* WahooTrainerSerializer.swift */; };
 		8D659A711C9C890300CF3C60 /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */; };
@@ -76,6 +77,7 @@
 		8D4FA76E1C9C8658000285BA /* WahooTrainerSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WahooTrainerSerializer.swift; sourceTree = "<group>"; };
 		8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyclingPowerService.swift; sourceTree = "<group>"; };
 		8D4FA7761C9C8693000285BA /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5093761CA46C53006C10E7 /* WahooTrainerCharacteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooTrainerCharacteristic.swift; sourceTree = "<group>"; };
 		8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreBluetooth.swift; path = Source/CoreBluetooth.swift; sourceTree = "<group>"; };
 		8D659AB61C9C8B2300CF3C60 /* SwiftySensorsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftySensorsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D659AB81C9C8B2300CF3C60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		8D4FA76D1C9C8658000285BA /* Serializers */ = {
 			isa = PBXGroup;
 			children = (
+				8D5093751CA46C53006C10E7 /* Vendors */,
 				8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */,
 				8D22FDD81CA07F2600B4CC0B /* CyclingPowerSerializer.swift */,
 				8D22FDE01CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift */,
@@ -177,6 +180,15 @@
 			name = Services;
 			path = Source/Services;
 			sourceTree = "<group>";
+		};
+		8D5093751CA46C53006C10E7 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				8D5093761CA46C53006C10E7 /* WahooTrainerCharacteristic.swift */,
+			);
+			name = Vendors;
+			path = Source/Services/Vendors;
+			sourceTree = SOURCE_ROOT;
 		};
 		8D659AB71C9C8B2300CF3C60 /* SwiftySensorsExample */ = {
 			isa = PBXGroup;
@@ -430,6 +442,7 @@
 				8D22FDDD1CA0987C00B4CC0B /* HeartRateSerializer.swift in Sources */,
 				8D659A711C9C890300CF3C60 /* CyclingPowerService.swift in Sources */,
 				8D659ACB1C9C8B4000CF3C60 /* Service.swift in Sources */,
+				8D5093771CA46C53006C10E7 /* WahooTrainerCharacteristic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

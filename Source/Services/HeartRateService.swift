@@ -2,6 +2,8 @@
 //  HeartRateService.swift
 //  SwiftySensors
 //
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -35,10 +37,6 @@ public class HeartRateService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
             
             service.sensor.onServiceFeaturesIdentified => (service.sensor, service)
-        }
-        
-        deinit {
-            cbCharacteristic.notify(false)
         }
         
         public private(set) var currentMeasurement: HeartRateSerializer.MeasurementData?
@@ -87,10 +85,6 @@ public class HeartRateService: Service, ServiceProtocol {
             super.init(service: service, cbc: cbc)
             
             cbCharacteristic.notify(true)
-        }
- 
-        deinit {
-            cbCharacteristic.notify(false)
         }
         
         public func resetEnergyExpended() {

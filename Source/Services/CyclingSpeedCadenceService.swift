@@ -2,6 +2,8 @@
 //  CyclingSpeedCadenceService.swift
 //  SwiftySensors
 //
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -46,10 +48,6 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
             super.init(service: service, cbc: cbc)
             
             cbCharacteristic.notify(true)
-        }
-        
-        deinit {
-            cbCharacteristic.notify(false)
         }
         
         override func valueUpdated() {

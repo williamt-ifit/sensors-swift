@@ -2,6 +2,8 @@
 //  SensorManager.swift
 //  SwiftySensors
 //
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -10,13 +12,17 @@ import Signals
 
 public class SensorManager: NSObject {
     
-    // This is a lazy instance. You can opt to NOT call it and control the lifecycle of the Scanner yourself if desired
+    // This is a lazy instance. You can opt to NOT call it and control the lifecycle of the SensorManager yourself if desired
     // No internal reference is made to this instance.
     public static let instance = SensorManager()
     
-    public let onBluetoothStateChange = Signal<CBCentralManagerState>()
-    public static let onLogMessage = Signal<String>()
+    // All SensorManager logging is directed through this closure. Set it to nil to turn logging off...
+    // ... or set your own closure at the project level to direct all logging to your logger of choice.
+    public static var logSensorMessage: ((_: String) -> ())? = { message in
+        print(message)
+    }
     
+    public let onBluetoothStateChange = Signal<CBCentralManagerState>()
     public let onSensorDiscovered = Signal<Sensor>()
     public let onSensorConnected = Signal<Sensor>()
     public let onSensorConnectionFailed = Signal<Sensor>()
@@ -82,12 +88,12 @@ public class SensorManager: NSObject {
     }
     
     public func disconnectFromSensor(sensor: Sensor) {
-        SensorManager.onLogMessage.fire("SensorManager: Disconnecting from sensor ...")
+        SensorManager.logSensorMessage?("SensorManager: Disconnecting from sensor ...")
         centralManager.cancelPeripheralConnection(sensor.peripheral)
     }
     
     public func connectToSensor(sensor: Sensor) {
-        SensorManager.onLogMessage.fire("SensorManager: Connecting to sensor ...")
+        SensorManager.logSensorMessage?("SensorManager: Connecting to sensor ...")
         centralManager.connectPeripheral(sensor.peripheral, options: nil)
     }
     
@@ -115,7 +121,7 @@ extension SensorManager {
         ]
         let serviceUUIDs = serviceFactory.servicesToDiscover
         centralManager.scanForPeripheralsWithServices(serviceUUIDs, options: options)
-        SensorManager.onLogMessage.fire("SensorManager: Scanning for Services")
+        SensorManager.logSensorMessage?("SensorManager: Scanning for Services")
         for peripheral in centralManager.retrieveConnectedPeripheralsWithServices(serviceUUIDs) {
             sensorForPeripheral(peripheral, create: true)
         }
@@ -132,7 +138,7 @@ extension SensorManager {
         sensor.serviceFactory = serviceFactory
         sensorsById[peripheral.identifier.UUIDString] = sensor
         onSensorDiscovered.fire(sensor)
-        SensorManager.onLogMessage.fire("SensorManager: Created Sensor for Peripheral: \(peripheral)")
+        SensorManager.logSensorMessage?("SensorManager: Created Sensor for Peripheral: \(peripheral)")
         return sensor
     }
     
@@ -143,14 +149,14 @@ extension SensorManager {
 extension SensorManager: CBCentralManagerDelegate {
     
     public func centralManager(manager: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        SensorManager.onLogMessage.fire("CBCentralManager: didFailToConnectPeripheral: \(peripheral)")
+        SensorManager.logSensorMessage?("CBCentralManager: didFailToConnectPeripheral: \(peripheral)")
         if let sensor = sensorForPeripheral(peripheral, create: false) {
             onSensorConnectionFailed.fire(sensor)
         }
     }
     
     public func centralManager(manager: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
-        SensorManager.onLogMessage.fire("CBCentralManager: didConnectPeripheral: \(peripheral)")
+        SensorManager.logSensorMessage?("CBCentralManager: didConnectPeripheral: \(peripheral)")
         if let sensor = sensorForPeripheral(peripheral, create: true) {
             peripheral.discoverServices(serviceFactory.serviceUUIDs)
             onSensorConnected.fire(sensor)
@@ -158,7 +164,7 @@ extension SensorManager: CBCentralManagerDelegate {
     }
     
     public func centralManager(manager: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        SensorManager.onLogMessage.fire("CBCentralManager: didDisconnectPeripheral: \(peripheral)")
+        SensorManager.logSensorMessage?("CBCentralManager: didDisconnectPeripheral: \(peripheral)")
         if let sensor = sensorForPeripheral(peripheral, create: false) {
             onSensorDisconnected.fire(sensor)
         }
@@ -175,7 +181,7 @@ extension SensorManager: CBCentralManagerDelegate {
     }
     
     public func centralManagerDidUpdateState(central: CBCentralManager) {
-        SensorManager.onLogMessage.fire("centralManagerDidUpdateState: \(central.state.rawValue)")
+        SensorManager.logSensorMessage?("centralManagerDidUpdateState: \(central.state.rawValue)")
         switch central.state {
         case .Unknown:
             break

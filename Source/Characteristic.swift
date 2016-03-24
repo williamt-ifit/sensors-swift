@@ -2,6 +2,8 @@
 //  Characteristic.swift
 //  SwiftySensors
 //
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -10,7 +12,7 @@ import Signals
 
 public class Characteristic {
     
-    public weak var service: Service?
+    public private(set) weak var service: Service?
     
     public let onValueUpdated = Signal<Characteristic>()
     public let onValueWritten = Signal<Characteristic>()
@@ -26,12 +28,12 @@ public class Characteristic {
     }
     
     internal func valueUpdated() {
-        valueWrittenTimestamp = NSDate.timeIntervalSinceReferenceDate()
+        valueUpdatedTimestamp = NSDate.timeIntervalSinceReferenceDate()
         onValueUpdated.fire(self)
     }
     
     internal func valueWritten() {
-        valueUpdatedTimestamp = NSDate.timeIntervalSinceReferenceDate()
+        valueWrittenTimestamp = NSDate.timeIntervalSinceReferenceDate()
         onValueWritten.fire(self)
     }
     

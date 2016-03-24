@@ -2,6 +2,8 @@
 //  CyclingSpeedCadenceSerializer.swift
 //  SwiftySensors
 //
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 

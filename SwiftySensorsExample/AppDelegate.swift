@@ -2,6 +2,8 @@
 //  AppDelegate.swift
 //  SwiftySensorsExample
 //
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -28,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SensorManager.instance.scanMode = .Aggressive
         
         // Capture SwiftySensors log messages and print them to the console. You can inject your own logging system here if desired.
-        SensorManager.onLogMessage.listen(self) { message in
+        SensorManager.logSensorMessage = { message in
             print(message)
         }
         

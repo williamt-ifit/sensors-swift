@@ -2,6 +2,8 @@
 //  Service.swift
 //  SwiftySensors
 //
+//  https://github.com/kinetic-fit/sensors-swift
+//
 //  Copyright © 2016 Kinetic. All rights reserved.
 //
 
@@ -14,19 +16,27 @@ public protocol ServiceProtocol {
     static var serviceType: Service.Type { get }
 }
 
-public class Service {
+public func == (lhs: Service, rhs: Service) -> Bool {
+    return lhs.cbService.UUID == rhs.cbService.UUID
+}
+
+public class Service: Equatable {
     
     public weak var sensor: Sensor!
     
     public let cbService: CBService
     
-    public internal(set) var characteristics = Dictionary<String, Characteristic>()
-        
+    internal var characteristics = Dictionary<String, Characteristic>()
+    
     internal var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return Dictionary()
     }
     
-    public func findCharacteristic<T: Characteristic>() -> T? {
+    public func characteristic<T: Characteristic>(uuid: String? = nil) -> T? {
+        if let uuid = uuid {
+            return characteristics[uuid] as? T
+        }
+        
         for characteristic in characteristics.values {
             if let c = characteristic as? T {
                 return c
