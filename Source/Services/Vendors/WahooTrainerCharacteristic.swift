@@ -17,7 +17,7 @@ extension CyclingPowerService {
     // Nuances: after writing an ERG mode target watts, the trainer takes about 2 seconds for adjustments to be made.
     //      Delay all writes
     public class WahooTrainer: Characteristic {
-        static var uuid: String { return "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B" }
+        static public let uuid: String = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B"
         
         private var ergWriteTimer: NSTimer?
         private var ergWriteWatts: UInt16?
@@ -53,7 +53,7 @@ extension CyclingPowerService {
             cbCharacteristic.write(NSData.fromIntArray(WahooTrainerSerializer.unlockCommand()), writeType: .WithResponse)
         }
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             // generate response ...
             
             super.valueUpdated()

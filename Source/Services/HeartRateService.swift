@@ -29,7 +29,7 @@ public class HeartRateService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
     //
     public class Measurement: Characteristic {
-        static var uuid: String { return "2A37" }
+        public static let uuid: String = "2A37"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -41,7 +41,7 @@ public class HeartRateService: Service, ServiceProtocol {
         
         public private(set) var currentMeasurement: HeartRateSerializer.MeasurementData?
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             if let value = cbCharacteristic.value {
                 currentMeasurement = HeartRateSerializer.readMeasurement(value)
             }
@@ -55,7 +55,7 @@ public class HeartRateService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.body_sensor_location.xml
     //
     public class BodySensorLocation: Characteristic {
-        static var uuid: String { return "2A38" }
+        public static let uuid: String = "2A38"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -66,7 +66,7 @@ public class HeartRateService: Service, ServiceProtocol {
         
         public private(set) var location: HeartRateSerializer.BodySensorLocation?
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             if let value = cbCharacteristic.value {
                 location = HeartRateSerializer.readSensorLocation(value)
             }
@@ -79,7 +79,7 @@ public class HeartRateService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_control_point.xml
     //
     public class ControlPoint: Characteristic {
-        static var uuid: String { return "2A39" }
+        public static let uuid: String = "2A39"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -91,7 +91,7 @@ public class HeartRateService: Service, ServiceProtocol {
             cbCharacteristic.write(NSData.fromIntArray(HeartRateSerializer.writeResetEnergyExpended()), writeType: .WithResponse)
         }
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             // TODO: Unsure what value is read from the CP after we reset the energy expended (not documented?)
             super.valueUpdated()
         }

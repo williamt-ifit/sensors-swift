@@ -12,15 +12,15 @@ import Foundation
 public class HeartRateSerializer {
     
     public struct MeasurementData {
-        enum ContactStatus {
+        public enum ContactStatus {
             case NotSupported
             case NotDetected
             case Detected
         }
-        var heartRate: UInt16 = 0
-        var contactStatus: ContactStatus = .NotSupported
-        var energyExpended: UInt16?
-        var rrInterval: UInt16?
+        public var heartRate: UInt16 = 0
+        public var contactStatus: ContactStatus = .NotSupported
+        public var energyExpended: UInt16?
+        public var rrInterval: UInt16?
     }
     
     public enum BodySensorLocation: UInt8 {

@@ -19,27 +19,27 @@ public extension SignedIntegerType {
     }
 }
 
-prefix operator ++= {  }
+prefix operator ++= { }
 public prefix func ++= <T: SignedIntegerType>(inout v: T) -> T {
     v.increment()
     return v
 }
 
-postfix operator ++= {  }
-public postfix func ++=<T: SignedIntegerType>(inout v: T) -> T {
+postfix operator ++= { }
+public postfix func ++= <T: SignedIntegerType>(inout v: T) -> T {
     let result = v
     v.increment()
     return result
 }
 
-prefix operator --= {  }
-public prefix func --=<T: SignedIntegerType>(inout v: T) -> T {
+prefix operator --= { }
+public prefix func --= <T: SignedIntegerType>(inout v: T) -> T {
     v.decrement()
     return v
 }
 
-postfix operator --= {  }
-public postfix func --=<T: SignedIntegerType>(inout v: T) -> T {
+postfix operator --= { }
+public postfix func --= <T: SignedIntegerType>(inout v: T) -> T {
     let result = v
     v.decrement()
     return result

@@ -45,7 +45,7 @@ public class SensorManager: NSObject {
     }   
     
     
-    var SensorType: Sensor.Type = Sensor.self
+    public var SensorType: Sensor.Type = Sensor.self
     private let serviceFactory = ServiceFactory()
     internal class ServiceFactory {
         private(set) var serviceTypes = Dictionary<String, Service.Type>()

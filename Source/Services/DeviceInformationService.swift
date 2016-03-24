@@ -31,49 +31,49 @@ public class DeviceInformationService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.manufacturer_name_string.xml
     //
     public class ManufacturerName: UTF8Characteristic {
-        static var uuid: String { return "2A29" }
+        public static let uuid: String = "2A29"
     }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.model_number_string.xml
     //
     public class ModelNumber: UTF8Characteristic {
-        static var uuid: String { return "2A24" }
+        public static let uuid: String = "2A24"
     }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.serial_number_string.xml
     //
     public class SerialNumber: UTF8Characteristic {
-        static var uuid: String { return "2A25" }
+        public static let uuid: String = "2A25"
     }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.hardware_revision_string.xml
     //
     public class HardwareRevision: UTF8Characteristic {
-        static var uuid: String { return "2A27" }
+        public static let uuid: String = "2A27"
     }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.firmware_revision_string.xml
     //
     public class FirmwareRevision: UTF8Characteristic {
-        static var uuid: String { return "2A26" }
+        public static let uuid: String = "2A26"
     }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.software_revision_string.xml
     //
     public class SoftwareRevision: UTF8Characteristic {
-        static var uuid: String { return "2A28" }
+        public static let uuid: String = "2A28"
     }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.software_revision_string.xml
     //
     public class SystemID: Characteristic {
-        static var uuid: String { return "2A23" }
+        public static let uuid: String = "2A23"
     }
     
 }

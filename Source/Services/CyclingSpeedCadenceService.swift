@@ -26,7 +26,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.csc_measurement.xml
     //
     public class Measurement: Characteristic {
-        static var uuid: String { return "2A5B" }
+        public static let uuid: String = "2A5B"
         
         public private(set) var speedKPH: Double?
         public private(set) var crankRPM: Double?
@@ -53,7 +53,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             if let value = cbCharacteristic.value {
                 
                 // Certain sensors (*cough* Mio Velo *cough*) will send updates in bursts
@@ -83,7 +83,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_feature.xml
     //
     public class Feature: Characteristic {
-        static var uuid: String { return "2A5C" }
+        public static let uuid: String = "2A5C"
         
         public private(set) var features: CyclingSpeedCadenceSerializer.Features?
         
@@ -93,7 +93,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
             cbCharacteristic.read()
         }
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             if let value = cbCharacteristic.value {
                 features = CyclingSpeedCadenceSerializer.readFeatures(value)
             }
@@ -111,7 +111,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.sensor_location.xml
     //
     public class SensorLocation: Characteristic {
-        static var uuid: String { return "2A5D" }
+        public static let uuid: String = "2A5D"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -121,7 +121,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         public private(set) var location: CyclingSerializer.SensorLocation?
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             if let value = cbCharacteristic.value {
                 location = CyclingSerializer.readSensorLocation(value)
             }

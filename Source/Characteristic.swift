@@ -27,12 +27,12 @@ public class Characteristic {
         self.cbCharacteristic = cbc
     }
     
-    internal func valueUpdated() {
+    public func valueUpdated() {
         valueUpdatedTimestamp = NSDate.timeIntervalSinceReferenceDate()
         onValueUpdated.fire(self)
     }
     
-    internal func valueWritten() {
+    public func valueWritten() {
         valueWrittenTimestamp = NSDate.timeIntervalSinceReferenceDate()
         onValueWritten.fire(self)
     }

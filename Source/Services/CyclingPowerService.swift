@@ -31,7 +31,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_measurement.xml
     //
     public class Measurement: Characteristic {
-        static var uuid: String { return "2A63" }
+        public static let uuid: String = "2A63"
         
         public private(set) var instantaneousPower: UInt?
         public private(set) var speedKPH: Double?
@@ -56,7 +56,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             if let value = cbCharacteristic.value {
                 currentMeasurement = CyclingPowerSerializer.readMeasurement(value)
             }
@@ -70,7 +70,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_feature.xml
     //
     public class Feature: Characteristic {
-        static var uuid: String { return "2A65" }
+        public static let uuid: String = "2A65"
         
         public private(set) var features: CyclingPowerSerializer.Features?
         
@@ -80,7 +80,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
             cbCharacteristic.read()
         }
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             if let value = cbCharacteristic.value {
                 features = CyclingPowerSerializer.readFeatures(value)
             }
@@ -99,7 +99,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.sensor_location.xml
     //
     public class SensorLocation: Characteristic {
-        static var uuid: String { return "2A5D" }
+        public static let uuid: String = "2A5D"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -109,7 +109,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
         
         public private(set) var location: CyclingSerializer.SensorLocation?
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             if let value = cbCharacteristic.value {
                 location = CyclingSerializer.readSensorLocation(value)
             }
@@ -124,7 +124,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
     //
     // TODO: Pretty much all of this ...
     public class ControlPoint: Characteristic {
-        static var uuid: String { return "2A66" }
+        public static let uuid: String = "2A66"
         static let writeType = CBCharacteristicWriteType.WithResponse
         
         required public init(service: Service, cbc: CBCharacteristic) {
@@ -133,7 +133,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
-        override func valueUpdated() {
+        override public func valueUpdated() {
             // TODO: Process this response
             super.valueUpdated()
         }

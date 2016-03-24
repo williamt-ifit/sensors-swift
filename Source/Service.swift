@@ -28,7 +28,7 @@ public class Service: Equatable {
     
     internal var characteristics = Dictionary<String, Characteristic>()
     
-    internal var characteristicTypes: Dictionary<String, Characteristic.Type> {
+    public var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return Dictionary()
     }
     
