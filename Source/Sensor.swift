@@ -16,19 +16,15 @@ public class Sensor: NSObject {
     public let advertisements: [CBUUID]
     
     public let onNameChanged = Signal<Sensor>()
+    public let onStateChanged = Signal<Sensor>()
+    
     public let onServiceDiscovered = Signal<(Sensor, Service)>()
     public let onServiceFeaturesIdentified = Signal<(Sensor, Service)>()
+    
     public let onCharacteristicDiscovered = Signal<(Sensor, Characteristic)>()
-    public let onStateChanged = Signal<Sensor>()
     public let onCharacteristicValueUpdated = Signal<(Sensor, Characteristic)>()
     public let onCharacteristicValueWritten = Signal<(Sensor, Characteristic)>()
-    public let onRSSIChanged = Signal<(Sensor, Int)>()
     
-    public internal(set) var rssi: Int = Int.min {
-        didSet {
-            onRSSIChanged => (self, rssi)
-        }
-    }
     
     internal weak var serviceFactory: SensorManager.ServiceFactory?
     
@@ -45,6 +41,7 @@ public class Sensor: NSObject {
     deinit {
         peripheral.removeObserver(self, forKeyPath: "state")
         peripheral.delegate = nil
+        rssiPingTimer?.invalidate()
     }
     
     private var myContext = 0
@@ -60,21 +57,35 @@ public class Sensor: NSObject {
     
     
     private func peripheralStateChanged() {
-        switch peripheral.state {
-        case .Connected:
-            break
-        case .Connecting:
-            break
-        case .Disconnected:
-            services.removeAll()
-        case .Disconnecting:
-            break
-        }
+        #if os(iOS)
+            switch peripheral.state {
+            case .Connected:
+                rssiPingEnabled = true
+            case .Connecting:
+                break
+            case .Disconnected:
+                rssiPingEnabled = false
+                services.removeAll()
+            case .Disconnecting:
+                rssiPingEnabled = false
+            }
+        #else
+            switch peripheral.state {
+            case .Connected:
+                rssiPingEnabled = true
+            case .Connecting:
+                break
+            case .Disconnected:
+                rssiPingEnabled = false
+                services.removeAll()
+            }
+        #endif
         SensorManager.logSensorMessage?("Sensor: peripheralStateChanged: \(peripheral.state.rawValue)")
         onStateChanged => self
     }
     
     public private(set) var services = Dictionary<String, Service>()
+    
     
     public func service<T: Service>(uuid: String? = nil) -> T? {
         if let uuid = uuid {
@@ -129,6 +140,51 @@ public class Sensor: NSObject {
         }
     }
     
+    
+    
+    
+    
+    // MARK: RSSI Stuff
+    public let onRSSIChanged = Signal<(Sensor, Int)>()
+    
+    public internal(set) var rssi: Int = Int.min {
+        didSet {
+            onRSSIChanged => (self, rssi)
+        }
+    }
+    
+    private var rssiPingEnabled: Bool = false {
+        didSet {
+            if rssiPingEnabled {
+                if rssiPingTimer == nil {
+                    rssiPingTimer = NSTimer.scheduledTimerWithTimeInterval(rssiPingInterval, target: self, selector: #selector(Sensor.rssiPingTimerHandler), userInfo: nil, repeats: true)
+                }
+            } else {
+                rssi = Int.min
+                rssiPingTimer?.invalidate()
+                rssiPingTimer = nil
+            }
+        }
+    }
+    
+    private var rssiPingTimer: NSTimer?
+    
+    private let rssiPingInterval: Double = 2
+    
+    func rssiPingTimerHandler() {
+        if peripheral.state == .Connected {
+            peripheral.readRSSI()
+        }
+    }
+    
+    
+    
+    // MARK: Track last
+    public private(set) var lastSensorActivity: Double = NSDate.timeIntervalSinceReferenceDate()
+    private func markSensorActivity() {
+        lastSensorActivity = NSDate.timeIntervalSinceReferenceDate()
+    }
+    
 }
 
 
@@ -139,6 +195,7 @@ extension Sensor: CBPeripheralDelegate {
     
     public func peripheralDidUpdateName(peripheral: CBPeripheral) {
         onNameChanged => self
+        markSensorActivity()
     }
     
     public func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
@@ -146,6 +203,7 @@ extension Sensor: CBPeripheralDelegate {
         for cbs in cbss {
             serviceDiscovered(cbs)
         }
+        markSensorActivity()
     }
     
     public func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
@@ -153,23 +211,27 @@ extension Sensor: CBPeripheralDelegate {
         for cbc in cbcs {
             characteristicDiscovered(cbc, cbs: service)
         }
+        markSensorActivity()
     }
     
     public func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         guard let service = services[characteristic.service.UUID.UUIDString] else { return }
         guard let char = service.characteristics[characteristic.UUID.UUIDString] else { return }
         char.valueUpdated()
+        markSensorActivity()
     }
     
     public func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         guard let service = services[characteristic.service.UUID.UUIDString] else { return }
         guard let char = service.characteristics[characteristic.UUID.UUIDString] else { return }
         char.valueWritten()
+        markSensorActivity()
     }
     
     public func peripheral(peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: NSError?) {
         if RSSI.integerValue < 0 {
             rssi = RSSI.integerValue
+            markSensorActivity()
         }
     }
     

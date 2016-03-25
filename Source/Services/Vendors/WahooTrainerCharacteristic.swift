@@ -19,6 +19,15 @@ extension CyclingPowerService {
     public class WahooTrainer: Characteristic {
         static public let uuid: String = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B"
         
+        required public init(service: Service, cbc: CBCharacteristic) {
+            super.init(service: service, cbc: cbc)
+            (service as? CyclingPowerService)?.wahooTrainer = self
+            
+            cbCharacteristic.notify(true)
+            cbCharacteristic.write(NSData.fromIntArray(WahooTrainerSerializer.unlockCommand()), writeType: .WithResponse)
+        }
+        
+        
         private var ergWriteTimer: NSTimer?
         private var ergWriteWatts: UInt16?
         public func setResistanceModeErg(watts: UInt16) {
@@ -44,13 +53,6 @@ extension CyclingPowerService {
             ergWriteTimer = nil
             
             cbCharacteristic.write(NSData.fromIntArray(WahooTrainerSerializer.setResistanceModeLevel(level)), writeType: .WithResponse)
-        }
-        
-        required public init(service: Service, cbc: CBCharacteristic) {
-            super.init(service: service, cbc: cbc)
-            
-            cbCharacteristic.notify(true)
-            cbCharacteristic.write(NSData.fromIntArray(WahooTrainerSerializer.unlockCommand()), writeType: .WithResponse)
         }
         
         override public func valueUpdated() {

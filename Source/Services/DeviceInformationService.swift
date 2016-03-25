@@ -14,7 +14,6 @@ import CoreBluetooth
 //
 public class DeviceInformationService: Service, ServiceProtocol {
     public static var uuid: String { return "180A" }
-    public static var serviceType: Service.Type { return self }
     public override var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
             ManufacturerName.uuid:  ManufacturerName.self,
@@ -27,11 +26,24 @@ public class DeviceInformationService: Service, ServiceProtocol {
         ]
     }
     
+    public var manufacturerName: ManufacturerName?
+    public var modelNumber: ModelNumber?
+    public var serialNumber: SerialNumber?
+    public var hardwareRevision: HardwareRevision?
+    public var firmwareRevision: FirmwareRevision?
+    public var softwareRevision: SoftwareRevision?
+    public var systemID: SystemID?
+    
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.manufacturer_name_string.xml
     //
     public class ManufacturerName: UTF8Characteristic {
         public static let uuid: String = "2A29"
+        
+        required public init(service: Service, cbc: CBCharacteristic) {
+            super.init(service: service, cbc: cbc)
+            (service as? DeviceInformationService)?.manufacturerName = self
+        }
     }
     
     //
@@ -39,6 +51,11 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     public class ModelNumber: UTF8Characteristic {
         public static let uuid: String = "2A24"
+        
+        required public init(service: Service, cbc: CBCharacteristic) {
+            super.init(service: service, cbc: cbc)
+            (service as? DeviceInformationService)?.modelNumber = self
+        }
     }
     
     //
@@ -46,6 +63,11 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     public class SerialNumber: UTF8Characteristic {
         public static let uuid: String = "2A25"
+        
+        required public init(service: Service, cbc: CBCharacteristic) {
+            super.init(service: service, cbc: cbc)
+            (service as? DeviceInformationService)?.serialNumber = self
+        }
     }
     
     //
@@ -53,6 +75,11 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     public class HardwareRevision: UTF8Characteristic {
         public static let uuid: String = "2A27"
+        
+        required public init(service: Service, cbc: CBCharacteristic) {
+            super.init(service: service, cbc: cbc)
+            (service as? DeviceInformationService)?.hardwareRevision = self
+        }
     }
     
     //
@@ -60,6 +87,11 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     public class FirmwareRevision: UTF8Characteristic {
         public static let uuid: String = "2A26"
+        
+        required public init(service: Service, cbc: CBCharacteristic) {
+            super.init(service: service, cbc: cbc)
+            (service as? DeviceInformationService)?.firmwareRevision = self
+        }
     }
     
     //
@@ -67,6 +99,11 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     public class SoftwareRevision: UTF8Characteristic {
         public static let uuid: String = "2A28"
+        
+        required public init(service: Service, cbc: CBCharacteristic) {
+            super.init(service: service, cbc: cbc)
+            (service as? DeviceInformationService)?.softwareRevision = self
+        }
     }
     
     //
@@ -74,6 +111,11 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     public class SystemID: Characteristic {
         public static let uuid: String = "2A23"
+        
+        required public init(service: Service, cbc: CBCharacteristic) {
+            super.init(service: service, cbc: cbc)
+            (service as? DeviceInformationService)?.systemID = self
+        }
     }
     
 }

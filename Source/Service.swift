@@ -11,9 +11,13 @@ import CoreBluetooth
 import Signals
 
 
-public protocol ServiceProtocol {
+public protocol ServiceProtocol: class {
     static var uuid: String { get }
     static var serviceType: Service.Type { get }
+}
+
+extension ServiceProtocol where Self: Service {
+    public static var serviceType: Service.Type { return self }
 }
 
 public func == (lhs: Service, rhs: Service) -> Bool {

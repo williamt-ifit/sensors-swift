@@ -18,9 +18,7 @@
 		8D22FDE31CA0A31B00B4CC0B /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */; };
 		8D4FA77E1C9C87A2000285BA /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76B1C9C8658000285BA /* Sensor.swift */; };
 		8D4FA77F1C9C87A4000285BA /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76C1C9C8658000285BA /* SensorManager.swift */; };
-		8D5093771CA46C53006C10E7 /* WahooTrainerCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5093761CA46C53006C10E7 /* WahooTrainerCharacteristic.swift */; };
 		8D5595141CA0AE1D00F8BD72 /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */; };
-		8D659A701C9C88FB00CF3C60 /* WahooTrainerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76E1C9C8658000285BA /* WahooTrainerSerializer.swift */; };
 		8D659A711C9C890300CF3C60 /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */; };
 		8D659AB91C9C8B2300CF3C60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AB81C9C8B2300CF3C60 /* AppDelegate.swift */; };
 		8D659ABB1C9C8B2300CF3C60 /* SensorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659ABA1C9C8B2300CF3C60 /* SensorListViewController.swift */; };
@@ -34,7 +32,27 @@
 		8D659AD71C9C8DC800CF3C60 /* SwiftySensors.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4FA7761C9C8693000285BA /* SwiftySensors.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D659ADA1C9C9AB900CF3C60 /* SensorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AD91C9C9AB900CF3C60 /* SensorDetailsViewController.swift */; };
 		8D659ADD1C9CA98F00CF3C60 /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */; };
+		8D81400F1CA5896E001D75B3 /* WahooTrainerCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D81400E1CA5896E001D75B3 /* WahooTrainerCharacteristic.swift */; };
+		8D8140121CA58975001D75B3 /* WahooTrainerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8140111CA58975001D75B3 /* WahooTrainerSerializer.swift */; };
+		8D8140201CA5994F001D75B3 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C70761CA332FD00A72487 /* Operators.swift */; };
+		8D8140211CA5994F001D75B3 /* RSSINormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C70781CA3330400A72487 /* RSSINormalizer.swift */; };
+		8D8140221CA5994F001D75B3 /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */; };
+		8D8140231CA5994F001D75B3 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76C1C9C8658000285BA /* SensorManager.swift */; };
+		8D8140241CA5994F001D75B3 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76B1C9C8658000285BA /* Sensor.swift */; };
+		8D8140251CA5994F001D75B3 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AC91C9C8B4000CF3C60 /* Service.swift */; };
+		8D8140261CA5994F001D75B3 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AC81C9C8B4000CF3C60 /* Characteristic.swift */; };
+		8D8140271CA59955001D75B3 /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */; };
+		8D8140281CA59955001D75B3 /* CyclingPowerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDD81CA07F2600B4CC0B /* CyclingPowerSerializer.swift */; };
+		8D8140291CA59955001D75B3 /* CyclingSpeedCadenceSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDE01CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift */; };
+		8D81402A1CA59955001D75B3 /* HeartRateSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDC1CA0987C00B4CC0B /* HeartRateSerializer.swift */; };
+		8D81402B1CA59957001D75B3 /* WahooTrainerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8140111CA58975001D75B3 /* WahooTrainerSerializer.swift */; };
+		8D81402C1CA5995A001D75B3 /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */; };
+		8D81402D1CA5995A001D75B3 /* CyclingSpeedCadenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDE1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift */; };
+		8D81402E1CA5995A001D75B3 /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */; };
+		8D81402F1CA5995A001D75B3 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDA1CA097AE00B4CC0B /* HeartRateService.swift */; };
+		8D8140301CA5995C001D75B3 /* WahooTrainerCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D81400E1CA5896E001D75B3 /* WahooTrainerCharacteristic.swift */; };
 		AA4D11A87E1002D5839565A1 /* Pods_SwiftySensors_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF44B2F4D7FDEC8E97B5C7F /* Pods_SwiftySensors_iOS.framework */; };
+		D81C9BED4FECB9C7978FB2EF /* Pods_SwiftySensors_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC888A3B95B85FD5F6E62741 /* Pods_SwiftySensors_OSX.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +82,7 @@
 /* Begin PBXFileReference section */
 		1A2D44AE2FB4B3D9723A50E4 /* Pods-SwiftySensors iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensors iOS/Pods-SwiftySensors iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4462C1626922822555313B81 /* Pods_SwiftySensorsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftySensorsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ECD6A6CB9525B5D049E8E13 /* Pods-SwiftySensors OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensors OSX/Pods-SwiftySensors OSX.release.xcconfig"; sourceTree = "<group>"; };
 		8D1C70761CA332FD00A72487 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Source/Operators.swift; sourceTree = "<group>"; };
 		8D1C70781CA3330400A72487 /* RSSINormalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RSSINormalizer.swift; path = Source/RSSINormalizer.swift; sourceTree = "<group>"; };
 		8D22FDD81CA07F2600B4CC0B /* CyclingPowerSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclingPowerSerializer.swift; sourceTree = "<group>"; };
@@ -74,10 +93,8 @@
 		8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclingSerializer.swift; sourceTree = "<group>"; };
 		8D4FA76B1C9C8658000285BA /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sensor.swift; path = Source/Sensor.swift; sourceTree = "<group>"; };
 		8D4FA76C1C9C8658000285BA /* SensorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SensorManager.swift; path = Source/SensorManager.swift; sourceTree = "<group>"; };
-		8D4FA76E1C9C8658000285BA /* WahooTrainerSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WahooTrainerSerializer.swift; sourceTree = "<group>"; };
 		8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyclingPowerService.swift; sourceTree = "<group>"; };
 		8D4FA7761C9C8693000285BA /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D5093761CA46C53006C10E7 /* WahooTrainerCharacteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooTrainerCharacteristic.swift; sourceTree = "<group>"; };
 		8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreBluetooth.swift; path = Source/CoreBluetooth.swift; sourceTree = "<group>"; };
 		8D659AB61C9C8B2300CF3C60 /* SwiftySensorsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftySensorsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D659AB81C9C8B2300CF3C60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,9 +108,14 @@
 		8D659AD21C9C8D8E00CF3C60 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		8D659AD91C9C9AB900CF3C60 /* SensorDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorDetailsViewController.swift; sourceTree = "<group>"; };
 		8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInformationService.swift; sourceTree = "<group>"; };
+		8D81400E1CA5896E001D75B3 /* WahooTrainerCharacteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooTrainerCharacteristic.swift; sourceTree = "<group>"; };
+		8D8140111CA58975001D75B3 /* WahooTrainerSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooTrainerSerializer.swift; sourceTree = "<group>"; };
+		8D8140181CA59927001D75B3 /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E0CA8DA1F947A76F0DD92B2 /* Pods-SwiftySensorsExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensorsExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensorsExample/Pods-SwiftySensorsExample.debug.xcconfig"; sourceTree = "<group>"; };
 		A93CE12FCA0CC539B7762144 /* Pods-SwiftySensorsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensorsExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensorsExample/Pods-SwiftySensorsExample.release.xcconfig"; sourceTree = "<group>"; };
 		AE7CD880E8101430CD349D95 /* Pods-SwiftySensors iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensors iOS/Pods-SwiftySensors iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D5A6740AFC2FCD3ABCBA24BF /* Pods-SwiftySensors OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensors OSX/Pods-SwiftySensors OSX.debug.xcconfig"; sourceTree = "<group>"; };
+		EC888A3B95B85FD5F6E62741 /* Pods_SwiftySensors_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftySensors_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF44B2F4D7FDEC8E97B5C7F /* Pods_SwiftySensors_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftySensors_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -116,6 +138,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8D8140141CA59927001D75B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D81C9BED4FECB9C7978FB2EF /* Pods_SwiftySensors_OSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -135,6 +165,7 @@
 			children = (
 				8D4FA7761C9C8693000285BA /* SwiftySensors.framework */,
 				8D659AB61C9C8B2300CF3C60 /* SwiftySensorsExample.app */,
+				8D8140181CA59927001D75B3 /* SwiftySensors.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,12 +189,11 @@
 		8D4FA76D1C9C8658000285BA /* Serializers */ = {
 			isa = PBXGroup;
 			children = (
-				8D5093751CA46C53006C10E7 /* Vendors */,
 				8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */,
 				8D22FDD81CA07F2600B4CC0B /* CyclingPowerSerializer.swift */,
 				8D22FDE01CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift */,
 				8D22FDDC1CA0987C00B4CC0B /* HeartRateSerializer.swift */,
-				8D4FA76E1C9C8658000285BA /* WahooTrainerSerializer.swift */,
+				8D8140101CA58975001D75B3 /* Vendors */,
 			);
 			name = Serializers;
 			path = Source/Serializers;
@@ -172,23 +202,15 @@
 		8D4FA76F1C9C8658000285BA /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8D22FDDE1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift */,
 				8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */,
-				8D22FDDA1CA097AE00B4CC0B /* HeartRateService.swift */,
+				8D22FDDE1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift */,
 				8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */,
+				8D22FDDA1CA097AE00B4CC0B /* HeartRateService.swift */,
+				8D81400D1CA5896E001D75B3 /* Vendors */,
 			);
 			name = Services;
 			path = Source/Services;
 			sourceTree = "<group>";
-		};
-		8D5093751CA46C53006C10E7 /* Vendors */ = {
-			isa = PBXGroup;
-			children = (
-				8D5093761CA46C53006C10E7 /* WahooTrainerCharacteristic.swift */,
-			);
-			name = Vendors;
-			path = Source/Services/Vendors;
-			sourceTree = SOURCE_ROOT;
 		};
 		8D659AB71C9C8B2300CF3C60 /* SwiftySensorsExample */ = {
 			isa = PBXGroup;
@@ -204,12 +226,29 @@
 			path = SwiftySensorsExample;
 			sourceTree = "<group>";
 		};
+		8D81400D1CA5896E001D75B3 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				8D81400E1CA5896E001D75B3 /* WahooTrainerCharacteristic.swift */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		8D8140101CA58975001D75B3 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				8D8140111CA58975001D75B3 /* WahooTrainerSerializer.swift */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
 		9424433271DD7EBCCCD4C761 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				8D659AD21C9C8D8E00CF3C60 /* CoreBluetooth.framework */,
 				EEF44B2F4D7FDEC8E97B5C7F /* Pods_SwiftySensors_iOS.framework */,
 				4462C1626922822555313B81 /* Pods_SwiftySensorsExample.framework */,
+				EC888A3B95B85FD5F6E62741 /* Pods_SwiftySensors_OSX.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,6 +260,8 @@
 				1A2D44AE2FB4B3D9723A50E4 /* Pods-SwiftySensors iOS.release.xcconfig */,
 				8E0CA8DA1F947A76F0DD92B2 /* Pods-SwiftySensorsExample.debug.xcconfig */,
 				A93CE12FCA0CC539B7762144 /* Pods-SwiftySensorsExample.release.xcconfig */,
+				D5A6740AFC2FCD3ABCBA24BF /* Pods-SwiftySensors OSX.debug.xcconfig */,
+				4ECD6A6CB9525B5D049E8E13 /* Pods-SwiftySensors OSX.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -229,6 +270,13 @@
 
 /* Begin PBXHeadersBuildPhase section */
 		8D4FA7731C9C8693000285BA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D8140151CA59927001D75B3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -280,6 +328,26 @@
 			productReference = 8D659AB61C9C8B2300CF3C60 /* SwiftySensorsExample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8D8140171CA59927001D75B3 /* SwiftySensors OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D81401D1CA59927001D75B3 /* Build configuration list for PBXNativeTarget "SwiftySensors OSX" */;
+			buildPhases = (
+				963E0C3B8BC04E6E8F3AFE91 /* 📦 Check Pods Manifest.lock */,
+				8D8140131CA59927001D75B3 /* Sources */,
+				8D8140141CA59927001D75B3 /* Frameworks */,
+				8D8140151CA59927001D75B3 /* Headers */,
+				8D8140161CA59927001D75B3 /* Resources */,
+				AAD1573581A3E6C2C90DF011 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftySensors OSX";
+			productName = SwiftySensors;
+			productReference = 8D8140181CA59927001D75B3 /* SwiftySensors.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -302,6 +370,9 @@
 							};
 						};
 					};
+					8D8140171CA59927001D75B3 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 				};
 			};
 			buildConfigurationList = 8D4FA74D1C9C8594000285BA /* Build configuration list for PBXProject "SwiftySensors" */;
@@ -318,6 +389,7 @@
 			projectRoot = "";
 			targets = (
 				8D4FA7751C9C8693000285BA /* SwiftySensors iOS */,
+				8D8140171CA59927001D75B3 /* SwiftySensors OSX */,
 				8D659AB51C9C8B2300CF3C60 /* SwiftySensorsExample */,
 			);
 		};
@@ -341,10 +413,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8D8140161CA59927001D75B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		3C0F5FCF35721DC5DDF6E314 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		963E0C3B8BC04E6E8F3AFE91 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,6 +483,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		AAD1573581A3E6C2C90DF011 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftySensors OSX/Pods-SwiftySensors OSX-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B07C491EA1007E5EE494377D /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -426,13 +535,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D659A701C9C88FB00CF3C60 /* WahooTrainerSerializer.swift in Sources */,
 				8D4FA77F1C9C87A4000285BA /* SensorManager.swift in Sources */,
 				8D22FDE11CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift in Sources */,
 				8D1C70791CA3330400A72487 /* RSSINormalizer.swift in Sources */,
 				8D659ADD1C9CA98F00CF3C60 /* DeviceInformationService.swift in Sources */,
 				8D659ACA1C9C8B4000CF3C60 /* Characteristic.swift in Sources */,
 				8D22FDDB1CA097AE00B4CC0B /* HeartRateService.swift in Sources */,
+				8D8140121CA58975001D75B3 /* WahooTrainerSerializer.swift in Sources */,
 				8D22FDDF1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift in Sources */,
 				8D5595141CA0AE1D00F8BD72 /* CoreBluetooth.swift in Sources */,
 				8D4FA77E1C9C87A2000285BA /* Sensor.swift in Sources */,
@@ -441,8 +550,8 @@
 				8D1C70771CA332FD00A72487 /* Operators.swift in Sources */,
 				8D22FDDD1CA0987C00B4CC0B /* HeartRateSerializer.swift in Sources */,
 				8D659A711C9C890300CF3C60 /* CyclingPowerService.swift in Sources */,
+				8D81400F1CA5896E001D75B3 /* WahooTrainerCharacteristic.swift in Sources */,
 				8D659ACB1C9C8B4000CF3C60 /* Service.swift in Sources */,
-				8D5093771CA46C53006C10E7 /* WahooTrainerCharacteristic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +562,30 @@
 				8D659ADA1C9C9AB900CF3C60 /* SensorDetailsViewController.swift in Sources */,
 				8D659ABB1C9C8B2300CF3C60 /* SensorListViewController.swift in Sources */,
 				8D659AB91C9C8B2300CF3C60 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D8140131CA59927001D75B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D81402B1CA59957001D75B3 /* WahooTrainerSerializer.swift in Sources */,
+				8D8140201CA5994F001D75B3 /* Operators.swift in Sources */,
+				8D81402F1CA5995A001D75B3 /* HeartRateService.swift in Sources */,
+				8D8140241CA5994F001D75B3 /* Sensor.swift in Sources */,
+				8D8140221CA5994F001D75B3 /* CoreBluetooth.swift in Sources */,
+				8D8140291CA59955001D75B3 /* CyclingSpeedCadenceSerializer.swift in Sources */,
+				8D8140211CA5994F001D75B3 /* RSSINormalizer.swift in Sources */,
+				8D8140231CA5994F001D75B3 /* SensorManager.swift in Sources */,
+				8D81402C1CA5995A001D75B3 /* CyclingPowerService.swift in Sources */,
+				8D81402D1CA5995A001D75B3 /* CyclingSpeedCadenceService.swift in Sources */,
+				8D8140281CA59955001D75B3 /* CyclingPowerSerializer.swift in Sources */,
+				8D81402E1CA5995A001D75B3 /* DeviceInformationService.swift in Sources */,
+				8D81402A1CA59955001D75B3 /* HeartRateSerializer.swift in Sources */,
+				8D8140271CA59955001D75B3 /* CyclingSerializer.swift in Sources */,
+				8D8140261CA5994F001D75B3 /* Characteristic.swift in Sources */,
+				8D8140251CA5994F001D75B3 /* Service.swift in Sources */,
+				8D8140301CA5995C001D75B3 /* WahooTrainerCharacteristic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +778,58 @@
 			};
 			name = Release;
 		};
+		8D81401E1CA59927001D75B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5A6740AFC2FCD3ABCBA24BF /* Pods-SwiftySensors OSX.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kinetic.SwiftySensors;
+				PRODUCT_NAME = SwiftySensors;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8D81401F1CA59927001D75B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4ECD6A6CB9525B5D049E8E13 /* Pods-SwiftySensors OSX.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kinetic.SwiftySensors;
+				PRODUCT_NAME = SwiftySensors;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -671,6 +856,15 @@
 			buildConfigurations = (
 				8D659AC61C9C8B2300CF3C60 /* Debug */,
 				8D659AC71C9C8B2300CF3C60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D81401D1CA59927001D75B3 /* Build configuration list for PBXNativeTarget "SwiftySensors OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D81401E1CA59927001D75B3 /* Debug */,
+				8D81401F1CA59927001D75B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

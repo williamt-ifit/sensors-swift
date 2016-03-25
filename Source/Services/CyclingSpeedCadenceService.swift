@@ -12,14 +12,18 @@ import Signals
 // https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.cycling_speed_and_cadence.xml
 //
 public class CyclingSpeedCadenceService: Service, ServiceProtocol {
-    public static var uuid: String { return "1816" }
-    public static var serviceType: Service.Type { return self }
+    public static var uuid: String { return "1816" }    
     public override var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
-            Measurement.uuid:   Measurement.self,
-            Feature.uuid:       Feature.self,
+            Measurement.uuid:       Measurement.self,
+            Feature.uuid:           Feature.self,
+            SensorLocation.uuid:    SensorLocation.self,
         ]
     }
+    
+    public var measurement: Measurement?
+    public var feature: Feature?
+    public var sensorLocation: SensorLocation?
     
     
     //
@@ -49,6 +53,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? CyclingSpeedCadenceService)?.measurement = self
             
             cbCharacteristic.notify(true)
         }
@@ -89,6 +94,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? CyclingSpeedCadenceService)?.feature = self
             
             cbCharacteristic.read()
         }
@@ -115,6 +121,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? CyclingSpeedCadenceService)?.sensorLocation = self
             
             cbCharacteristic.read()
         }

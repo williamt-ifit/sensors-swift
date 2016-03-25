@@ -84,8 +84,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/Signals/Signals.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Signals-iOS/Signals.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/Signals/Signals.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Signals-iOS/Signals.framework"
 fi

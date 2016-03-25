@@ -14,8 +14,7 @@ import Signals
 // https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.cycling_power.xml
 //
 public class CyclingPowerService: Service, ServiceProtocol {
-    public static var uuid: String { return "1818" }
-    public static var serviceType: Service.Type { return self }
+    public static var uuid: String { return "1818" }    
     public override var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
             Measurement.uuid:       Measurement.self,
@@ -25,6 +24,12 @@ public class CyclingPowerService: Service, ServiceProtocol {
             WahooTrainer.uuid:      WahooTrainer.self,
         ]
     }
+    
+    public var measurement: Measurement?
+    public var feature: Feature?
+    public var sensorLocation: SensorLocation?
+    public var controlPoint: ControlPoint?
+    public var wahooTrainer: WahooTrainer?
     
     
     //
@@ -52,6 +57,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? CyclingPowerService)?.measurement = self
             
             cbCharacteristic.notify(true)
         }
@@ -76,6 +82,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? CyclingPowerService)?.feature = self
             
             cbCharacteristic.read()
         }
@@ -103,6 +110,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? CyclingPowerService)?.sensorLocation = self
             
             cbCharacteristic.read()
         }
@@ -129,6 +137,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? CyclingPowerService)?.controlPoint = self
             
             cbCharacteristic.notify(true)
         }

@@ -15,7 +15,6 @@ import Signals
 //
 public class HeartRateService: Service, ServiceProtocol {
     public static var uuid: String { return "180D" }
-    public static var serviceType: Service.Type { return self }
     public override var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
             Measurement.uuid:           Measurement.self,
@@ -24,6 +23,9 @@ public class HeartRateService: Service, ServiceProtocol {
         ]
     }
     
+    public var measurement: Measurement?
+    public var bodySensorLocation: BodySensorLocation?
+    public var controlPoint: ControlPoint?
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
@@ -33,6 +35,7 @@ public class HeartRateService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? HeartRateService)?.measurement = self
             
             cbCharacteristic.notify(true)
             
@@ -59,6 +62,7 @@ public class HeartRateService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? HeartRateService)?.bodySensorLocation = self
             
             cbCharacteristic.read()
         }
@@ -83,6 +87,7 @@ public class HeartRateService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
+            (service as? HeartRateService)?.controlPoint = self
             
             cbCharacteristic.notify(true)
         }

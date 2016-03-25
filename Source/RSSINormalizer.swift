@@ -15,7 +15,7 @@ import Foundation
 public class RSSINormalizer {
     
     // RSSI ranges are between 0 (max strength) and -100 (min strength)
-    public static func calculateSignalLevel(rssi: Int, numLevels: Int, rssiMin: Int = -100, rssiMax: Int = -55) -> Int {
+    public static func calculateSignalLevel(rssi: Int, numLevels: Int, rssiMin: Int = -100, rssiMax: Int = -65) -> Int {
         if rssi <= rssiMin {
             return 0
         } else if rssi >= rssiMax {

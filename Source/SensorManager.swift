@@ -42,8 +42,27 @@ public class SensorManager: NSObject {
                 scan()
             }
         }
-    }   
+    }
     
+    public var enabled: Bool = false {
+        didSet {
+            if oldValue != enabled {
+                if enabled {
+                    scanMode = .Passive
+                } else {
+                    shutdown()
+                }
+            }
+        }
+    }
+    
+    private func shutdown() {
+        scanMode = .Off
+        for sensor in sensors {
+            disconnectFromSensor(sensor)
+        }
+        SensorManager.logSensorMessage?("Shutting Down SensorManager")
+    }
     
     public var SensorType: Sensor.Type = Sensor.self
     private let serviceFactory = ServiceFactory()
