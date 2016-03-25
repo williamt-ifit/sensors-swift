@@ -26,7 +26,7 @@ public class SensorManager: NSObject {
     public let onSensorDiscovered = Signal<Sensor>()
     public let onSensorConnected = Signal<Sensor>()
     public let onSensorConnectionFailed = Signal<Sensor>()
-    public let onSensorDisconnected = Signal<Sensor>()
+    public let onSensorDisconnected = Signal<(Sensor, NSError?)>()
     public let onSensorRemoved = Signal<Sensor>()
     
     
@@ -156,7 +156,7 @@ extension SensorManager {
         let sensor = SensorType.init(peripheral: peripheral, advertisements: advertisements)
         sensor.serviceFactory = serviceFactory
         sensorsById[peripheral.identifier.UUIDString] = sensor
-        onSensorDiscovered.fire(sensor)
+        onSensorDiscovered => sensor
         SensorManager.logSensorMessage?("SensorManager: Created Sensor for Peripheral: \(peripheral)")
         return sensor
     }
@@ -170,7 +170,7 @@ extension SensorManager: CBCentralManagerDelegate {
     public func centralManager(manager: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         SensorManager.logSensorMessage?("CBCentralManager: didFailToConnectPeripheral: \(peripheral)")
         if let sensor = sensorForPeripheral(peripheral, create: false) {
-            onSensorConnectionFailed.fire(sensor)
+            onSensorConnectionFailed => sensor
         }
     }
     
@@ -178,14 +178,20 @@ extension SensorManager: CBCentralManagerDelegate {
         SensorManager.logSensorMessage?("CBCentralManager: didConnectPeripheral: \(peripheral)")
         if let sensor = sensorForPeripheral(peripheral, create: true) {
             peripheral.discoverServices(serviceFactory.serviceUUIDs)
-            onSensorConnected.fire(sensor)
+            onSensorConnected => sensor
         }
     }
     
     public func centralManager(manager: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         SensorManager.logSensorMessage?("CBCentralManager: didDisconnectPeripheral: \(peripheral)")
+        
+        // Error Codes:
+        //  0   = Unknown error. possibly a major crash?
+        //  6   = Connection timed out unexpectedly (pulled the battery out, lost connection due to distance)
+        //  10  = The connection has failed unexpectedly.
+        
         if let sensor = sensorForPeripheral(peripheral, create: false) {
-            onSensorDisconnected.fire(sensor)
+            onSensorDisconnected => (sensor, error)
         }
     }
     
@@ -215,7 +221,7 @@ extension SensorManager: CBCentralManagerDelegate {
         case .PoweredOn:
             scan()
         }
-        onBluetoothStateChange.fire(central.state)
+        onBluetoothStateChange => central.state
     }
     
 }

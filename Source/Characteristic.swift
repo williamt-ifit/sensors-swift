@@ -29,12 +29,12 @@ public class Characteristic {
     
     public func valueUpdated() {
         valueUpdatedTimestamp = NSDate.timeIntervalSinceReferenceDate()
-        onValueUpdated.fire(self)
+        onValueUpdated => self
     }
     
     public func valueWritten() {
         valueWrittenTimestamp = NSDate.timeIntervalSinceReferenceDate()
-        onValueWritten.fire(self)
+        onValueWritten => self
     }
     
     public var value: NSData? {
