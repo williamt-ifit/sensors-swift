@@ -39,10 +39,10 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         public var wheelCircumferenceCM: Double = 213.3
         
-        public private(set) var currentMeasurement: CyclingSpeedCadenceSerializer.MeasurementData? {
+        public private(set) var measurementData: CyclingSpeedCadenceSerializer.MeasurementData? {
             didSet {
                 guard let previous = oldValue else { return }
-                guard let current = currentMeasurement else { return }
+                guard let current = measurementData else { return }
                 
                 if let kph = CyclingSerializer.calculateWheelKPH(current, previous: previous, wheelCircumferenceCM: wheelCircumferenceCM, wheelTimeResolution: 1024) {
                     speedKPH = kph
@@ -76,8 +76,8 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
                     // These values could probably use some tweaking ...
                     reqInterval = max(0.5, min((wheelCircumferenceCM / speedCMS) * 0.9, 1.5))
                 }
-                if currentMeasurement == nil || now - currentMeasurement!.timestamp > reqInterval {
-                    currentMeasurement = CyclingSpeedCadenceSerializer.readMeasurement(value)
+                if measurementData == nil || now - measurementData!.timestamp > reqInterval {
+                    measurementData = CyclingSpeedCadenceSerializer.readMeasurement(value)
                 }
             }
             super.valueUpdated()

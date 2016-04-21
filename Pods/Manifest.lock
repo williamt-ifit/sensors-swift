@@ -1,21 +1,12 @@
 PODS:
-  - Signals (2.3.0)
+  - Signals (3.0.0)
 
 DEPENDENCIES:
-  - Signals (from `https://github.com/netizen01/Signals.git`)
-
-EXTERNAL SOURCES:
-  Signals:
-    :git: https://github.com/netizen01/Signals.git
-
-CHECKOUT OPTIONS:
-  Signals:
-    :commit: d7b5bc5250dca663a8e75ad81a85a4059d647ba8
-    :git: https://github.com/netizen01/Signals.git
+  - Signals (~> 3.0)
 
 SPEC CHECKSUMS:
-  Signals: d47128787e1675858f956556397e482fd667bd96
+  Signals: 12c4fb55c7a0bd047f50afa7394939870c90333a
 
-PODFILE CHECKSUM: 0ff283f636cdabc49d6fa5c1db21534ae12e2a53
+PODFILE CHECKSUM: 0dd8e9145aa1228b9aec727c1e7e3c7965789ed4
 
-COCOAPODS: 1.0.0.beta.6
+COCOAPODS: 1.0.0.beta.8

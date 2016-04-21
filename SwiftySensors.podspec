@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
                             :tag => spec.version.to_s,
                             :submodules => true }
     spec.source_files   = 'Source/**/*.swift'
-    spec.dependency     'Signals', '~> 2.3.0'
+    spec.dependency     'Signals', '~> 3.0'
 
     spec.ios.deployment_target  = '8.4'
     spec.osx.deployment_target  = '10.11'

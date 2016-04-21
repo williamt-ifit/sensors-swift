@@ -44,9 +44,9 @@ public class CyclingPowerService: Service, ServiceProtocol {
         
         public var wheelCircumferenceCM: Double = 213.3
         
-        public private(set) var currentMeasurement: CyclingPowerSerializer.MeasurementData? {
+        public private(set) var measurementData: CyclingPowerSerializer.MeasurementData? {
             didSet {
-                guard let current = currentMeasurement else { return }
+                guard let current = measurementData else { return }
                 instantaneousPower = UInt(current.instantaneousPower)
                 
                 guard let previous = oldValue else { return }
@@ -64,7 +64,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
         
         override public func valueUpdated() {
             if let value = cbCharacteristic.value {
-                currentMeasurement = CyclingPowerSerializer.readMeasurement(value)
+                measurementData = CyclingPowerSerializer.readMeasurement(value)
             }
             super.valueUpdated()
         }
