@@ -17,7 +17,7 @@ public class Characteristic {
     public let onValueUpdated = Signal<Characteristic>()
     public let onValueWritten = Signal<Characteristic>()
     
-    public let cbCharacteristic: CBCharacteristic
+    public internal(set) var cbCharacteristic: CBCharacteristic!
     
     public private(set) var valueUpdatedTimestamp: Double?
     public private(set) var valueWrittenTimestamp: Double?

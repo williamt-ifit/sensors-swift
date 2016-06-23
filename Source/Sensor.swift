@@ -217,6 +217,9 @@ extension Sensor: CBPeripheralDelegate {
     public func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         guard let service = services[characteristic.service.UUID.UUIDString] else { return }
         guard let char = service.characteristics[characteristic.UUID.UUIDString] else { return }
+        if char.cbCharacteristic !== characteristic {
+            char.cbCharacteristic = characteristic
+        }
         char.valueUpdated()
         markSensorActivity()
     }
@@ -224,6 +227,9 @@ extension Sensor: CBPeripheralDelegate {
     public func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         guard let service = services[characteristic.service.UUID.UUIDString] else { return }
         guard let char = service.characteristics[characteristic.UUID.UUIDString] else { return }
+        if char.cbCharacteristic !== characteristic {
+            char.cbCharacteristic = characteristic
+        }
         char.valueWritten()
         markSensorActivity()
     }
