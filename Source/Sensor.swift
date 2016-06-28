@@ -99,6 +99,16 @@ public class Sensor: NSObject {
         return nil
     }
     
+    public func advertisedService(uuid: String) -> Bool {
+        let service = CBUUID(string: uuid)
+        for advertisement in advertisements {
+            if advertisement.isEqual(service) {
+                return true
+            }
+        }
+        return false
+    }
+    
     private func serviceDiscovered(cbs: CBService) {
         if let service = services[cbs.UUID.UUIDString] where service.cbService == cbs {
             return
@@ -157,7 +167,7 @@ public class Sensor: NSObject {
         didSet {
             if rssiPingEnabled {
                 if rssiPingTimer == nil {
-                    rssiPingTimer = NSTimer.scheduledTimerWithTimeInterval(rssiPingInterval, target: self, selector: #selector(Sensor.rssiPingTimerHandler), userInfo: nil, repeats: true)
+                    rssiPingTimer = NSTimer.scheduledTimerWithTimeInterval(SensorManager.RSSIPingInterval, target: self, selector: #selector(Sensor.rssiPingTimerHandler), userInfo: nil, repeats: true)
                 }
             } else {
                 rssi = Int.min
@@ -169,8 +179,6 @@ public class Sensor: NSObject {
     
     private var rssiPingTimer: NSTimer?
     
-    private let rssiPingInterval: Double = 2
-    
     func rssiPingTimerHandler() {
         if peripheral.state == .Connected {
             peripheral.readRSSI()
@@ -181,7 +189,7 @@ public class Sensor: NSObject {
     
     // MARK: Track last
     public private(set) var lastSensorActivity: Double = NSDate.timeIntervalSinceReferenceDate()
-    private func markSensorActivity() {
+    internal func markSensorActivity() {
         lastSensorActivity = NSDate.timeIntervalSinceReferenceDate()
     }
     

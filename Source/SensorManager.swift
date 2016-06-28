@@ -12,6 +12,7 @@ import Signals
 
 public class SensorManager: NSObject {
     
+    
     // This is a lazy instance. You can opt to NOT call it and control the lifecycle of the SensorManager yourself if desired
     // No internal reference is made to this instance.
     public static let instance = SensorManager()
@@ -30,38 +31,30 @@ public class SensorManager: NSObject {
     public let onSensorRemoved = Signal<Sensor>()
     
     
-    public enum ScanMode {
+    public enum ManagerState {
         case Off
-        case Passive
-        case Aggressive
+        case Idle
+        case PassiveScan
+        case AggressiveScan
     }
     
-    public var scanMode: ScanMode = .Off {
+    public var state: ManagerState = .Off {
         didSet {
-            if oldValue != scanMode {
-                scan()
+            if oldValue != state {
+                stateUpdated()
             }
         }
     }
     
-    public var enabled: Bool = false {
-        didSet {
-            if oldValue != enabled {
-                if enabled {
-                    scanMode = .Passive
-                } else {
-                    shutdown()
+    public func removeInactiveSensors(inactiveTime: NSTimeInterval) {
+        let now = NSDate.timeIntervalSinceReferenceDate()
+        for sensor in sensors {
+            if now - sensor.lastSensorActivity > inactiveTime {
+                if let sensor = sensorsById.removeValueForKey(sensor.peripheral.identifier.UUIDString) {
+                    onSensorRemoved => sensor
                 }
             }
         }
-    }
-    
-    private func shutdown() {
-        scanMode = .Off
-        for sensor in sensors {
-            disconnectFromSensor(sensor)
-        }
-        SensorManager.logSensorMessage?("Shutting Down SensorManager")
     }
     
     public var SensorType: Sensor.Type = Sensor.self
@@ -117,32 +110,72 @@ public class SensorManager: NSObject {
     }
     
     private var sensorsById = Dictionary<String, Sensor>()
+    private var activityUpdateTimer: NSTimer?
+    static internal let RSSIPingInterval: NSTimeInterval = 2
+    static internal let ActivityInterval: NSTimeInterval = 5
+    static internal let InactiveInterval: NSTimeInterval = 4
 }
 
 // Private Funtionality
 extension SensorManager {
     
-    private func scan() {
+    private func stateUpdated() {
         if centralManager.state != .PoweredOn { return }
         
-        let allowDuplicateKeys: Bool
-        switch scanMode {
+        activityUpdateTimer?.invalidate()
+        activityUpdateTimer = nil
+        
+        switch state {
         case .Off:
-            centralManager.stopScan()
-            return
-        case .Passive:
-            allowDuplicateKeys = false
-        case .Aggressive:
-            allowDuplicateKeys = true
+            stopScan()
+            
+            for sensor in sensors {
+                disconnectFromSensor(sensor)
+            }
+            SensorManager.logSensorMessage?("Shutting Down SensorManager")
+            
+        case .Idle:
+            stopScan()
+            startActivityTimer()
+            
+        case .PassiveScan:
+            scan(false)
+            startActivityTimer()
+            
+        case .AggressiveScan:
+            scan(true)
+            startActivityTimer()
         }
+    }
+    
+    private func stopScan() {
+        centralManager.stopScan()
+    }
+    
+    private func startActivityTimer() {
+        activityUpdateTimer?.invalidate()
+        activityUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(SensorManager.ActivityInterval, target: self, selector: #selector(SensorManager.rssiUpateTimerHandler(_:)), userInfo: nil, repeats: true)
+    }
+    
+    private func scan(aggressive: Bool) {
         let options: [String: AnyObject] = [
-            CBCentralManagerScanOptionAllowDuplicatesKey: allowDuplicateKeys
+            CBCentralManagerScanOptionAllowDuplicatesKey: aggressive
         ]
         let serviceUUIDs = serviceFactory.servicesToDiscover
         centralManager.scanForPeripheralsWithServices(serviceUUIDs, options: options)
         SensorManager.logSensorMessage?("SensorManager: Scanning for Services")
         for peripheral in centralManager.retrieveConnectedPeripheralsWithServices(serviceUUIDs) {
             sensorForPeripheral(peripheral, create: true)
+        }
+    }
+    
+    
+    func rssiUpateTimerHandler(timer: NSTimer) {
+        let now = NSDate.timeIntervalSinceReferenceDate()
+        for sensor in sensors {
+            if now - sensor.lastSensorActivity > SensorManager.InactiveInterval {
+                sensor.rssi = Int.min
+            }
         }
     }
     
@@ -200,6 +233,7 @@ extension SensorManager: CBCentralManagerDelegate {
             if let sensor = sensorForPeripheral(peripheral, create: true, advertisements: uuids) {
                 if RSSI.integerValue < 0 {
                     sensor.rssi = RSSI.integerValue
+                    sensor.markSensorActivity()
                 }
             }
         }
@@ -219,7 +253,7 @@ extension SensorManager: CBCentralManagerDelegate {
         case .PoweredOff:
             break
         case .PoweredOn:
-            scan()
+            stateUpdated()
         }
         onBluetoothStateChange => central.state
     }
