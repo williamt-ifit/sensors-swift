@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
     spec.summary        = 'BLE Fitness Sensors Communication Utilities for iOS and OSX'
 
     spec.homepage       = 'https://github.com/kinetic-fit/sensors-swift'
-    spec.license        = { :type => 'MIT' }    
+    spec.license        = { :type => 'MIT', :file => 'LICENSE' }    
     spec.author         = { 'Kinetic' => 'admin@kinetic.fit' }
     
     spec.ios.deployment_target  = '8.4'

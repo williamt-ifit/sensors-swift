@@ -134,12 +134,12 @@ public class Sensor: NSObject {
             let characteristic = CharType.init(service: service, cbc: cbc)
             service.characteristics[cbc.UUID.UUIDString] = characteristic
             
-            characteristic.onValueUpdated.listen(self) { [weak self] c in
+            characteristic.onValueUpdated.listen(on: self) { [weak self] c in
                 if let s = self {
                     s.onCharacteristicValueUpdated => (s, c)
                 }
             }
-            characteristic.onValueWritten.listen(self) { [weak self] c in
+            characteristic.onValueWritten.listen(on: self) { [weak self] c in
                 if let s = self {
                     s.onCharacteristicValueWritten => (s, c)
                 }
