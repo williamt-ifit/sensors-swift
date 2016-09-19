@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
     spec.license        = { :type => 'MIT', :file => 'LICENSE' }    
     spec.author         = { 'Kinetic' => 'admin@kinetic.fit' }
     
-    spec.ios.deployment_target  = '8.4'
+    spec.ios.deployment_target  = '8.2'
     spec.osx.deployment_target  = '10.11'
 
     spec.source         = { :git => 'https://github.com/kinetic-fit/sensors-swift.git',
