@@ -30,7 +30,7 @@ extension CyclingPowerService {
         
         private var ergWriteTimer: NSTimer?
         private var ergWriteWatts: UInt16?
-        public func setResistanceModeErg(watts: UInt16) {
+        public func setResistanceErg(watts: UInt16) {
             ergWriteWatts = watts
             if ergWriteTimer == nil {
                 writeErgWatts()
@@ -40,6 +40,7 @@ extension CyclingPowerService {
         
         @objc func writeErgWatts() {
             if let watts = ergWriteWatts {
+                // crashing?
                 cbCharacteristic.write(NSData.fromIntArray(WahooTrainerSerializer.setResistanceModeErg(watts)), writeType: .WithResponse)
                 ergWriteWatts = nil
             } else {
@@ -48,7 +49,7 @@ extension CyclingPowerService {
             }
         }
         
-        public func setResistanceModeLevel(level: UInt8) {
+        public func setResistanceLevel(level: UInt8) {
             ergWriteTimer?.invalidate()
             ergWriteTimer = nil
             
