@@ -9,45 +9,45 @@
 
 import Foundation
 
-public class WahooTrainerSerializer {
+open class WahooTrainerSerializer {
     
-    public class Response {
-        private(set) var operationCode: OperationCode!
+    open class Response {
+        fileprivate(set) var operationCode: OperationCode!
     }
     
     public enum OperationCode: UInt8 {
-        case Unlock         = 32
-        case SetLevelMode   = 65
-        case SetErgMode     = 66
-        case SetSimMode     = 67
+        case unlock         = 32
+        case setLevelMode   = 65
+        case setErgMode     = 66
+        case setSimMode     = 67
     }
     
-    public static func unlockCommand() -> [UInt8] {
+    open static func unlockCommand() -> [UInt8] {
         return [
-            WahooTrainerSerializer.OperationCode.Unlock.rawValue,
+            WahooTrainerSerializer.OperationCode.unlock.rawValue,
             0xee,   // unlock code
             0xfc    // unlock code
         ]
     }
     
-    public static func setResistanceModeLevel(level: UInt8) -> [UInt8] {
+    open static func setResistanceModeLevel(_ level: UInt8) -> [UInt8] {
         return [
-            WahooTrainerSerializer.OperationCode.SetLevelMode.rawValue,
+            WahooTrainerSerializer.OperationCode.setLevelMode.rawValue,
             level
         ]
     }
     
-    public static func setResistanceModeErg(watts: UInt16) -> [UInt8] {
+    open static func setResistanceModeErg(_ watts: UInt16) -> [UInt8] {
         return [
-            WahooTrainerSerializer.OperationCode.SetErgMode.rawValue,
+            WahooTrainerSerializer.OperationCode.setErgMode.rawValue,
             UInt8(watts & 0xFF),
             UInt8(watts >> 8)
         ]
         // response: 0x01 0x42 0x01 0x00 watts1 watts2
     }
     
-    public static func readReponse(data: NSData) -> Response? {
-        let bytes = UnsafePointer<UInt8>(data.bytes)
+    open static func readReponse(_ data: Data) -> Response? {
+        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
         let result = bytes[0]   // 01 = success
         let opCodeRaw = bytes[1]
         if let opCode = WahooTrainerSerializer.OperationCode(rawValue: opCodeRaw) {
@@ -55,9 +55,9 @@ public class WahooTrainerSerializer {
             let response: Response
             
             switch opCode {
-            case .SetLevelMode:
+            case .setLevelMode:
                 response = Response()
-            case .SetErgMode:
+            case .setErgMode:
                 response = Response()
             default:
                 response = Response()

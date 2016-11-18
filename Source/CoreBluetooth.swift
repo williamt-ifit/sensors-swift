@@ -11,16 +11,16 @@ import CoreBluetooth
 
 extension CBCharacteristic {
     
-    public func notify(enabled: Bool) {
-        service.peripheral.setNotifyValue(enabled, forCharacteristic: self)
+    public func notify(_ enabled: Bool) {
+        service.peripheral.setNotifyValue(enabled, for: self)
     }
     
     public func read() {
-        service.peripheral.readValueForCharacteristic(self)
+        service.peripheral.readValue(for: self)
     }
     
-    public func write(data: NSData, writeType: CBCharacteristicWriteType) {
-        service.peripheral.writeValue(data, forCharacteristic: self, type: writeType)
+    public func write(_ data: Data, writeType: CBCharacteristicWriteType) {
+        service.peripheral.writeValue(data, for: self, type: writeType)
     }
     
 }

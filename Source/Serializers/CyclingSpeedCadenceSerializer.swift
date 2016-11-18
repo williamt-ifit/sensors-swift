@@ -9,16 +9,16 @@
 
 import Foundation
 
-public class CyclingSpeedCadenceSerializer {
+open class CyclingSpeedCadenceSerializer {
     
-    struct MeasurementFlags: OptionSetType {
+    struct MeasurementFlags: OptionSet {
         let rawValue: UInt8
         
         static let WheelRevolutionDataPresent   = MeasurementFlags(rawValue: 1 << 0)
         static let CrankRevolutionDataPresent   = MeasurementFlags(rawValue: 1 << 1)
     }
     
-    public struct Features: OptionSetType {
+    public struct Features: OptionSet {
         public let rawValue: UInt16
         
         public static let WheelRevolutionDataSupported         = Features(rawValue: 1 << 0)
@@ -43,16 +43,16 @@ public class CyclingSpeedCadenceSerializer {
     }
     
     
-    public static func readFeatures(data: NSData) -> Features {
-        let bytes = UnsafePointer<UInt8>(data.bytes)
+    open static func readFeatures(_ data: Data) -> Features {
+        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
         let rawFeatures: UInt16 = ((UInt16)(bytes[0])) | ((UInt16)(bytes[1])) << 8
         return Features(rawValue: rawFeatures)
     }
     
-    public static func readMeasurement(data: NSData) -> MeasurementData {
+    open static func readMeasurement(_ data: Data) -> MeasurementData {
         var measurement = MeasurementData()
         
-        let bytes = UnsafePointer<UInt8>(data.bytes)
+        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
         var index: Int = 0
         
         let rawFlags: UInt8 = bytes[index++=]
@@ -68,7 +68,7 @@ public class CyclingSpeedCadenceSerializer {
             measurement.lastCrankEventTime = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
         }
         
-        measurement.timestamp = NSDate.timeIntervalSinceReferenceDate()
+        measurement.timestamp = Date.timeIntervalSinceReferenceDate
         
         return measurement
     }

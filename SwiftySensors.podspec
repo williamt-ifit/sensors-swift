@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
                             :submodules => true }
     spec.source_files   = 'Source/**/*.swift'
 
-    spec.dependency     'Signals', '~> 3.0'
+    spec.dependency     'Signals', '~> 4.0'
 
 
     spec.subspec 'Serializers' do |serial|

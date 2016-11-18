@@ -10,44 +10,44 @@
 import CoreBluetooth
 import Signals
 
-public class Characteristic {
+open class Characteristic {
     
-    public private(set) weak var service: Service?
+    open fileprivate(set) weak var service: Service?
     
-    public let onValueUpdated = Signal<Characteristic>()
-    public let onValueWritten = Signal<Characteristic>()
+    open let onValueUpdated = Signal<Characteristic>()
+    open let onValueWritten = Signal<Characteristic>()
     
-    public internal(set) var cbCharacteristic: CBCharacteristic!
+    open internal(set) var cbCharacteristic: CBCharacteristic!
     
-    public private(set) var valueUpdatedTimestamp: Double?
-    public private(set) var valueWrittenTimestamp: Double?
+    open fileprivate(set) var valueUpdatedTimestamp: Double?
+    open fileprivate(set) var valueWrittenTimestamp: Double?
     
     required public init(service: Service, cbc: CBCharacteristic) {
         self.service = service
         self.cbCharacteristic = cbc
     }
     
-    public func valueUpdated() {
-        valueUpdatedTimestamp = NSDate.timeIntervalSinceReferenceDate()
+    open func valueUpdated() {
+        valueUpdatedTimestamp = Date.timeIntervalSinceReferenceDate
         onValueUpdated => self
     }
     
-    public func valueWritten() {
-        valueWrittenTimestamp = NSDate.timeIntervalSinceReferenceDate()
+    open func valueWritten() {
+        valueWrittenTimestamp = Date.timeIntervalSinceReferenceDate
         onValueWritten => self
     }
     
-    public var value: NSData? {
+    open var value: Data? {
         return cbCharacteristic.value
     }
     
 }
 
-public class UTF8Characteristic: Characteristic {
+open class UTF8Characteristic: Characteristic {
     
-    public var stringValue: String? {
+    open var stringValue: String? {
         if let value = value {
-            return String(data: value, encoding: NSUTF8StringEncoding)
+            return String(data: value, encoding: String.Encoding.utf8)
         }
         return nil
     }
@@ -60,10 +60,10 @@ public class UTF8Characteristic: Characteristic {
     
 }
 
-extension NSData {
+extension Data {
     
-    static func fromIntArray(int8s: [UInt8]) -> NSData {
-        return NSData(bytes: int8s, length: int8s.count)
+    static func fromIntArray(_ int8s: [UInt8]) -> Data {
+        return Data(bytes: UnsafePointer<UInt8>(int8s), count: int8s.count)
     }
     
 }

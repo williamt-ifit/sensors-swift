@@ -9,34 +9,34 @@
 
 import Foundation
 
-public class HeartRateSerializer {
+open class HeartRateSerializer {
     
     public struct MeasurementData {
         public enum ContactStatus {
-            case NotSupported
-            case NotDetected
-            case Detected
+            case notSupported
+            case notDetected
+            case detected
         }
         public var heartRate: UInt16 = 0
-        public var contactStatus: ContactStatus = .NotSupported
+        public var contactStatus: ContactStatus = .notSupported
         public var energyExpended: UInt16?
         public var rrInterval: UInt16?
     }
     
     public enum BodySensorLocation: UInt8 {
-        case Other      = 0
-        case Chest      = 1
-        case Wrist      = 2
-        case Finger     = 3
-        case Hand       = 4
-        case EarLobe    = 5
-        case Foot       = 6
+        case other      = 0
+        case chest      = 1
+        case wrist      = 2
+        case finger     = 3
+        case hand       = 4
+        case earLobe    = 5
+        case foot       = 6
     }
     
-    public static func readMeasurement(data: NSData) -> MeasurementData {
+    open static func readMeasurement(_ data: Data) -> MeasurementData {
         var measurement = MeasurementData()
         
-        let bytes = UnsafePointer<UInt8>(data.bytes)
+        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
         var index: Int = 0
         let flags = bytes[index];
         index += 1
@@ -49,9 +49,9 @@ public class HeartRateSerializer {
         
         let contactStatusBits = (flags | 0x06) >> 1
         if contactStatusBits == 2 {
-            measurement.contactStatus = .NotDetected
+            measurement.contactStatus = .notDetected
         } else if contactStatusBits == 3 {
-            measurement.contactStatus = .Detected
+            measurement.contactStatus = .detected
         }
         if flags & 0x08 == 0x08 {
             measurement.energyExpended = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
@@ -63,12 +63,12 @@ public class HeartRateSerializer {
     }
     
     
-    public static func readSensorLocation(data: NSData) -> BodySensorLocation? {
-        let bytes = UnsafePointer<UInt8>(data.bytes)
+    open static func readSensorLocation(_ data: Data) -> BodySensorLocation? {
+        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
         return BodySensorLocation(rawValue: bytes[0])
     }
     
-    public static func writeResetEnergyExpended() -> [UInt8] {
+    open static func writeResetEnergyExpended() -> [UInt8] {
         return [
             0x01
         ]

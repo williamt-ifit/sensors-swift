@@ -13,9 +13,9 @@ import Signals
 //
 // https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.cycling_speed_and_cadence.xml
 //
-public class CyclingSpeedCadenceService: Service, ServiceProtocol {
-    public static var uuid: String { return "1816" }    
-    public override var characteristicTypes: Dictionary<String, Characteristic.Type> {
+open class CyclingSpeedCadenceService: Service, ServiceProtocol {
+    open static var uuid: String { return "1816" }    
+    open override var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
             Measurement.uuid:       Measurement.self,
             Feature.uuid:           Feature.self,
@@ -23,23 +23,23 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
         ]
     }
     
-    public var measurement: Measurement?
-    public var feature: Feature?
-    public var sensorLocation: SensorLocation?
+    open var measurement: Measurement?
+    open var feature: Feature?
+    open var sensorLocation: SensorLocation?
     
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.csc_measurement.xml
     //
-    public class Measurement: Characteristic {
-        public static let uuid: String = "2A5B"
+    open class Measurement: Characteristic {
+        open static let uuid: String = "2A5B"
         
-        public private(set) var speedKPH: Double?
-        public private(set) var crankRPM: Double?
+        open fileprivate(set) var speedKPH: Double?
+        open fileprivate(set) var crankRPM: Double?
         
-        public var wheelCircumferenceCM: Double = 213.3
+        open var wheelCircumferenceCM: Double = 213.3
         
-        public private(set) var measurementData: CyclingSpeedCadenceSerializer.MeasurementData? {
+        open fileprivate(set) var measurementData: CyclingSpeedCadenceSerializer.MeasurementData? {
             didSet {
                 guard let previous = oldValue else { return }
                 guard let current = measurementData else { return }
@@ -60,13 +60,13 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
-        override public func valueUpdated() {
+        override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 
                 // Certain sensors (*cough* Mio Velo *cough*) will send updates in bursts
                 // so we're going to do a little filtering here to get a more stable reading
                 
-                let now = NSDate.timeIntervalSinceReferenceDate()
+                let now = Date.timeIntervalSinceReferenceDate
                 // calculate the expected interval of wheel events based on current speed
                 // This results in a small "bump" of speed typically at the end. need to fix that...
                 var reqInterval = 0.8
@@ -89,10 +89,10 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_feature.xml
     //
-    public class Feature: Characteristic {
-        public static let uuid: String = "2A5C"
+    open class Feature: Characteristic {
+        open static let uuid: String = "2A5C"
         
-        public private(set) var features: CyclingSpeedCadenceSerializer.Features?
+        open fileprivate(set) var features: CyclingSpeedCadenceSerializer.Features?
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -101,7 +101,7 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
             cbCharacteristic.read()
         }
         
-        override public func valueUpdated() {
+        override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 features = CyclingSpeedCadenceSerializer.readFeatures(value)
             }
@@ -118,8 +118,8 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.sensor_location.xml
     //
-    public class SensorLocation: Characteristic {
-        public static let uuid: String = "2A5D"
+    open class SensorLocation: Characteristic {
+        open static let uuid: String = "2A5D"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -128,9 +128,9 @@ public class CyclingSpeedCadenceService: Service, ServiceProtocol {
             cbCharacteristic.read()
         }
         
-        public private(set) var location: CyclingSerializer.SensorLocation?
+        open fileprivate(set) var location: CyclingSerializer.SensorLocation?
         
-        override public func valueUpdated() {
+        override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 location = CyclingSerializer.readSensorLocation(value)
             }

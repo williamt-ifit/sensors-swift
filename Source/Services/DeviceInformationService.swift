@@ -12,9 +12,9 @@ import CoreBluetooth
 //
 // https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.device_information.xml
 //
-public class DeviceInformationService: Service, ServiceProtocol {
-    public static var uuid: String { return "180A" }
-    public override var characteristicTypes: Dictionary<String, Characteristic.Type> {
+open class DeviceInformationService: Service, ServiceProtocol {
+    open static var uuid: String { return "180A" }
+    open override var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
             ManufacturerName.uuid:  ManufacturerName.self,
             ModelNumber.uuid:       ModelNumber.self,
@@ -26,19 +26,19 @@ public class DeviceInformationService: Service, ServiceProtocol {
         ]
     }
     
-    public var manufacturerName: ManufacturerName?
-    public var modelNumber: ModelNumber?
-    public var serialNumber: SerialNumber?
-    public var hardwareRevision: HardwareRevision?
-    public var firmwareRevision: FirmwareRevision?
-    public var softwareRevision: SoftwareRevision?
-    public var systemID: SystemID?
+    open var manufacturerName: ManufacturerName?
+    open var modelNumber: ModelNumber?
+    open var serialNumber: SerialNumber?
+    open var hardwareRevision: HardwareRevision?
+    open var firmwareRevision: FirmwareRevision?
+    open var softwareRevision: SoftwareRevision?
+    open var systemID: SystemID?
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.manufacturer_name_string.xml
     //
-    public class ManufacturerName: UTF8Characteristic {
-        public static let uuid: String = "2A29"
+    open class ManufacturerName: UTF8Characteristic {
+        open static let uuid: String = "2A29"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -49,8 +49,8 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.model_number_string.xml
     //
-    public class ModelNumber: UTF8Characteristic {
-        public static let uuid: String = "2A24"
+    open class ModelNumber: UTF8Characteristic {
+        open static let uuid: String = "2A24"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -61,8 +61,8 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.serial_number_string.xml
     //
-    public class SerialNumber: UTF8Characteristic {
-        public static let uuid: String = "2A25"
+    open class SerialNumber: UTF8Characteristic {
+        open static let uuid: String = "2A25"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -73,8 +73,8 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.hardware_revision_string.xml
     //
-    public class HardwareRevision: UTF8Characteristic {
-        public static let uuid: String = "2A27"
+    open class HardwareRevision: UTF8Characteristic {
+        open static let uuid: String = "2A27"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -85,8 +85,8 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.firmware_revision_string.xml
     //
-    public class FirmwareRevision: UTF8Characteristic {
-        public static let uuid: String = "2A26"
+    open class FirmwareRevision: UTF8Characteristic {
+        open static let uuid: String = "2A26"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -97,8 +97,8 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.software_revision_string.xml
     //
-    public class SoftwareRevision: UTF8Characteristic {
-        public static let uuid: String = "2A28"
+    open class SoftwareRevision: UTF8Characteristic {
+        open static let uuid: String = "2A28"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -109,8 +109,8 @@ public class DeviceInformationService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.software_revision_string.xml
     //
-    public class SystemID: Characteristic {
-        public static let uuid: String = "2A23"
+    open class SystemID: Characteristic {
+        open static let uuid: String = "2A23"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)

@@ -9,9 +9,9 @@
 
 import Foundation
 
-public class CyclingPowerSerializer {
+open class CyclingPowerSerializer {
     
-    struct MeasurementFlags: OptionSetType {
+    struct MeasurementFlags: OptionSet {
         let rawValue: UInt16
         
         static let PedalPowerBalancePresent         = MeasurementFlags(rawValue: 1 << 0)
@@ -27,7 +27,7 @@ public class CyclingPowerSerializer {
         static let OffsetCompensationIndicator      = MeasurementFlags(rawValue: 1 << 12)
     }
     
-    public struct Features: OptionSetType {
+    public struct Features: OptionSet {
         public let rawValue: UInt32
         
         public static let PedalPowerBalanceSupported                   = Features(rawValue: 1 << 0)
@@ -80,17 +80,17 @@ public class CyclingPowerSerializer {
     }
     
     
-    public static func readFeatures(data: NSData) -> Features {
-        let bytes = UnsafePointer<UInt8>(data.bytes)
+    open static func readFeatures(_ data: Data) -> Features {
+        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
         let rawFeatures: UInt32 = ((UInt32)(bytes[0])) | ((UInt32)(bytes[1])) << 8 | ((UInt32)(bytes[2])) << 16 | ((UInt32)(bytes[3])) << 24
         return Features(rawValue: rawFeatures)
     }
     
     
-    public static func readMeasurement(data: NSData) -> MeasurementData {
+    open static func readMeasurement(_ data: Data) -> MeasurementData {
         var measurement = MeasurementData()
         
-        let bytes = UnsafePointer<UInt8>(data.bytes)
+        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
         var index: Int = 0
         
         let rawFlags: UInt16 = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
@@ -144,7 +144,7 @@ public class CyclingPowerSerializer {
             measurement.accumulatedEnergy = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
         }
         
-        measurement.timestamp = NSDate.timeIntervalSinceReferenceDate()
+        measurement.timestamp = Date.timeIntervalSinceReferenceDate
         return measurement
     }
     

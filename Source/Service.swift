@@ -21,22 +21,22 @@ extension ServiceProtocol where Self: Service {
 }
 
 public func == (lhs: Service, rhs: Service) -> Bool {
-    return lhs.cbService.UUID == rhs.cbService.UUID
+    return lhs.cbService.uuid == rhs.cbService.uuid
 }
 
-public class Service: Equatable {
+open class Service: Equatable {
     
-    public weak var sensor: Sensor!
+    open weak var sensor: Sensor!
     
-    public let cbService: CBService
+    open let cbService: CBService
     
     internal var characteristics = Dictionary<String, Characteristic>()
     
-    public var characteristicTypes: Dictionary<String, Characteristic.Type> {
+    open var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return Dictionary()
     }
     
-    public func characteristic<T: Characteristic>(uuid: String? = nil) -> T? {
+    open func characteristic<T: Characteristic>(_ uuid: String? = nil) -> T? {
         if let uuid = uuid {
             return characteristics[uuid] as? T
         }

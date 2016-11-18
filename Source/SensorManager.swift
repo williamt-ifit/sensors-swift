@@ -10,35 +10,35 @@
 import CoreBluetooth
 import Signals
 
-public class SensorManager: NSObject {
+open class SensorManager: NSObject {
     
     
     // This is a lazy instance. You can opt to NOT call it and control the lifecycle of the SensorManager yourself if desired
     // No internal reference is made to this instance.
-    public static let instance = SensorManager()
+    open static let instance = SensorManager()
     
     // All SensorManager logging is directed through this closure. Set it to nil to turn logging off...
     // ... or set your own closure at the project level to direct all logging to your logger of choice.
-    public static var logSensorMessage: ((_: String) -> ())? = { message in
+    open static var logSensorMessage: ((_: String) -> ())? = { message in
         print(message)
     }
     
-    public let onBluetoothStateChange = Signal<CBCentralManagerState>()
-    public let onSensorDiscovered = Signal<Sensor>()
-    public let onSensorConnected = Signal<Sensor>()
-    public let onSensorConnectionFailed = Signal<Sensor>()
-    public let onSensorDisconnected = Signal<(Sensor, NSError?)>()
-    public let onSensorRemoved = Signal<Sensor>()
+    open let onBluetoothStateChange = Signal<CBCentralManagerState>()
+    open let onSensorDiscovered = Signal<Sensor>()
+    open let onSensorConnected = Signal<Sensor>()
+    open let onSensorConnectionFailed = Signal<Sensor>()
+    open let onSensorDisconnected = Signal<(Sensor, NSError?)>()
+    open let onSensorRemoved = Signal<Sensor>()
     
     
     public enum ManagerState {
-        case Off
-        case Idle
-        case PassiveScan
-        case AggressiveScan
+        case off
+        case idle
+        case passiveScan
+        case aggressiveScan
     }
     
-    public var state: ManagerState = .Off {
+    open var state: ManagerState = .off {
         didSet {
             if oldValue != state {
                 stateUpdated()
@@ -46,21 +46,21 @@ public class SensorManager: NSObject {
         }
     }
     
-    public func removeInactiveSensors(inactiveTime: NSTimeInterval) {
-        let now = NSDate.timeIntervalSinceReferenceDate()
+    open func removeInactiveSensors(_ inactiveTime: TimeInterval) {
+        let now = Date.timeIntervalSinceReferenceDate
         for sensor in sensors {
             if now - sensor.lastSensorActivity > inactiveTime {
-                if let sensor = sensorsById.removeValueForKey(sensor.peripheral.identifier.UUIDString) {
+                if let sensor = sensorsById.removeValue(forKey: sensor.peripheral.identifier.uuidString) {
                     onSensorRemoved => sensor
                 }
             }
         }
     }
     
-    public var SensorType: Sensor.Type = Sensor.self
-    private let serviceFactory = ServiceFactory()
+    open var SensorType: Sensor.Type = Sensor.self
+    fileprivate let serviceFactory = ServiceFactory()
     internal class ServiceFactory {
-        private(set) var serviceTypes = Dictionary<String, Service.Type>()
+        fileprivate(set) var serviceTypes = Dictionary<String, Service.Type>()
 
         var serviceUUIDs: [CBUUID] {
             return serviceTypes.keys.map { uuid in
@@ -71,9 +71,9 @@ public class SensorManager: NSObject {
         var servicesToDiscover: [CBUUID] = []
     }
     
-    private(set) var centralManager: CBCentralManager!
+    fileprivate(set) var centralManager: CBCentralManager!
     
-    public var sensors: [Sensor] {
+    open var sensors: [Sensor] {
         return Array(sensorsById.values)
     }
     
@@ -81,52 +81,52 @@ public class SensorManager: NSObject {
         super.init()
         
         let options: [String: AnyObject] = [
-            CBCentralManagerOptionShowPowerAlertKey: powerAlert
+            CBCentralManagerOptionShowPowerAlertKey: powerAlert as AnyObject
         ]
         centralManager = CBCentralManager(delegate: self, queue: nil, options: options)
     }
     
-    public func addServiceTypes(serviceTypes: [ServiceProtocol.Type]) {
+    open func addServiceTypes(_ serviceTypes: [ServiceProtocol.Type]) {
         for type in serviceTypes {
             serviceFactory.serviceTypes[type.uuid] = type.serviceType
         }
     }
     
-    public func setServicesToScanFor(serviceTypes: [ServiceProtocol.Type]) {
+    open func setServicesToScanFor(_ serviceTypes: [ServiceProtocol.Type]) {
         addServiceTypes(serviceTypes)
         serviceFactory.servicesToDiscover = serviceTypes.map { type in
             return CBUUID(string: type.uuid)
         }
     }
     
-    public func disconnectFromSensor(sensor: Sensor) {
+    open func disconnectFromSensor(_ sensor: Sensor) {
         SensorManager.logSensorMessage?("SensorManager: Disconnecting from sensor ...")
         centralManager.cancelPeripheralConnection(sensor.peripheral)
     }
     
-    public func connectToSensor(sensor: Sensor) {
+    open func connectToSensor(_ sensor: Sensor) {
         SensorManager.logSensorMessage?("SensorManager: Connecting to sensor ...")
-        centralManager.connectPeripheral(sensor.peripheral, options: nil)
+        centralManager.connect(sensor.peripheral, options: nil)
     }
     
-    private var sensorsById = Dictionary<String, Sensor>()
-    private var activityUpdateTimer: NSTimer?
-    static internal let RSSIPingInterval: NSTimeInterval = 2
-    static internal let ActivityInterval: NSTimeInterval = 5
-    static internal let InactiveInterval: NSTimeInterval = 4
+    fileprivate var sensorsById = Dictionary<String, Sensor>()
+    fileprivate var activityUpdateTimer: Timer?
+    static internal let RSSIPingInterval: TimeInterval = 2
+    static internal let ActivityInterval: TimeInterval = 5
+    static internal let InactiveInterval: TimeInterval = 4
 }
 
 // Private Funtionality
 extension SensorManager {
     
-    private func stateUpdated() {
-        if centralManager.state != .PoweredOn { return }
+    fileprivate func stateUpdated() {
+        if centralManager.state != .poweredOn { return }
         
         activityUpdateTimer?.invalidate()
         activityUpdateTimer = nil
         
         switch state {
-        case .Off:
+        case .off:
             stopScan()
             
             for sensor in sensors {
@@ -134,44 +134,44 @@ extension SensorManager {
             }
             SensorManager.logSensorMessage?("Shutting Down SensorManager")
             
-        case .Idle:
+        case .idle:
             stopScan()
             startActivityTimer()
             
-        case .PassiveScan:
+        case .passiveScan:
             scan(false)
             startActivityTimer()
             
-        case .AggressiveScan:
+        case .aggressiveScan:
             scan(true)
             startActivityTimer()
         }
     }
     
-    private func stopScan() {
+    fileprivate func stopScan() {
         centralManager.stopScan()
     }
     
-    private func startActivityTimer() {
+    fileprivate func startActivityTimer() {
         activityUpdateTimer?.invalidate()
-        activityUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(SensorManager.ActivityInterval, target: self, selector: #selector(SensorManager.rssiUpateTimerHandler(_:)), userInfo: nil, repeats: true)
+        activityUpdateTimer = Timer.scheduledTimer(timeInterval: SensorManager.ActivityInterval, target: self, selector: #selector(SensorManager.rssiUpateTimerHandler(_:)), userInfo: nil, repeats: true)
     }
     
-    private func scan(aggressive: Bool) {
+    fileprivate func scan(_ aggressive: Bool) {
         let options: [String: AnyObject] = [
-            CBCentralManagerScanOptionAllowDuplicatesKey: aggressive
+            CBCentralManagerScanOptionAllowDuplicatesKey: aggressive as AnyObject
         ]
         let serviceUUIDs = serviceFactory.servicesToDiscover
-        centralManager.scanForPeripheralsWithServices(serviceUUIDs, options: options)
+        centralManager.scanForPeripherals(withServices: serviceUUIDs, options: options)
         SensorManager.logSensorMessage?("SensorManager: Scanning for Services")
-        for peripheral in centralManager.retrieveConnectedPeripheralsWithServices(serviceUUIDs) {
+        for peripheral in centralManager.retrieveConnectedPeripherals(withServices: serviceUUIDs) {
             sensorForPeripheral(peripheral, create: true)
         }
     }
     
     
-    func rssiUpateTimerHandler(timer: NSTimer) {
-        let now = NSDate.timeIntervalSinceReferenceDate()
+    func rssiUpateTimerHandler(_ timer: Timer) {
+        let now = Date.timeIntervalSinceReferenceDate
         for sensor in sensors {
             if now - sensor.lastSensorActivity > SensorManager.InactiveInterval {
                 sensor.rssi = Int.min
@@ -179,8 +179,8 @@ extension SensorManager {
         }
     }
     
-    private func sensorForPeripheral(peripheral: CBPeripheral, create: Bool, advertisements: [CBUUID] = []) -> Sensor? {
-        if let sensor = sensorsById[peripheral.identifier.UUIDString] {
+    fileprivate func sensorForPeripheral(_ peripheral: CBPeripheral, create: Bool, advertisements: [CBUUID] = []) -> Sensor? {
+        if let sensor = sensorsById[peripheral.identifier.uuidString] {
             return sensor
         }
         if !create {
@@ -188,7 +188,7 @@ extension SensorManager {
         }
         let sensor = SensorType.init(peripheral: peripheral, advertisements: advertisements)
         sensor.serviceFactory = serviceFactory
-        sensorsById[peripheral.identifier.UUIDString] = sensor
+        sensorsById[peripheral.identifier.uuidString] = sensor
         onSensorDiscovered => sensor
         SensorManager.logSensorMessage?("SensorManager: Created Sensor for Peripheral: \(peripheral)")
         return sensor
@@ -200,14 +200,14 @@ extension SensorManager {
 
 extension SensorManager: CBCentralManagerDelegate {
     
-    public func centralManager(manager: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+    public func centralManager(_ manager: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         SensorManager.logSensorMessage?("CBCentralManager: didFailToConnectPeripheral: \(peripheral)")
         if let sensor = sensorForPeripheral(peripheral, create: false) {
             onSensorConnectionFailed => sensor
         }
     }
     
-    public func centralManager(manager: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+    public func centralManager(_ manager: CBCentralManager, didConnect peripheral: CBPeripheral) {
         SensorManager.logSensorMessage?("CBCentralManager: didConnectPeripheral: \(peripheral)")
         if let sensor = sensorForPeripheral(peripheral, create: true) {
             peripheral.discoverServices(serviceFactory.serviceUUIDs)
@@ -215,7 +215,7 @@ extension SensorManager: CBCentralManagerDelegate {
         }
     }
     
-    public func centralManager(manager: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+    public func centralManager(_ manager: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         SensorManager.logSensorMessage?("CBCentralManager: didDisconnectPeripheral: \(peripheral)")
         
         // Error Codes:
@@ -224,35 +224,35 @@ extension SensorManager: CBCentralManagerDelegate {
         //  10  = The connection has failed unexpectedly.
         
         if let sensor = sensorForPeripheral(peripheral, create: false) {
-            onSensorDisconnected => (sensor, error)
+            onSensorDisconnected => (sensor, error as NSError?)
         }
     }
     
-    public func centralManager(manager: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+    public func centralManager(_ manager: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let uuids = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
             if let sensor = sensorForPeripheral(peripheral, create: true, advertisements: uuids) {
-                if RSSI.integerValue < 0 {
-                    sensor.rssi = RSSI.integerValue
+                if RSSI.intValue < 0 {
+                    sensor.rssi = RSSI.intValue
                     sensor.markSensorActivity()
                 }
             }
         }
     }
     
-    public func centralManagerDidUpdateState(central: CBCentralManager) {
+    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         SensorManager.logSensorMessage?("centralManagerDidUpdateState: \(central.state.rawValue)")
         switch central.state {
-        case .Unknown:
+        case .unknown:
             break
-        case .Resetting:
+        case .resetting:
             break
-        case .Unsupported:
+        case .unsupported:
             break
-        case .Unauthorized:
+        case .unauthorized:
             break
-        case .PoweredOff:
+        case .poweredOff:
             break
-        case .PoweredOn:
+        case .poweredOn:
             stateUpdated()
         }
         

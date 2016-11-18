@@ -9,37 +9,38 @@
 
 import Foundation
 
-public extension SignedIntegerType {
+public extension SignedInteger {
     public mutating func increment() {
-        self = self.successor()
+        
+        self = self.advanced(by: 1)
     }
     
     public mutating func decrement() {
-        self = self.predecessor()
+        self = self.advanced(by: -1)
     }
 }
 
-prefix operator ++= { }
-public prefix func ++= <T: SignedIntegerType>(inout v: T) -> T {
+prefix operator ++=
+public prefix func ++= <T: SignedInteger>(v: inout T) -> T {
     v.increment()
     return v
 }
 
-postfix operator ++= { }
-public postfix func ++= <T: SignedIntegerType>(inout v: T) -> T {
+postfix operator ++=
+public postfix func ++= <T: SignedInteger>(v: inout T) -> T {
     let result = v
     v.increment()
     return result
 }
 
-prefix operator --= { }
-public prefix func --= <T: SignedIntegerType>(inout v: T) -> T {
+prefix operator --=
+public prefix func --= <T: SignedInteger>(v: inout T) -> T {
     v.decrement()
     return v
 }
 
-postfix operator --= { }
-public postfix func --= <T: SignedIntegerType>(inout v: T) -> T {
+postfix operator --=
+public postfix func --= <T: SignedInteger>(v: inout T) -> T {
     let result = v
     v.decrement()
     return result

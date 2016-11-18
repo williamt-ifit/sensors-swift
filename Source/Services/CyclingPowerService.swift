@@ -13,9 +13,9 @@ import Signals
 //
 // https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.cycling_power.xml
 //
-public class CyclingPowerService: Service, ServiceProtocol {
-    public static var uuid: String { return "1818" }    
-    public override var characteristicTypes: Dictionary<String, Characteristic.Type> {
+open class CyclingPowerService: Service, ServiceProtocol {
+    open static var uuid: String { return "1818" }    
+    open override var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
             Measurement.uuid:       Measurement.self,
             Feature.uuid:           Feature.self,
@@ -25,26 +25,26 @@ public class CyclingPowerService: Service, ServiceProtocol {
         ]
     }
     
-    public var measurement: Measurement?
-    public var feature: Feature?
-    public var sensorLocation: SensorLocation?
-    public var controlPoint: ControlPoint?
-    public var wahooTrainer: WahooTrainer?
+    open var measurement: Measurement?
+    open var feature: Feature?
+    open var sensorLocation: SensorLocation?
+    open var controlPoint: ControlPoint?
+    open var wahooTrainer: WahooTrainer?
     
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_measurement.xml
     //
-    public class Measurement: Characteristic {
-        public static let uuid: String = "2A63"
+    open class Measurement: Characteristic {
+        open static let uuid: String = "2A63"
         
-        public private(set) var instantaneousPower: UInt?
-        public private(set) var speedKPH: Double?
-        public private(set) var crankRPM: Double?
+        open fileprivate(set) var instantaneousPower: UInt?
+        open fileprivate(set) var speedKPH: Double?
+        open fileprivate(set) var crankRPM: Double?
         
-        public var wheelCircumferenceCM: Double = 213.3
+        open var wheelCircumferenceCM: Double = 213.3
         
-        public private(set) var measurementData: CyclingPowerSerializer.MeasurementData? {
+        open fileprivate(set) var measurementData: CyclingPowerSerializer.MeasurementData? {
             didSet {
                 guard let current = measurementData else { return }
                 instantaneousPower = UInt(current.instantaneousPower)
@@ -62,7 +62,8 @@ public class CyclingPowerService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
-        override public func valueUpdated() {
+        override open func valueUpdated() {
+            // cbCharacteristic is nil?
             if let value = cbCharacteristic.value {
                 measurementData = CyclingPowerSerializer.readMeasurement(value)
             }
@@ -75,10 +76,10 @@ public class CyclingPowerService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_feature.xml
     //
-    public class Feature: Characteristic {
-        public static let uuid: String = "2A65"
+    open class Feature: Characteristic {
+        open static let uuid: String = "2A65"
         
-        public private(set) var features: CyclingPowerSerializer.Features?
+        open fileprivate(set) var features: CyclingPowerSerializer.Features?
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -87,7 +88,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
             cbCharacteristic.read()
         }
         
-        override public func valueUpdated() {
+        override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 features = CyclingPowerSerializer.readFeatures(value)
             }
@@ -105,8 +106,8 @@ public class CyclingPowerService: Service, ServiceProtocol {
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.sensor_location.xml
     //
-    public class SensorLocation: Characteristic {
-        public static let uuid: String = "2A5D"
+    open class SensorLocation: Characteristic {
+        open static let uuid: String = "2A5D"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -115,9 +116,9 @@ public class CyclingPowerService: Service, ServiceProtocol {
             cbCharacteristic.read()
         }
         
-        public private(set) var location: CyclingSerializer.SensorLocation?
+        open fileprivate(set) var location: CyclingSerializer.SensorLocation?
         
-        override public func valueUpdated() {
+        override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 location = CyclingSerializer.readSensorLocation(value)
             }
@@ -131,9 +132,9 @@ public class CyclingPowerService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_control_point.xml
     //
     // TODO: Pretty much all of this ...
-    public class ControlPoint: Characteristic {
-        public static let uuid: String = "2A66"
-        static let writeType = CBCharacteristicWriteType.WithResponse
+    open class ControlPoint: Characteristic {
+        open static let uuid: String = "2A66"
+        static let writeType = CBCharacteristicWriteType.withResponse
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -142,7 +143,7 @@ public class CyclingPowerService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
-        override public func valueUpdated() {
+        override open func valueUpdated() {
             // TODO: Process this response
             super.valueUpdated()
         }
