@@ -71,11 +71,11 @@ open class Sensor: NSObject {
             }
         #else
             switch peripheral.state {
-            case .Connected:
+            case .connected:
                 rssiPingEnabled = true
-            case .Connecting:
+            case .connecting:
                 break
-            case .Disconnected:
+            case .disconnected:
                 rssiPingEnabled = false
                 services.removeAll()
             }
@@ -124,6 +124,7 @@ open class Sensor: NSObject {
             peripheral.discoverCharacteristics(charUUIDs, for: cbs)
         }
     }
+    
     fileprivate func characteristicDiscovered(_ cbc: CBCharacteristic, cbs: CBService) {
         guard let service = services[cbs.uuid.uuidString] else { return }
         if let characteristic = service.characteristic(cbc.uuid.uuidString), characteristic.cbCharacteristic == cbc {

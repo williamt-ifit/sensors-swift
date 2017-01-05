@@ -62,7 +62,7 @@ open class UTF8Characteristic: Characteristic {
 
 extension Data {
     
-    static func fromIntArray(_ int8s: [UInt8]) -> Data {
+    public static func fromIntArray(_ int8s: [UInt8]) -> Data {
         return Data(bytes: UnsafePointer<UInt8>(int8s), count: int8s.count)
     }
     
