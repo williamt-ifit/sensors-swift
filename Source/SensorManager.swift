@@ -165,7 +165,7 @@ extension SensorManager {
         centralManager.scanForPeripherals(withServices: serviceUUIDs, options: options)
         SensorManager.logSensorMessage?("SensorManager: Scanning for Services")
         for peripheral in centralManager.retrieveConnectedPeripherals(withServices: serviceUUIDs) {
-            sensorForPeripheral(peripheral, create: true)
+            let _ = sensorForPeripheral(peripheral, create: true)
         }
     }
     
