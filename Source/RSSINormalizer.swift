@@ -4,7 +4,7 @@
 //
 //  https://github.com/kinetic-fit/sensors-swift
 //
-//  Copyright © 2016 Kinetic. All rights reserved.
+//  Copyright © 2017 Kinetic. All rights reserved.
 //
 //  Derived from Android's RSSI signal level calculator
 //  - https://github.com/android/platform_frameworks_base/blob/master/wifi/java/android/net/wifi/WifiManager.java#L1495
