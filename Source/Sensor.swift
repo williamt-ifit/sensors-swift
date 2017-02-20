@@ -10,24 +10,13 @@
 import CoreBluetooth
 import Signals
 
+/**
+ Sensor wraps a CoreBluetooth Peripheral and manages the hierarchy of Services and Characteristics.
+ */
 open class Sensor: NSObject {
     
-    open let peripheral: CBPeripheral
-    open let advertisements: [CBUUID]
-    
-    open let onNameChanged = Signal<Sensor>()
-    open let onStateChanged = Signal<Sensor>()
-    
-    open let onServiceDiscovered = Signal<(Sensor, Service)>()
-    open let onServiceFeaturesIdentified = Signal<(Sensor, Service)>()
-    
-    open let onCharacteristicDiscovered = Signal<(Sensor, Characteristic)>()
-    open let onCharacteristicValueUpdated = Signal<(Sensor, Characteristic)>()
-    open let onCharacteristicValueWritten = Signal<(Sensor, Characteristic)>()
-    
-    
-    internal weak var serviceFactory: SensorManager.ServiceFactory?
-    
+    // Internal Constructor. SensorManager manages the instantiation and destruction of Sensor objects
+    /// :nodoc:
     required public init(peripheral: CBPeripheral, advertisements: [CBUUID] = []) {
         self.peripheral = peripheral
         self.advertisements = advertisements
@@ -44,50 +33,56 @@ open class Sensor: NSObject {
         rssiPingTimer?.invalidate()
     }
     
-    fileprivate var myContext = 0
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if context == &myContext {
-            if keyPath == "state" {
-                peripheralStateChanged()
-            }
-        } else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+    /// Backing CoreBluetooth Peripheral
+    public let peripheral: CBPeripheral
+    
+    /// Discovered Services
+    public fileprivate(set) var services = Dictionary<String, Service>()
+    
+    /// Advertised UUIDs
+    public let advertisements: [CBUUID]
+    
+    /// Name Changed Signal
+    public let onNameChanged = Signal<Sensor>()
+    
+    /// State Changed Signal
+    public let onStateChanged = Signal<Sensor>()
+    
+    /// Service Discovered Signal
+    public let onServiceDiscovered = Signal<(Sensor, Service)>()
+    
+    /// Service Features Identified Signal
+    public let onServiceFeaturesIdentified = Signal<(Sensor, Service)>()
+    
+    /// Characteristic Discovered Signal
+    public let onCharacteristicDiscovered = Signal<(Sensor, Characteristic)>()
+    
+    /// Characteristic Value Updated Signal
+    public let onCharacteristicValueUpdated = Signal<(Sensor, Characteristic)>()
+    
+    /// Characteristic Value Written Signal
+    public let onCharacteristicValueWritten = Signal<(Sensor, Characteristic)>()
+    
+    /// RSSI Changed Signal
+    public let onRSSIChanged = Signal<(Sensor, Int)>()
+    
+    /// Most recent RSSI value
+    public internal(set) var rssi: Int = Int.min {
+        didSet {
+            onRSSIChanged => (self, rssi)
         }
     }
     
+    /// Last time of Sensor Communication with the Sensor Manager (Time Interval since Reference Date)
+    public fileprivate(set) var lastSensorActivity = Date.timeIntervalSinceReferenceDate
     
-    fileprivate func peripheralStateChanged() {
-        #if os(iOS)
-            switch peripheral.state {
-            case .connected:
-                rssiPingEnabled = true
-            case .connecting:
-                break
-            case .disconnected:
-                rssiPingEnabled = false
-                services.removeAll()
-            case .disconnecting:
-                rssiPingEnabled = false
-            }
-        #else
-            switch peripheral.state {
-            case .connected:
-                rssiPingEnabled = true
-            case .connecting:
-                break
-            case .disconnected:
-                rssiPingEnabled = false
-                services.removeAll()
-            }
-        #endif
-        SensorManager.logSensorMessage?("Sensor: peripheralStateChanged: \(peripheral.state.rawValue)")
-        onStateChanged => self
-    }
-    
-    open fileprivate(set) var services = Dictionary<String, Service>()
-    
-    
-    open func service<T: Service>(_ uuid: String? = nil) -> T? {
+    /**
+     Get a service by its UUID or by Type
+     
+     - parameter uuid: UUID string
+     - returns: Service
+     */
+    public func service<T: Service>(_ uuid: String? = nil) -> T? {
         if let uuid = uuid {
             return services[uuid] as? T
         }
@@ -99,6 +94,12 @@ open class Sensor: NSObject {
         return nil
     }
     
+    /**
+     Check if a Sensor advertised a specific UUID Service
+     
+     - parameter uuid: UUID string
+     - returns: `true` if the sensor advertised the `uuid` service
+     */
     open func advertisedService(_ uuid: String) -> Bool {
         let service = CBUUID(string: uuid)
         for advertisement in advertisements {
@@ -107,6 +108,70 @@ open class Sensor: NSObject {
             }
         }
         return false
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //////////////////////////////////////////////////////////////////
+    // Private / Internal Classes, Properties and Constants
+    //////////////////////////////////////////////////////////////////
+    
+    internal weak var serviceFactory: SensorManager.ServiceFactory?
+    private var rssiPingTimer: Timer?
+    private var myContext = 0
+    
+    /// :nodoc:
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if context == &myContext {
+            if keyPath == "state" {
+                peripheralStateChanged()
+            }
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
+    }
+    
+    fileprivate var rssiPingEnabled: Bool = false {
+        didSet {
+            if rssiPingEnabled {
+                if rssiPingTimer == nil {
+                    rssiPingTimer = Timer.scheduledTimer(timeInterval: SensorManager.RSSIPingInterval, target: self, selector: #selector(Sensor.rssiPingTimerHandler), userInfo: nil, repeats: true)
+                }
+            } else {
+                rssi = Int.min
+                rssiPingTimer?.invalidate()
+                rssiPingTimer = nil
+            }
+        }
+    }
+}
+
+
+// Private Funtions
+extension Sensor {
+    
+    fileprivate func peripheralStateChanged() {
+        switch peripheral.state {
+        case .connected:
+            rssiPingEnabled = true
+        case .connecting:
+            break
+        case .disconnected:
+            fallthrough
+        default:
+            rssiPingEnabled = false
+            services.removeAll()
+        }
+        SensorManager.logSensorMessage?("Sensor: peripheralStateChanged: \(peripheral.state.rawValue)")
+        onStateChanged => self
     }
     
     fileprivate func serviceDiscovered(_ cbs: CBService) {
@@ -151,45 +216,12 @@ open class Sensor: NSObject {
         }
     }
     
-    
-    
-    
-    
-    // MARK: RSSI Stuff
-    open let onRSSIChanged = Signal<(Sensor, Int)>()
-    
-    open internal(set) var rssi: Int = Int.min {
-        didSet {
-            onRSSIChanged => (self, rssi)
-        }
-    }
-    
-    fileprivate var rssiPingEnabled: Bool = false {
-        didSet {
-            if rssiPingEnabled {
-                if rssiPingTimer == nil {
-                    rssiPingTimer = Timer.scheduledTimer(timeInterval: SensorManager.RSSIPingInterval, target: self, selector: #selector(Sensor.rssiPingTimerHandler), userInfo: nil, repeats: true)
-                }
-            } else {
-                rssi = Int.min
-                rssiPingTimer?.invalidate()
-                rssiPingTimer = nil
-            }
-        }
-    }
-    
-    fileprivate var rssiPingTimer: Timer?
-    
     func rssiPingTimerHandler() {
         if peripheral.state == .connected {
             peripheral.readRSSI()
         }
     }
     
-    
-    
-    // MARK: Track last
-    open fileprivate(set) var lastSensorActivity: Double = Date.timeIntervalSinceReferenceDate
     internal func markSensorActivity() {
         lastSensorActivity = Date.timeIntervalSinceReferenceDate
     }
@@ -197,16 +229,15 @@ open class Sensor: NSObject {
 }
 
 
-
-
-
 extension Sensor: CBPeripheralDelegate {
     
+    /// :nodoc:
     public func peripheralDidUpdateName(_ peripheral: CBPeripheral) {
         onNameChanged => self
         markSensorActivity()
     }
     
+    /// :nodoc:
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let cbss = peripheral.services else { return }
         for cbs in cbss {
@@ -215,6 +246,7 @@ extension Sensor: CBPeripheralDelegate {
         markSensorActivity()
     }
     
+    /// :nodoc:
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let cbcs = service.characteristics else { return }
         for cbc in cbcs {
@@ -223,6 +255,7 @@ extension Sensor: CBPeripheralDelegate {
         markSensorActivity()
     }
     
+    /// :nodoc:
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let service = services[characteristic.service.uuid.uuidString] else { return }
         guard let char = service.characteristics[characteristic.uuid.uuidString] else { return }
@@ -233,6 +266,7 @@ extension Sensor: CBPeripheralDelegate {
         markSensorActivity()
     }
     
+    /// :nodoc:
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let service = services[characteristic.service.uuid.uuidString] else { return }
         guard let char = service.characteristics[characteristic.uuid.uuidString] else { return }
@@ -243,6 +277,7 @@ extension Sensor: CBPeripheralDelegate {
         markSensorActivity()
     }
     
+    /// :nodoc:
     public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
         if RSSI.intValue < 0 {
             rssi = RSSI.intValue

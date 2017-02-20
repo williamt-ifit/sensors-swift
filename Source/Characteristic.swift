@@ -10,64 +10,98 @@
 import CoreBluetooth
 import Signals
 
+/**
+ Base Characteristic Implementation. Extend this class with a concrete definition of a BLE characteristic.
+ */
 open class Characteristic {
     
-    open fileprivate(set) weak var service: Service?
+    /// Parent Service
+    public private(set) weak var service: Service?
     
-    open let onValueUpdated = Signal<Characteristic>()
-    open let onValueWritten = Signal<Characteristic>()
+    /// Value Updated Signal
+    public let onValueUpdated = Signal<Characteristic>()
     
-    open internal(set) var cbCharacteristic: CBCharacteristic!
+    /// Value Written Signal
+    public let onValueWritten = Signal<Characteristic>()
     
-    open fileprivate(set) var valueUpdatedTimestamp: Double?
-    open fileprivate(set) var valueWrittenTimestamp: Double?
+    /// Backing CoreBluetooth Characteristic
+    public internal(set) var cbCharacteristic: CBCharacteristic!
     
+    /// Timestamp of when the Value was last updated
+    public private(set) var valueUpdatedTimestamp: Double?
+    
+    /// Timestamp of when the Value was last written to
+    public private(set) var valueWrittenTimestamp: Double?
+    
+    
+    // Internal Constructor. SensorManager manages the instantiation and destruction of Characteristic objects
+    /// :nodoc:
     required public init(service: Service, cbc: CBCharacteristic) {
         self.service = service
         self.cbCharacteristic = cbc
     }
     
+    /**
+     Called when the Value of the Characteristic was read.
+     */
     open func valueUpdated() {
         valueUpdatedTimestamp = Date.timeIntervalSinceReferenceDate
         onValueUpdated => self
     }
     
+    /**
+     Called when the Value of the Characteristic was successfully written.
+     */
     open func valueWritten() {
         valueWrittenTimestamp = Date.timeIntervalSinceReferenceDate
         onValueWritten => self
     }
     
-    open func readValue() {
+    /**
+     Initiate a Read of the Characteritic's Value. `valueUpdated` will be called and `onValueUpdated` will trigger when read.
+     */
+    public func readValue() {
         cbCharacteristic.read()
     }
     
-    open var value: Data? {
+    /// The Value of the Characteristic
+    public var value: Data? {
         return cbCharacteristic.value
     }
     
 }
 
+
+/**
+ Base Implementation of a Characteristic with a UTF8 String value. Initiates a `readValue` on instantiation.
+ */
 open class UTF8Characteristic: Characteristic {
     
-    open var stringValue: String? {
+    /// The UTF8 Value of the Characteristic
+    public var stringValue: String? {
         if let value = value {
             return String(data: value, encoding: String.Encoding.utf8)
         }
         return nil
     }
     
+    /// :nodoc:
     required public init(service: Service, cbc: CBCharacteristic) {
         super.init(service: service, cbc: cbc)
         
-        cbCharacteristic.read()
+        readValue()
     }
     
 }
 
+
 extension Data {
     
-    public static func fromIntArray(_ int8s: [UInt8]) -> Data {
-        return Data(bytes: UnsafePointer<UInt8>(int8s), count: int8s.count)
+    /**
+     Initialize a Data object from an array of Unsigned 8-Bit Integers.
+     */
+    public init(int8s: [UInt8]) {
+        self.init(bytes: UnsafePointer<UInt8>(int8s), count: int8s.count)
     }
     
 }

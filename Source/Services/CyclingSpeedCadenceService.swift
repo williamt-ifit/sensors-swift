@@ -13,9 +13,12 @@ import Signals
 //
 // https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.cycling_speed_and_cadence.xml
 //
+/// :nodoc:
 open class CyclingSpeedCadenceService: Service, ServiceProtocol {
-    open static var uuid: String { return "1816" }    
-    open override var characteristicTypes: Dictionary<String, Characteristic.Type> {
+    
+    public static var uuid: String { return "1816" }
+    
+    override open var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
             Measurement.uuid:       Measurement.self,
             Feature.uuid:           Feature.self,
@@ -23,23 +26,26 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
         ]
     }
     
-    open var measurement: Measurement?
-    open var feature: Feature?
-    open var sensorLocation: SensorLocation?
+    open private(set) var measurement: Measurement?
     
+    open private(set) var feature: Feature?
+    
+    open private(set) var sensorLocation: SensorLocation?
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.csc_measurement.xml
     //
     open class Measurement: Characteristic {
-        open static let uuid: String = "2A5B"
         
-        open fileprivate(set) var speedKPH: Double?
-        open fileprivate(set) var crankRPM: Double?
+        public static let uuid: String = "2A5B"
+        
+        open private(set) var speedKPH: Double?
+        
+        open private(set) var crankRPM: Double?
         
         open var wheelCircumferenceCM: Double = 213.3
         
-        open fileprivate(set) var measurementData: CyclingSpeedCadenceSerializer.MeasurementData? {
+        open private(set) var measurementData: CyclingSpeedCadenceSerializer.MeasurementData? {
             didSet {
                 guard let previous = oldValue else { return }
                 guard let current = measurementData else { return }
@@ -67,6 +73,7 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
                 // so we're going to do a little filtering here to get a more stable reading
                 
                 let now = Date.timeIntervalSinceReferenceDate
+                
                 // calculate the expected interval of wheel events based on current speed
                 // This results in a small "bump" of speed typically at the end. need to fix that...
                 var reqInterval = 0.8
@@ -90,9 +97,10 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_feature.xml
     //
     open class Feature: Characteristic {
-        open static let uuid: String = "2A5C"
         
-        open fileprivate(set) var features: CyclingSpeedCadenceSerializer.Features?
+        public static let uuid: String = "2A5C"
+        
+        open private(set) var features: CyclingSpeedCadenceSerializer.Features?
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -119,7 +127,8 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.sensor_location.xml
     //
     open class SensorLocation: Characteristic {
-        open static let uuid: String = "2A5D"
+        
+        public static let uuid: String = "2A5D"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -128,7 +137,7 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
             cbCharacteristic.read()
         }
         
-        open fileprivate(set) var location: CyclingSerializer.SensorLocation?
+        open private(set) var location: CyclingSerializer.SensorLocation?
         
         override open func valueUpdated() {
             if let value = cbCharacteristic.value {

@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// :nodoc:
 open class HeartRateSerializer {
     
     public struct MeasurementData {

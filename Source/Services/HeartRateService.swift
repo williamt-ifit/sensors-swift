@@ -13,9 +13,12 @@ import Signals
 //
 // https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.heart_rate.xml
 //
+/// :nodoc:
 open class HeartRateService: Service, ServiceProtocol {
-    open static var uuid: String { return "180D" }
-    open override var characteristicTypes: Dictionary<String, Characteristic.Type> {
+    
+    public static var uuid: String { return "180D" }
+    
+    override open var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return [
             Measurement.uuid:           Measurement.self,
             BodySensorLocation.uuid:    BodySensorLocation.self,
@@ -23,15 +26,18 @@ open class HeartRateService: Service, ServiceProtocol {
         ]
     }
     
-    open var measurement: Measurement?
-    open var bodySensorLocation: BodySensorLocation?
-    open var controlPoint: ControlPoint?
+    open private(set) var measurement: Measurement?
+    
+    open private(set) var bodySensorLocation: BodySensorLocation?
+    
+    open private(set) var controlPoint: ControlPoint?
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
     //
     open class Measurement: Characteristic {
-        open static let uuid: String = "2A37"
+        
+        public static let uuid: String = "2A37"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -42,7 +48,7 @@ open class HeartRateService: Service, ServiceProtocol {
             service.sensor.onServiceFeaturesIdentified => (service.sensor, service)
         }
         
-        open fileprivate(set) var currentMeasurement: HeartRateSerializer.MeasurementData?
+        open private(set) var currentMeasurement: HeartRateSerializer.MeasurementData?
         
         override open func valueUpdated() {
             if let value = cbCharacteristic.value {
@@ -58,7 +64,8 @@ open class HeartRateService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.body_sensor_location.xml
     //
     open class BodySensorLocation: Characteristic {
-        open static let uuid: String = "2A38"
+        
+        public static let uuid: String = "2A38"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -67,8 +74,7 @@ open class HeartRateService: Service, ServiceProtocol {
             cbCharacteristic.read()
         }
         
-        
-        open fileprivate(set) var location: HeartRateSerializer.BodySensorLocation?
+        open private(set) var location: HeartRateSerializer.BodySensorLocation?
         
         override open func valueUpdated() {
             if let value = cbCharacteristic.value {
@@ -83,7 +89,8 @@ open class HeartRateService: Service, ServiceProtocol {
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_control_point.xml
     //
     open class ControlPoint: Characteristic {
-        open static let uuid: String = "2A39"
+        
+        public static let uuid: String = "2A39"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
@@ -93,13 +100,14 @@ open class HeartRateService: Service, ServiceProtocol {
         }
         
         open func resetEnergyExpended() {
-            cbCharacteristic.write(Data.fromIntArray(HeartRateSerializer.writeResetEnergyExpended()), writeType: .withResponse)
+            cbCharacteristic.write(Data(int8s: HeartRateSerializer.writeResetEnergyExpended()), writeType: .withResponse)
         }
         
         override open func valueUpdated() {
             // TODO: Unsure what value is read from the CP after we reset the energy expended (not documented?)
             super.valueUpdated()
         }
+        
     }
     
 }

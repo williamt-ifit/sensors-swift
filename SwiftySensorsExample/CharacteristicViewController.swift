@@ -22,7 +22,7 @@ class CharacteristicViewController: UIViewController {
         super.viewWillAppear(animated)
         
         nameLabel.text = "\(characteristic!)".components(separatedBy: ".").last
-     
+        
         refreshValue()
         
         characteristic.onValueUpdated.subscribe(on: self) { [weak self] characteristic in
@@ -34,7 +34,7 @@ class CharacteristicViewController: UIViewController {
         if let value = characteristic.value {
             valueTextView.text = "0x\(value.hexEncodedString())"
         } else {
-             valueTextView.text = ""
+            valueTextView.text = ""
         }
     }
     
