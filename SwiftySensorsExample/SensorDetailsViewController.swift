@@ -24,8 +24,7 @@ class SensorDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         sensor.onServiceDiscovered.subscribe(on: self) { [weak self] sensor, service in
-            guard let s = self else { return }
-            s.rebuildData()
+            self?.rebuildData()
         }
         sensor.onStateChanged.subscribe(on: self) { [weak self] sensor in
             self?.updateConnectButton()
@@ -71,7 +70,14 @@ class SensorDetailsViewController: UIViewController {
         } else if sensor.peripheral.state == .disconnected {
             SensorManager.instance.connectToSensor(sensor)
         }
-            
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let serviceDetails = segue.destination as? ServiceDetailsViewController {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            if indexPath.row >= services.count { return }
+            serviceDetails.service = services[indexPath.row]
+        }
     }
 }
 
@@ -83,11 +89,13 @@ extension SensorDetailsViewController: UITableViewDataSource {
         let serviceCell = tableView.dequeueReusableCell(withIdentifier: "ServiceCell")!
         let service = services[indexPath.row]
         
-        serviceCell.textLabel?.text = "\(service)"
+        serviceCell.textLabel?.text = "\(service)".components(separatedBy: ".").last
         return serviceCell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return services.count
     }
+    
 }
+

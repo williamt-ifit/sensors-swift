@@ -30,7 +30,7 @@ open class Service: Equatable {
     
     open let cbService: CBService
     
-    internal var characteristics = Dictionary<String, Characteristic>()
+    public internal(set) var characteristics = Dictionary<String, Characteristic>()
     
     open var characteristicTypes: Dictionary<String, Characteristic.Type> {
         return Dictionary()

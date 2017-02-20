@@ -37,6 +37,10 @@ open class Characteristic {
         onValueWritten => self
     }
     
+    open func readValue() {
+        cbCharacteristic.read()
+    }
+    
     open var value: Data? {
         return cbCharacteristic.value
     }

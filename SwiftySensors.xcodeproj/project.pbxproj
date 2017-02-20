@@ -51,6 +51,8 @@
 		8D81402E1CA5995A001D75B3 /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */; };
 		8D81402F1CA5995A001D75B3 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDA1CA097AE00B4CC0B /* HeartRateService.swift */; };
 		8D8140301CA5995C001D75B3 /* WahooTrainerCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D81400E1CA5896E001D75B3 /* WahooTrainerCharacteristic.swift */; };
+		8D95ED0D1E5B65AE00A91EBC /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95ED0C1E5B65AE00A91EBC /* ServiceDetailsViewController.swift */; };
+		8D95ED0F1E5B6AA400A91EBC /* CharacteristicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95ED0E1E5B6AA400A91EBC /* CharacteristicViewController.swift */; };
 		AA4D11A87E1002D5839565A1 /* Pods_SwiftySensors_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF44B2F4D7FDEC8E97B5C7F /* Pods_SwiftySensors_iOS.framework */; };
 		D81C9BED4FECB9C7978FB2EF /* Pods_SwiftySensors_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC888A3B95B85FD5F6E62741 /* Pods_SwiftySensors_OSX.framework */; };
 /* End PBXBuildFile section */
@@ -111,6 +113,8 @@
 		8D81400E1CA5896E001D75B3 /* WahooTrainerCharacteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooTrainerCharacteristic.swift; sourceTree = "<group>"; };
 		8D8140111CA58975001D75B3 /* WahooTrainerSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooTrainerSerializer.swift; sourceTree = "<group>"; };
 		8D8140181CA59927001D75B3 /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D95ED0C1E5B65AE00A91EBC /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
+		8D95ED0E1E5B6AA400A91EBC /* CharacteristicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicViewController.swift; sourceTree = "<group>"; };
 		8E0CA8DA1F947A76F0DD92B2 /* Pods-SwiftySensorsExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensorsExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensorsExample/Pods-SwiftySensorsExample.debug.xcconfig"; sourceTree = "<group>"; };
 		A93CE12FCA0CC539B7762144 /* Pods-SwiftySensorsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensorsExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensorsExample/Pods-SwiftySensorsExample.release.xcconfig"; sourceTree = "<group>"; };
 		AE7CD880E8101430CD349D95 /* Pods-SwiftySensors iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensors iOS/Pods-SwiftySensors iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -215,13 +219,15 @@
 		8D659AB71C9C8B2300CF3C60 /* SwiftySensorsExample */ = {
 			isa = PBXGroup;
 			children = (
+				8D659AC11C9C8B2300CF3C60 /* LaunchScreen.storyboard */,
+				8D659ABC1C9C8B2300CF3C60 /* Main.storyboard */,
+				8D659ABF1C9C8B2300CF3C60 /* Assets.xcassets */,
+				8D659AC41C9C8B2300CF3C60 /* Info.plist */,
 				8D659AB81C9C8B2300CF3C60 /* AppDelegate.swift */,
 				8D659ABA1C9C8B2300CF3C60 /* SensorListViewController.swift */,
 				8D659AD91C9C9AB900CF3C60 /* SensorDetailsViewController.swift */,
-				8D659ABC1C9C8B2300CF3C60 /* Main.storyboard */,
-				8D659ABF1C9C8B2300CF3C60 /* Assets.xcassets */,
-				8D659AC11C9C8B2300CF3C60 /* LaunchScreen.storyboard */,
-				8D659AC41C9C8B2300CF3C60 /* Info.plist */,
+				8D95ED0C1E5B65AE00A91EBC /* ServiceDetailsViewController.swift */,
+				8D95ED0E1E5B6AA400A91EBC /* CharacteristicViewController.swift */,
 			);
 			path = SwiftySensorsExample;
 			sourceTree = "<group>";
@@ -564,6 +570,8 @@
 				8D659ADA1C9C9AB900CF3C60 /* SensorDetailsViewController.swift in Sources */,
 				8D659ABB1C9C8B2300CF3C60 /* SensorListViewController.swift in Sources */,
 				8D659AB91C9C8B2300CF3C60 /* AppDelegate.swift in Sources */,
+				8D95ED0D1E5B65AE00A91EBC /* ServiceDetailsViewController.swift in Sources */,
+				8D95ED0F1E5B6AA400A91EBC /* CharacteristicViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
