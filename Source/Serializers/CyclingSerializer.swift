@@ -9,6 +9,8 @@
 
 import Foundation
 
+
+/// :nodoc:
 public protocol CyclingMeasurementData {
     var timestamp: Double { get }
     var cumulativeWheelRevolutions: UInt32? { get }
@@ -17,6 +19,7 @@ public protocol CyclingMeasurementData {
     var lastCrankEventTime: UInt16? { get }
 }
 
+/// :nodoc:
 open class CyclingSerializer {
     
     public enum SensorLocation: UInt8 {
@@ -44,7 +47,6 @@ open class CyclingSerializer {
         return SensorLocation(rawValue: bytes[0])
     }
     
-    
     open static func calculateWheelKPH(_ current: CyclingMeasurementData, previous: CyclingMeasurementData, wheelCircumferenceCM: Double, wheelTimeResolution: Int) -> Double? {
         guard let cwr1 = current.cumulativeWheelRevolutions else { return nil }
         guard let cwr2 = previous.cumulativeWheelRevolutions else { return nil }
@@ -64,7 +66,6 @@ open class CyclingSerializer {
         return 0
     }
     
-    
     open static func calculateCrankRPM(_ current: CyclingMeasurementData, previous: CyclingMeasurementData) -> Double? {
         guard let ccr1 = current.cumulativeCrankRevolutions else { return nil }
         guard let ccr2 = previous.cumulativeCrankRevolutions else { return nil }
@@ -81,7 +82,8 @@ open class CyclingSerializer {
         return 0
     }
     
-    fileprivate static func deltaWithRollover<T: Integer>(_ new: T, old: T, max: T) -> T {
+    private static func deltaWithRollover<T: Integer>(_ new: T, old: T, max: T) -> T {
         return old > new ? max - old + new : new - old
     }
+    
 }

@@ -16,20 +16,23 @@ extension CyclingPowerService {
     //
     // Nuances: after writing an ERG mode target watts, the trainer takes about 2 seconds for adjustments to be made.
     //      Delay all writes
+    /// :nodoc:
     open class WahooTrainer: Characteristic {
-        static open let uuid: String = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B"
+        
+        public static let uuid: String = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B"
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
             (service as? CyclingPowerService)?.wahooTrainer = self
             
             cbCharacteristic.notify(true)
-            cbCharacteristic.write(Data.fromIntArray(WahooTrainerSerializer.unlockCommand()), writeType: .withResponse)
+            cbCharacteristic.write(Data(int8s: WahooTrainerSerializer.unlockCommand()), writeType: .withResponse)
         }
         
+        private var ergWriteTimer: Timer?
         
-        fileprivate var ergWriteTimer: Timer?
-        fileprivate var ergWriteWatts: UInt16?
+        private var ergWriteWatts: UInt16?
+        
         open func setResistanceErg(_ watts: UInt16) {
             ergWriteWatts = watts
             if ergWriteTimer == nil {
@@ -41,7 +44,7 @@ extension CyclingPowerService {
         @objc func writeErgWatts() {
             if let watts = ergWriteWatts {
                 // crashing?
-                cbCharacteristic.write(Data.fromIntArray(WahooTrainerSerializer.setResistanceModeErg(watts)), writeType: .withResponse)
+                cbCharacteristic.write(Data(int8s: WahooTrainerSerializer.setResistanceModeErg(watts)), writeType: .withResponse)
                 ergWriteWatts = nil
             } else {
                 ergWriteTimer?.invalidate()
@@ -53,12 +56,11 @@ extension CyclingPowerService {
             ergWriteTimer?.invalidate()
             ergWriteTimer = nil
             
-            cbCharacteristic.write(Data.fromIntArray(WahooTrainerSerializer.setResistanceModeLevel(level)), writeType: .withResponse)
+            cbCharacteristic.write(Data(int8s: WahooTrainerSerializer.setResistanceModeLevel(level)), writeType: .withResponse)
         }
         
         override open func valueUpdated() {
             // generate response ...
-            
             super.valueUpdated()
         }
         

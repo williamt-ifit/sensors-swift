@@ -6,16 +6,27 @@
 //
 //  Copyright © 2017 Kinetic. All rights reserved.
 //
-//  Derived from Android's RSSI signal level calculator
-//  - https://github.com/android/platform_frameworks_base/blob/master/wifi/java/android/net/wifi/WifiManager.java#L1495
-//
 
 import Foundation
 
-open class RSSINormalizer {
+/**
+ Normalize a raw RSSI value to a linear scale.
+ 
+ Derived from Android's RSSI signal level calculator
+ https://github.com/android/platform_frameworks_base/blob/master/wifi/java/android/net/wifi/WifiManager.java#L1654
+ */
+public class RSSINormalizer {
     
-    // RSSI ranges are between 0 (max strength) and -100 (min strength)
-    open static func calculateSignalLevel(_ rssi: Int, numLevels: Int, rssiMin: Int = -100, rssiMax: Int = -65) -> Int {
+    /**
+     Calculates the level of the signal. This should be used any time a signal is being shown to the user.
+     
+     - parameter rssi: The power of the signal measured in RSSI.
+     - parameter numLevels: The number of levels to consider in the calculated level.
+     - parameter rssiMin: Lower bound of expected RSSI values (results in 0 Signal Level).
+     - parameter rssiMax: Upper bound of expected RSSI values (results in `numLevels-1` Signal Level).
+     - returns: A level of the signal, given in the range of 0 to numLevels-1 (both inclusive).
+     */
+    public static func calculateSignalLevel(_ rssi: Int, numLevels: Int, rssiMin: Int = -100, rssiMax: Int = -65) -> Int {
         if rssi <= rssiMin {
             return 0
         } else if rssi >= rssiMax {

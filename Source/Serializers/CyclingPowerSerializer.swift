@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// :nodoc:
 open class CyclingPowerSerializer {
     
     struct MeasurementFlags: OptionSet {

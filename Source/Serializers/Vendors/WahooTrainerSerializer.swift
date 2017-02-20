@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// :nodoc:
 open class WahooTrainerSerializer {
     
     open class Response {
@@ -66,10 +67,10 @@ open class WahooTrainerSerializer {
             response.operationCode = opCode
             return response
         } else {
-            print("Unrecognized Operation Code: \(opCodeRaw)")
+            SensorManager.logSensorMessage?("Unrecognized Operation Code: \(opCodeRaw)")
         }
         if result == 1 {
-            print("Success for operation: \(opCodeRaw)")
+            SensorManager.logSensorMessage?("Success for operation: \(opCodeRaw)")
         }
         
         return nil
