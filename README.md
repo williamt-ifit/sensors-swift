@@ -7,6 +7,8 @@
 
 Bluetooth LE Sensor Manager for iOS and macOS.
 
+[Full API Documentation](http://cocoadocs.org/docsets/SwiftySensors/)
+
 ## Installation
 ### CocoaPods
 ```
@@ -14,28 +16,29 @@ use_frameworks!
 pod 'SwiftySensors'
 ```
 ### Manual
-Coming Soon
+*Coming Soon*
 
 ### Carthage
-Coming Soon
+*Coming Soon*
 
 ### Swift Package Manager
-Coming Soon
+*Coming Soon*
 
 ## Usage
 
 See the Example iOS App for a basic example of:
-- scanning for *sensors*
-- connecting to *sensors*
-- discovering *services*
-- discovering *characteristics*
+- scanning for **sensors**
+- connecting to **sensors**
+- discovering **services**
+- discovering **characteristics**
 - reading values
-- *characteristic* notifications
+- **characteristic** notifications
 
 Initialization of a SensorManager is straightforward.
-1. Set the *services* you want to scan for
-2. Add additional *services* you want to discover on *sensor* (but not scan for in advertisement data)
-3. Set the *scan mode* of the manager
+
+1. Set the **services** you want to scan for
+2. Add additional **services** you want to discover on *sensor* (but not scan for in advertisement data)
+3. Set the **scan mode** of the manager
 
 ```
 // Customize what services you want to scan for
@@ -57,7 +60,7 @@ SensorManager.logSensorMessage = { message in
 }
 ```
 
-SwiftySensors uses [Signals](https://github.com/artman/Signals) to make observation of numerous events easy.
+SwiftySensors uses [Signals](https://github.com/artman/Signals) to make observation of the various events easy.
 ```
 // Subscribe to Sensor Discovery Events
 SensorManager.instance.onSensorDiscovered.subscribe(on: self) { sensor in
@@ -146,8 +149,7 @@ SensorManager.instance.SensorType = < Custom Sensor Class : Extends Sensor >
 Look at HeartRateService for a simple example of writing your own Service class.
 
 To add new Characteristic types to an existing Service that is not a part of the official spec, take a look at the [Wahoo Trainer Characteristic Extension](https://github.com/kinetic-fit/sensors-swift-wahoo).
-
-**This is NOT a normal solution adopted by BLE sensor manufaturers, but occassionally they break the rules**
+**This is NOT a normal solution adopted by BLE sensor manufaturers, but occassionally they break the rules.**
 
 ## Serializers
 The serialization / deserialization of characteristic data is isolated outside of the Characteristic classes and can be used alone. This can be useful if you already have a Sensor management stack and just need the logic to correctly deserialize various BLE messages.
@@ -164,4 +166,8 @@ There are many official BLE specs that need to be implemented.
 
 ## Projects Using SwiftySensors
 - [Kinetic Fit](https://itunes.apple.com/us/app/kinetic-fit/id1023388296?mt=8)
+
 Let us know if you want your App listed here!
+
+
+[Full API Documentation](http://cocoadocs.org/docsets/SwiftySensors/)
