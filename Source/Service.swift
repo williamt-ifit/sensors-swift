@@ -55,13 +55,6 @@ open class Service: Equatable {
     /// All Characteristics owned by this Service
     public internal(set) var characteristics = Dictionary<String, Characteristic>()
     
-//    public static var characteristicTypes: Dictionary<String, Characteristic.Type> = [:]
-    
-    /// Override this Dictionary with the Characteristic Types that may appear for this Service
-//    open var characteristicTypes: Dictionary<String, Characteristic.Type> {
-//        return type(of: self).characteristicTypes
-//    }
-    
     /**
      Get a characteristic by its UUID or by Type
      
