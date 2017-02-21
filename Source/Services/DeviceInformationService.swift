@@ -17,25 +17,23 @@ open class DeviceInformationService: Service, ServiceProtocol {
     
     public static var uuid: String { return "180A" }
     
-    override open var characteristicTypes: Dictionary<String, Characteristic.Type> {
-        return [
-            ManufacturerName.uuid:  ManufacturerName.self,
-            ModelNumber.uuid:       ModelNumber.self,
-            SerialNumber.uuid:      SerialNumber.self,
-            HardwareRevision.uuid:  HardwareRevision.self,
-            FirmwareRevision.uuid:  FirmwareRevision.self,
-            SoftwareRevision.uuid:  SoftwareRevision.self,
-            SystemID.uuid:          SystemID.self,
-        ]
-    }
+    public static var characteristicTypes: Dictionary<String, Characteristic.Type> = [
+        ManufacturerName.uuid:  ManufacturerName.self,
+        ModelNumber.uuid:       ModelNumber.self,
+        SerialNumber.uuid:      SerialNumber.self,
+        HardwareRevision.uuid:  HardwareRevision.self,
+        FirmwareRevision.uuid:  FirmwareRevision.self,
+        SoftwareRevision.uuid:  SoftwareRevision.self,
+        SystemID.uuid:          SystemID.self
+    ]
     
-    open private(set) var manufacturerName: ManufacturerName?
-    open private(set) var modelNumber: ModelNumber?
-    open private(set) var serialNumber: SerialNumber?
-    open private(set) var hardwareRevision: HardwareRevision?
-    open private(set) var firmwareRevision: FirmwareRevision?
-    open private(set) var softwareRevision: SoftwareRevision?
-    open private(set) var systemID: SystemID?
+    open var manufacturerName: ManufacturerName? { return characteristic() }
+    open var modelNumber: ModelNumber? { return characteristic() }
+    open var serialNumber: SerialNumber? { return characteristic() }
+    open var hardwareRevision: HardwareRevision? { return characteristic() }
+    open var firmwareRevision: FirmwareRevision? { return characteristic() }
+    open var softwareRevision: SoftwareRevision? { return characteristic() }
+    open var systemID: SystemID? { return characteristic() }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.manufacturer_name_string.xml
@@ -44,10 +42,6 @@ open class DeviceInformationService: Service, ServiceProtocol {
         
         public static let uuid: String = "2A29"
         
-        required public init(service: Service, cbc: CBCharacteristic) {
-            super.init(service: service, cbc: cbc)
-            (service as? DeviceInformationService)?.manufacturerName = self
-        }
     }
     
     //
@@ -57,10 +51,6 @@ open class DeviceInformationService: Service, ServiceProtocol {
         
         public static let uuid: String = "2A24"
         
-        required public init(service: Service, cbc: CBCharacteristic) {
-            super.init(service: service, cbc: cbc)
-            (service as? DeviceInformationService)?.modelNumber = self
-        }
     }
     
     //
@@ -70,10 +60,6 @@ open class DeviceInformationService: Service, ServiceProtocol {
         
         public static let uuid: String = "2A25"
         
-        required public init(service: Service, cbc: CBCharacteristic) {
-            super.init(service: service, cbc: cbc)
-            (service as? DeviceInformationService)?.serialNumber = self
-        }
     }
     
     //
@@ -83,10 +69,6 @@ open class DeviceInformationService: Service, ServiceProtocol {
         
         public static let uuid: String = "2A27"
         
-        required public init(service: Service, cbc: CBCharacteristic) {
-            super.init(service: service, cbc: cbc)
-            (service as? DeviceInformationService)?.hardwareRevision = self
-        }
     }
     
     //
@@ -96,23 +78,13 @@ open class DeviceInformationService: Service, ServiceProtocol {
         
         public static let uuid: String = "2A26"
         
-        required public init(service: Service, cbc: CBCharacteristic) {
-            super.init(service: service, cbc: cbc)
-            (service as? DeviceInformationService)?.firmwareRevision = self
-        }
     }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.software_revision_string.xml
     //
     open class SoftwareRevision: UTF8Characteristic {
-        
         public static let uuid: String = "2A28"
-        
-        required public init(service: Service, cbc: CBCharacteristic) {
-            super.init(service: service, cbc: cbc)
-            (service as? DeviceInformationService)?.softwareRevision = self
-        }
     }
     
     //
@@ -124,7 +96,6 @@ open class DeviceInformationService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? DeviceInformationService)?.systemID = self
             
             readValue()
         }

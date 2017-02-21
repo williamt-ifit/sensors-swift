@@ -68,7 +68,7 @@ open class Characteristic {
     public var value: Data? {
         return cbCharacteristic.value
     }
-    
+        
 }
 
 

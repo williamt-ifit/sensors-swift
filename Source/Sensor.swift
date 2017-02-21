@@ -182,11 +182,14 @@ extension Sensor {
             let service = ServiceType.init(sensor: self, cbs: cbs)
             services[cbs.uuid.uuidString] = service
             onServiceDiscovered => (self, service)
-            let charUUIDs: [CBUUID] = service.characteristicTypes.keys.map { uuid in
-                return CBUUID(string: uuid)
-            }
+            
             SensorManager.logSensorMessage?("Sensor: Service Created: \(service)")
-            peripheral.discoverCharacteristics(charUUIDs, for: cbs)
+            if let sp = service as? ServiceProtocol {
+                let charUUIDs: [CBUUID] = type(of: sp).characteristicTypes.keys.map { uuid in
+                    return CBUUID(string: uuid)
+                }
+                peripheral.discoverCharacteristics(charUUIDs, for: cbs)
+            }
         }
     }
     
@@ -195,8 +198,9 @@ extension Sensor {
         if let characteristic = service.characteristic(cbc.uuid.uuidString), characteristic.cbCharacteristic == cbc {
             return
         }
+        guard let sp = service as? ServiceProtocol else { return }
         
-        if let CharType = service.characteristicTypes[cbc.uuid.uuidString] {
+        if let CharType = type(of: sp).characteristicTypes[cbc.uuid.uuidString] {
             let characteristic = CharType.init(service: service, cbc: cbc)
             service.characteristics[cbc.uuid.uuidString] = characteristic
             

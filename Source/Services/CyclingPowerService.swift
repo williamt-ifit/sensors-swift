@@ -18,22 +18,20 @@ open class CyclingPowerService: Service, ServiceProtocol {
     
     public static var uuid: String { return "1818" }
     
-    override open var characteristicTypes: Dictionary<String, Characteristic.Type> {
-        return [
-            Measurement.uuid:       Measurement.self,
-            Feature.uuid:           Feature.self,
-            SensorLocation.uuid:    SensorLocation.self,
-            ControlPoint.uuid:      ControlPoint.self,
-        ]
-    }
+    public static var characteristicTypes: Dictionary<String, Characteristic.Type> = [
+        Measurement.uuid:       Measurement.self,
+        Feature.uuid:           Feature.self,
+        SensorLocation.uuid:    SensorLocation.self,
+        ControlPoint.uuid:      ControlPoint.self
+    ]
     
-    public private(set) var measurement: Measurement?
+    public var measurement: Measurement? { return characteristic() }
     
-    public private(set) var feature: Feature?
+    public var feature: Feature? { return characteristic() }
     
-    public private(set) var sensorLocation: SensorLocation?
+    public var sensorLocation: SensorLocation? { return characteristic() }
     
-    public private(set) var controlPoint: ControlPoint?
+    public var controlPoint: ControlPoint? { return characteristic() }
     
     
     //
@@ -64,7 +62,6 @@ open class CyclingPowerService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? CyclingPowerService)?.measurement = self
             
             cbCharacteristic.notify(true)
         }
@@ -91,7 +88,6 @@ open class CyclingPowerService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? CyclingPowerService)?.feature = self
             
             cbCharacteristic.read()
         }
@@ -122,7 +118,6 @@ open class CyclingPowerService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? CyclingPowerService)?.sensorLocation = self
             
             cbCharacteristic.read()
         }
@@ -148,7 +143,6 @@ open class CyclingPowerService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? CyclingPowerService)?.controlPoint = self
             
             cbCharacteristic.notify(true)
         }

@@ -19,6 +19,9 @@ public protocol ServiceProtocol: class {
     
     /// Service Class Type to instantiate
     static var serviceType: Service.Type { get }
+    
+    static var characteristicTypes: Dictionary<String, Characteristic.Type> { get }
+    
 }
 
 extension ServiceProtocol where Self: Service {
@@ -51,10 +54,12 @@ open class Service: Equatable {
     /// All Characteristics owned by this Service
     public internal(set) var characteristics = Dictionary<String, Characteristic>()
     
+//    public static var characteristicTypes: Dictionary<String, Characteristic.Type> = [:]
+    
     /// Override this Dictionary with the Characteristic Types that may appear for this Service
-    open var characteristicTypes: Dictionary<String, Characteristic.Type> {
-        return Dictionary()
-    }
+//    open var characteristicTypes: Dictionary<String, Characteristic.Type> {
+//        return type(of: self).characteristicTypes
+//    }
     
     /**
      Get a characteristic by its UUID or by Type

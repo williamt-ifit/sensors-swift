@@ -6,8 +6,8 @@ target 'SwiftySensors iOS' do
     pod 'Signals', '~> 4.0'
 end
 
-target 'SwiftySensors OSX' do
-    platform :osx, '10.10'
+target 'SwiftySensors macOS' do
+    platform :osx, '10.11'
     
     pod 'Signals', '~> 4.0'
 end

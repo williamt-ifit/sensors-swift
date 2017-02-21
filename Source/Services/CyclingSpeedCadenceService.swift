@@ -18,19 +18,17 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
     
     public static var uuid: String { return "1816" }
     
-    override open var characteristicTypes: Dictionary<String, Characteristic.Type> {
-        return [
-            Measurement.uuid:       Measurement.self,
-            Feature.uuid:           Feature.self,
-            SensorLocation.uuid:    SensorLocation.self,
-        ]
-    }
+    public static var characteristicTypes: Dictionary<String, Characteristic.Type> = [
+        Measurement.uuid:       Measurement.self,
+        Feature.uuid:           Feature.self,
+        SensorLocation.uuid:    SensorLocation.self
+    ]
     
-    open private(set) var measurement: Measurement?
+    open var measurement: Measurement? { return characteristic() }
     
-    open private(set) var feature: Feature?
+    open var feature: Feature? { return characteristic() }
     
-    open private(set) var sensorLocation: SensorLocation?
+    open var sensorLocation: SensorLocation? { return characteristic() }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.csc_measurement.xml
@@ -61,7 +59,6 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? CyclingSpeedCadenceService)?.measurement = self
             
             cbCharacteristic.notify(true)
         }
@@ -104,7 +101,6 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? CyclingSpeedCadenceService)?.feature = self
             
             cbCharacteristic.read()
         }
@@ -132,7 +128,6 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? CyclingSpeedCadenceService)?.sensorLocation = self
             
             cbCharacteristic.read()
         }

@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_SwiftySensors_OSXVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_SwiftySensors_OSXVersionString[];
+FOUNDATION_EXPORT double Pods_SwiftySensors_macOSVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_SwiftySensors_macOSVersionString[];
 

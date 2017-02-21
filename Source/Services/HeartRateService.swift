@@ -18,19 +18,17 @@ open class HeartRateService: Service, ServiceProtocol {
     
     public static var uuid: String { return "180D" }
     
-    override open var characteristicTypes: Dictionary<String, Characteristic.Type> {
-        return [
-            Measurement.uuid:           Measurement.self,
-            BodySensorLocation.uuid:    BodySensorLocation.self,
-            ControlPoint.uuid:          ControlPoint.self
-        ]
-    }
+    public static var characteristicTypes: Dictionary<String, Characteristic.Type> = [
+        Measurement.uuid:           Measurement.self,
+        BodySensorLocation.uuid:    BodySensorLocation.self,
+        ControlPoint.uuid:          ControlPoint.self
+    ]
     
-    open private(set) var measurement: Measurement?
+    open var measurement: Measurement? { return characteristic() }
     
-    open private(set) var bodySensorLocation: BodySensorLocation?
+    open var bodySensorLocation: BodySensorLocation? { return characteristic() }
     
-    open private(set) var controlPoint: ControlPoint?
+    open var controlPoint: ControlPoint? { return characteristic() }
     
     //
     // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
@@ -41,7 +39,6 @@ open class HeartRateService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? HeartRateService)?.measurement = self
             
             cbCharacteristic.notify(true)
             
@@ -69,9 +66,8 @@ open class HeartRateService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? HeartRateService)?.bodySensorLocation = self
             
-            cbCharacteristic.read()
+            readValue()
         }
         
         open private(set) var location: HeartRateSerializer.BodySensorLocation?
@@ -94,7 +90,6 @@ open class HeartRateService: Service, ServiceProtocol {
         
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
-            (service as? HeartRateService)?.controlPoint = self
             
             cbCharacteristic.notify(true)
         }

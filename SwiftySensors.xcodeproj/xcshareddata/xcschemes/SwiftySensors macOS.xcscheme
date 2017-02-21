@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D8140171CA59927001D75B3"
                BuildableName = "SwiftySensors.framework"
-               BlueprintName = "SwiftySensors OSX"
+               BlueprintName = "SwiftySensors macOS"
                ReferencedContainer = "container:SwiftySensors.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,7 +47,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D8140171CA59927001D75B3"
             BuildableName = "SwiftySensors.framework"
-            BlueprintName = "SwiftySensors OSX"
+            BlueprintName = "SwiftySensors macOS"
             ReferencedContainer = "container:SwiftySensors.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,7 +65,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D8140171CA59927001D75B3"
             BuildableName = "SwiftySensors.framework"
-            BlueprintName = "SwiftySensors OSX"
+            BlueprintName = "SwiftySensors macOS"
             ReferencedContainer = "container:SwiftySensors.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
