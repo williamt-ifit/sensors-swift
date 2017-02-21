@@ -14,12 +14,13 @@ import CoreBluetooth
  */
 public protocol ServiceProtocol: class {
     
-    /// UUID string of the Service
+    /// UUID string of the Service.
     static var uuid: String { get }
     
-    /// Service Class Type to instantiate
+    /// Service Class Type to instantiate.
     static var serviceType: Service.Type { get }
     
+    /// Characteristic Types (UUID key) to discover and instantiate.
     static var characteristicTypes: Dictionary<String, Characteristic.Type> { get }
     
 }
