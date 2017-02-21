@@ -24,7 +24,6 @@ open class CyclingPowerService: Service, ServiceProtocol {
             Feature.uuid:           Feature.self,
             SensorLocation.uuid:    SensorLocation.self,
             ControlPoint.uuid:      ControlPoint.self,
-            WahooTrainer.uuid:      WahooTrainer.self,
         ]
     }
     
@@ -35,8 +34,6 @@ open class CyclingPowerService: Service, ServiceProtocol {
     public private(set) var sensorLocation: SensorLocation?
     
     public private(set) var controlPoint: ControlPoint?
-    
-    public internal(set) var wahooTrainer: WahooTrainer?
     
     
     //
