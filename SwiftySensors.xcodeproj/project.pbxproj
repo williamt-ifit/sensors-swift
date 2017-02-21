@@ -769,7 +769,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E0CA8DA1F947A76F0DD92B2 /* Pods-SwiftySensorsExample.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -787,7 +786,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A93CE12FCA0CC539B7762144 /* Pods-SwiftySensorsExample.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
