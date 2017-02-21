@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
     spec.name           = 'SwiftySensors'
-    spec.version        = '0.2.0'
+    spec.version        = '0.2.1'
     spec.summary        = 'BLE Fitness Sensors Communication Utilities for iOS and OSX'
 
     spec.homepage       = 'https://github.com/kinetic-fit/sensors-swift'
@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
 
 
     spec.subspec 'Serializers' do |serial|
-        serial.source_files = 'Source/Serializers/**/*.swift'
+        serial.source_files = 'Source/Serializers/**/*.swift', 'Source/Operators.swift'
     end
     
 end
