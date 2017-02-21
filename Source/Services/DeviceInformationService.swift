@@ -10,7 +10,7 @@
 import CoreBluetooth
 
 //
-// https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.device_information.xml
+// https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.service.device_information.xml
 //
 /// :nodoc:
 open class DeviceInformationService: Service, ServiceProtocol {
@@ -36,7 +36,7 @@ open class DeviceInformationService: Service, ServiceProtocol {
     open var systemID: SystemID? { return characteristic() }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.manufacturer_name_string.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.manufacturer_name_string.xml
     //
     open class ManufacturerName: UTF8Characteristic {
         
@@ -45,7 +45,7 @@ open class DeviceInformationService: Service, ServiceProtocol {
     }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.model_number_string.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.model_number_string.xml
     //
     open class ModelNumber: UTF8Characteristic {
         
@@ -54,7 +54,7 @@ open class DeviceInformationService: Service, ServiceProtocol {
     }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.serial_number_string.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.serial_number_string.xml
     //
     open class SerialNumber: UTF8Characteristic {
         
@@ -63,7 +63,7 @@ open class DeviceInformationService: Service, ServiceProtocol {
     }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.hardware_revision_string.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.hardware_revision_string.xml
     //
     open class HardwareRevision: UTF8Characteristic {
         
@@ -72,7 +72,7 @@ open class DeviceInformationService: Service, ServiceProtocol {
     }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.firmware_revision_string.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.firmware_revision_string.xml
     //
     open class FirmwareRevision: UTF8Characteristic {
         
@@ -81,14 +81,14 @@ open class DeviceInformationService: Service, ServiceProtocol {
     }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.software_revision_string.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.software_revision_string.xml
     //
     open class SoftwareRevision: UTF8Characteristic {
         public static let uuid: String = "2A28"
     }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.software_revision_string.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.software_revision_string.xml
     //
     open class SystemID: Characteristic {
         

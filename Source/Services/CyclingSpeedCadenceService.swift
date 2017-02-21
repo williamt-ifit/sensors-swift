@@ -11,7 +11,7 @@ import CoreBluetooth
 import Signals
 
 //
-// https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.cycling_speed_and_cadence.xml
+// https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.service.cycling_speed_and_cadence.xml
 //
 /// :nodoc:
 open class CyclingSpeedCadenceService: Service, ServiceProtocol {
@@ -31,7 +31,7 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
     open var sensorLocation: SensorLocation? { return characteristic() }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.csc_measurement.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.csc_measurement.xml
     //
     open class Measurement: Characteristic {
         
@@ -91,7 +91,7 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
     
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_feature.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.csc_feature.xml
     //
     open class Feature: Characteristic {
         
@@ -120,7 +120,7 @@ open class CyclingSpeedCadenceService: Service, ServiceProtocol {
     
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.sensor_location.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.sensor_location.xml
     //
     open class SensorLocation: Characteristic {
         

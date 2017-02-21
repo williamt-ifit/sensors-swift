@@ -11,7 +11,7 @@ import CoreBluetooth
 import Signals
 
 //
-// https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.heart_rate.xml
+// https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.service.heart_rate.xml
 //
 /// :nodoc:
 open class HeartRateService: Service, ServiceProtocol {
@@ -31,7 +31,7 @@ open class HeartRateService: Service, ServiceProtocol {
     open var controlPoint: ControlPoint? { return characteristic() }
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.heart_rate_measurement.xml
     //
     open class Measurement: Characteristic {
         
@@ -58,7 +58,7 @@ open class HeartRateService: Service, ServiceProtocol {
     
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.body_sensor_location.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.body_sensor_location.xml
     //
     open class BodySensorLocation: Characteristic {
         
@@ -82,7 +82,7 @@ open class HeartRateService: Service, ServiceProtocol {
     
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_control_point.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.heart_rate_control_point.xml
     //
     open class ControlPoint: Characteristic {
         

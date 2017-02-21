@@ -11,7 +11,7 @@ import CoreBluetooth
 import Signals
 
 //
-// https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.cycling_power.xml
+// https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.service.cycling_power.xml
 //
 /// :nodoc:
 open class CyclingPowerService: Service, ServiceProtocol {
@@ -35,7 +35,7 @@ open class CyclingPowerService: Service, ServiceProtocol {
     
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_measurement.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.cycling_power_measurement.xml
     //
     open class Measurement: Characteristic {
         
@@ -78,7 +78,7 @@ open class CyclingPowerService: Service, ServiceProtocol {
     
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_feature.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.cycling_power_feature.xml
     //
     open class Feature: Characteristic {
         
@@ -108,7 +108,7 @@ open class CyclingPowerService: Service, ServiceProtocol {
     
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.sensor_location.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.sensor_location.xml
     //
     open class SensorLocation: Characteristic {
         
@@ -133,7 +133,7 @@ open class CyclingPowerService: Service, ServiceProtocol {
     
     
     //
-    // https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.cycling_power_control_point.xml
+    // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.cycling_power_control_point.xml
     //
     open class ControlPoint: Characteristic {
         
