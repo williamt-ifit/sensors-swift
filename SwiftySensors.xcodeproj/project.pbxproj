@@ -8,45 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		32795767FDD15D08C12F8827 /* Pods_SwiftySensorsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4462C1626922822555313B81 /* Pods_SwiftySensorsExample.framework */; };
-		8D1C70771CA332FD00A72487 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C70761CA332FD00A72487 /* Operators.swift */; };
-		8D1C70791CA3330400A72487 /* RSSINormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C70781CA3330400A72487 /* RSSINormalizer.swift */; };
-		8D22FDD91CA07F2600B4CC0B /* CyclingPowerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDD81CA07F2600B4CC0B /* CyclingPowerSerializer.swift */; };
-		8D22FDDB1CA097AE00B4CC0B /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDA1CA097AE00B4CC0B /* HeartRateService.swift */; };
-		8D22FDDD1CA0987C00B4CC0B /* HeartRateSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDC1CA0987C00B4CC0B /* HeartRateSerializer.swift */; };
-		8D22FDDF1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDE1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift */; };
-		8D22FDE11CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDE01CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift */; };
-		8D22FDE31CA0A31B00B4CC0B /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */; };
-		8D4FA77E1C9C87A2000285BA /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76B1C9C8658000285BA /* Sensor.swift */; };
-		8D4FA77F1C9C87A4000285BA /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76C1C9C8658000285BA /* SensorManager.swift */; };
-		8D5595141CA0AE1D00F8BD72 /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */; };
-		8D659A711C9C890300CF3C60 /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */; };
+		8D278ACF1E5D27FA0099085A /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC01E5D27FA0099085A /* Characteristic.swift */; };
+		8D278AD01E5D27FA0099085A /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC01E5D27FA0099085A /* Characteristic.swift */; };
+		8D278AD11E5D27FA0099085A /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */; };
+		8D278AD21E5D27FA0099085A /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */; };
+		8D278AD31E5D27FA0099085A /* CyclingPowerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */; };
+		8D278AD41E5D27FA0099085A /* CyclingPowerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */; };
+		8D278AD51E5D27FA0099085A /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC31E5D27FA0099085A /* CyclingPowerService.swift */; };
+		8D278AD61E5D27FA0099085A /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC31E5D27FA0099085A /* CyclingPowerService.swift */; };
+		8D278AD71E5D27FA0099085A /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC41E5D27FA0099085A /* CyclingSerializer.swift */; };
+		8D278AD81E5D27FA0099085A /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC41E5D27FA0099085A /* CyclingSerializer.swift */; };
+		8D278AD91E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC51E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift */; };
+		8D278ADA1E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC51E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift */; };
+		8D278ADB1E5D27FA0099085A /* CyclingSpeedCadenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC61E5D27FA0099085A /* CyclingSpeedCadenceService.swift */; };
+		8D278ADC1E5D27FA0099085A /* CyclingSpeedCadenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC61E5D27FA0099085A /* CyclingSpeedCadenceService.swift */; };
+		8D278ADD1E5D27FA0099085A /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC71E5D27FA0099085A /* DeviceInformationService.swift */; };
+		8D278ADE1E5D27FA0099085A /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC71E5D27FA0099085A /* DeviceInformationService.swift */; };
+		8D278ADF1E5D27FA0099085A /* HeartRateSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC81E5D27FA0099085A /* HeartRateSerializer.swift */; };
+		8D278AE01E5D27FA0099085A /* HeartRateSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC81E5D27FA0099085A /* HeartRateSerializer.swift */; };
+		8D278AE11E5D27FA0099085A /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC91E5D27FA0099085A /* HeartRateService.swift */; };
+		8D278AE21E5D27FA0099085A /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC91E5D27FA0099085A /* HeartRateService.swift */; };
+		8D278AE31E5D27FA0099085A /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACA1E5D27FA0099085A /* Operators.swift */; };
+		8D278AE41E5D27FA0099085A /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACA1E5D27FA0099085A /* Operators.swift */; };
+		8D278AE51E5D27FA0099085A /* RSSINormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACB1E5D27FA0099085A /* RSSINormalizer.swift */; };
+		8D278AE61E5D27FA0099085A /* RSSINormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACB1E5D27FA0099085A /* RSSINormalizer.swift */; };
+		8D278AE71E5D27FA0099085A /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACC1E5D27FA0099085A /* Sensor.swift */; };
+		8D278AE81E5D27FA0099085A /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACC1E5D27FA0099085A /* Sensor.swift */; };
+		8D278AE91E5D27FA0099085A /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACD1E5D27FA0099085A /* SensorManager.swift */; };
+		8D278AEA1E5D27FA0099085A /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACD1E5D27FA0099085A /* SensorManager.swift */; };
+		8D278AEB1E5D27FA0099085A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACE1E5D27FA0099085A /* Service.swift */; };
+		8D278AEC1E5D27FA0099085A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACE1E5D27FA0099085A /* Service.swift */; };
 		8D659AB91C9C8B2300CF3C60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AB81C9C8B2300CF3C60 /* AppDelegate.swift */; };
 		8D659ABB1C9C8B2300CF3C60 /* SensorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659ABA1C9C8B2300CF3C60 /* SensorListViewController.swift */; };
 		8D659ABE1C9C8B2300CF3C60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D659ABC1C9C8B2300CF3C60 /* Main.storyboard */; };
 		8D659AC01C9C8B2300CF3C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D659ABF1C9C8B2300CF3C60 /* Assets.xcassets */; };
 		8D659AC31C9C8B2300CF3C60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D659AC11C9C8B2300CF3C60 /* LaunchScreen.storyboard */; };
-		8D659ACA1C9C8B4000CF3C60 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AC81C9C8B4000CF3C60 /* Characteristic.swift */; };
-		8D659ACB1C9C8B4000CF3C60 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AC91C9C8B4000CF3C60 /* Service.swift */; };
 		8D659AD11C9C8D8700CF3C60 /* SwiftySensors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4FA7761C9C8693000285BA /* SwiftySensors.framework */; };
 		8D659AD31C9C8D8E00CF3C60 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D659AD21C9C8D8E00CF3C60 /* CoreBluetooth.framework */; };
 		8D659AD71C9C8DC800CF3C60 /* SwiftySensors.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4FA7761C9C8693000285BA /* SwiftySensors.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D659ADA1C9C9AB900CF3C60 /* SensorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AD91C9C9AB900CF3C60 /* SensorDetailsViewController.swift */; };
-		8D659ADD1C9CA98F00CF3C60 /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */; };
-		8D8140201CA5994F001D75B3 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C70761CA332FD00A72487 /* Operators.swift */; };
-		8D8140211CA5994F001D75B3 /* RSSINormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C70781CA3330400A72487 /* RSSINormalizer.swift */; };
-		8D8140221CA5994F001D75B3 /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */; };
-		8D8140231CA5994F001D75B3 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76C1C9C8658000285BA /* SensorManager.swift */; };
-		8D8140241CA5994F001D75B3 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA76B1C9C8658000285BA /* Sensor.swift */; };
-		8D8140251CA5994F001D75B3 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AC91C9C8B4000CF3C60 /* Service.swift */; };
-		8D8140261CA5994F001D75B3 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AC81C9C8B4000CF3C60 /* Characteristic.swift */; };
-		8D8140271CA59955001D75B3 /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */; };
-		8D8140281CA59955001D75B3 /* CyclingPowerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDD81CA07F2600B4CC0B /* CyclingPowerSerializer.swift */; };
-		8D8140291CA59955001D75B3 /* CyclingSpeedCadenceSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDE01CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift */; };
-		8D81402A1CA59955001D75B3 /* HeartRateSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDC1CA0987C00B4CC0B /* HeartRateSerializer.swift */; };
-		8D81402C1CA5995A001D75B3 /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */; };
-		8D81402D1CA5995A001D75B3 /* CyclingSpeedCadenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDE1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift */; };
-		8D81402E1CA5995A001D75B3 /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */; };
-		8D81402F1CA5995A001D75B3 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22FDDA1CA097AE00B4CC0B /* HeartRateService.swift */; };
 		8D95ED0D1E5B65AE00A91EBC /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95ED0C1E5B65AE00A91EBC /* ServiceDetailsViewController.swift */; };
 		8D95ED0F1E5B6AA400A91EBC /* CharacteristicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95ED0E1E5B6AA400A91EBC /* CharacteristicViewController.swift */; };
 		AA4D11A87E1002D5839565A1 /* Pods_SwiftySensors_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF44B2F4D7FDEC8E97B5C7F /* Pods_SwiftySensors_iOS.framework */; };
@@ -84,19 +84,22 @@
 		4462C1626922822555313B81 /* Pods_SwiftySensorsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftySensorsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ECD6A6CB9525B5D049E8E13 /* Pods-SwiftySensors OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensors OSX/Pods-SwiftySensors OSX.release.xcconfig"; sourceTree = "<group>"; };
 		729A82EB561939033B80C0E0 /* Pods-SwiftySensors macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensors macOS/Pods-SwiftySensors macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		8D1C70761CA332FD00A72487 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Source/Operators.swift; sourceTree = "<group>"; };
-		8D1C70781CA3330400A72487 /* RSSINormalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RSSINormalizer.swift; path = Source/RSSINormalizer.swift; sourceTree = "<group>"; };
-		8D22FDD81CA07F2600B4CC0B /* CyclingPowerSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclingPowerSerializer.swift; sourceTree = "<group>"; };
-		8D22FDDA1CA097AE00B4CC0B /* HeartRateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateService.swift; sourceTree = "<group>"; };
-		8D22FDDC1CA0987C00B4CC0B /* HeartRateSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateSerializer.swift; sourceTree = "<group>"; };
-		8D22FDDE1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclingSpeedCadenceService.swift; sourceTree = "<group>"; };
-		8D22FDE01CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclingSpeedCadenceSerializer.swift; sourceTree = "<group>"; };
-		8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclingSerializer.swift; sourceTree = "<group>"; };
-		8D4FA76B1C9C8658000285BA /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sensor.swift; path = Source/Sensor.swift; sourceTree = "<group>"; };
-		8D4FA76C1C9C8658000285BA /* SensorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SensorManager.swift; path = Source/SensorManager.swift; sourceTree = "<group>"; };
-		8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyclingPowerService.swift; sourceTree = "<group>"; };
+		8D278AC01E5D27FA0099085A /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Characteristic.swift; path = Sources/Characteristic.swift; sourceTree = "<group>"; };
+		8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreBluetooth.swift; path = Sources/CoreBluetooth.swift; sourceTree = "<group>"; };
+		8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclingPowerSerializer.swift; path = Sources/CyclingPowerSerializer.swift; sourceTree = "<group>"; };
+		8D278AC31E5D27FA0099085A /* CyclingPowerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclingPowerService.swift; path = Sources/CyclingPowerService.swift; sourceTree = "<group>"; };
+		8D278AC41E5D27FA0099085A /* CyclingSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclingSerializer.swift; path = Sources/CyclingSerializer.swift; sourceTree = "<group>"; };
+		8D278AC51E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclingSpeedCadenceSerializer.swift; path = Sources/CyclingSpeedCadenceSerializer.swift; sourceTree = "<group>"; };
+		8D278AC61E5D27FA0099085A /* CyclingSpeedCadenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclingSpeedCadenceService.swift; path = Sources/CyclingSpeedCadenceService.swift; sourceTree = "<group>"; };
+		8D278AC71E5D27FA0099085A /* DeviceInformationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceInformationService.swift; path = Sources/DeviceInformationService.swift; sourceTree = "<group>"; };
+		8D278AC81E5D27FA0099085A /* HeartRateSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeartRateSerializer.swift; path = Sources/HeartRateSerializer.swift; sourceTree = "<group>"; };
+		8D278AC91E5D27FA0099085A /* HeartRateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeartRateService.swift; path = Sources/HeartRateService.swift; sourceTree = "<group>"; };
+		8D278ACA1E5D27FA0099085A /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Sources/Operators.swift; sourceTree = "<group>"; };
+		8D278ACB1E5D27FA0099085A /* RSSINormalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RSSINormalizer.swift; path = Sources/RSSINormalizer.swift; sourceTree = "<group>"; };
+		8D278ACC1E5D27FA0099085A /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sensor.swift; path = Sources/Sensor.swift; sourceTree = "<group>"; };
+		8D278ACD1E5D27FA0099085A /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorManager.swift; path = Sources/SensorManager.swift; sourceTree = "<group>"; };
+		8D278ACE1E5D27FA0099085A /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Sources/Service.swift; sourceTree = "<group>"; };
 		8D4FA7761C9C8693000285BA /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreBluetooth.swift; path = Source/CoreBluetooth.swift; sourceTree = "<group>"; };
 		8D659AB61C9C8B2300CF3C60 /* SwiftySensorsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftySensorsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D659AB81C9C8B2300CF3C60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D659ABA1C9C8B2300CF3C60 /* SensorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListViewController.swift; sourceTree = "<group>"; };
@@ -104,11 +107,8 @@
 		8D659ABF1C9C8B2300CF3C60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D659AC21C9C8B2300CF3C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D659AC41C9C8B2300CF3C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D659AC81C9C8B4000CF3C60 /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Characteristic.swift; path = Source/Characteristic.swift; sourceTree = "<group>"; };
-		8D659AC91C9C8B4000CF3C60 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Source/Service.swift; sourceTree = "<group>"; };
 		8D659AD21C9C8D8E00CF3C60 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		8D659AD91C9C9AB900CF3C60 /* SensorDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorDetailsViewController.swift; sourceTree = "<group>"; };
-		8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInformationService.swift; sourceTree = "<group>"; };
 		8D8140181CA59927001D75B3 /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D95ED0C1E5B65AE00A91EBC /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
 		8D95ED0E1E5B6AA400A91EBC /* CharacteristicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +152,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D278AED1E5D28080099085A /* Serializers */ = {
+			isa = PBXGroup;
+			children = (
+				8D278AC41E5D27FA0099085A /* CyclingSerializer.swift */,
+				8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */,
+				8D278AC51E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift */,
+				8D278AC81E5D27FA0099085A /* HeartRateSerializer.swift */,
+			);
+			name = Serializers;
+			sourceTree = "<group>";
+		};
+		8D278AEE1E5D283B0099085A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8D278AC31E5D27FA0099085A /* CyclingPowerService.swift */,
+				8D278AC61E5D27FA0099085A /* CyclingSpeedCadenceService.swift */,
+				8D278AC71E5D27FA0099085A /* DeviceInformationService.swift */,
+				8D278AC91E5D27FA0099085A /* HeartRateService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		8D278AEF1E5D28530099085A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */,
+				8D278ACA1E5D27FA0099085A /* Operators.swift */,
+				8D278ACB1E5D27FA0099085A /* RSSINormalizer.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		8D4FA7491C9C8594000285BA = {
 			isa = PBXGroup;
 			children = (
@@ -176,41 +208,15 @@
 		8D4FA7671C9C8623000285BA /* SwiftySensors */ = {
 			isa = PBXGroup;
 			children = (
-				8D1C70761CA332FD00A72487 /* Operators.swift */,
-				8D1C70781CA3330400A72487 /* RSSINormalizer.swift */,
-				8D5595131CA0AE1D00F8BD72 /* CoreBluetooth.swift */,
-				8D4FA76C1C9C8658000285BA /* SensorManager.swift */,
-				8D4FA76B1C9C8658000285BA /* Sensor.swift */,
-				8D659AC91C9C8B4000CF3C60 /* Service.swift */,
-				8D659AC81C9C8B4000CF3C60 /* Characteristic.swift */,
-				8D4FA76D1C9C8658000285BA /* Serializers */,
-				8D4FA76F1C9C8658000285BA /* Services */,
+				8D278ACD1E5D27FA0099085A /* SensorManager.swift */,
+				8D278ACC1E5D27FA0099085A /* Sensor.swift */,
+				8D278ACE1E5D27FA0099085A /* Service.swift */,
+				8D278AC01E5D27FA0099085A /* Characteristic.swift */,
+				8D278AEE1E5D283B0099085A /* Services */,
+				8D278AEF1E5D28530099085A /* Utils */,
+				8D278AED1E5D28080099085A /* Serializers */,
 			);
 			name = SwiftySensors;
-			sourceTree = "<group>";
-		};
-		8D4FA76D1C9C8658000285BA /* Serializers */ = {
-			isa = PBXGroup;
-			children = (
-				8D22FDE21CA0A31B00B4CC0B /* CyclingSerializer.swift */,
-				8D22FDD81CA07F2600B4CC0B /* CyclingPowerSerializer.swift */,
-				8D22FDE01CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift */,
-				8D22FDDC1CA0987C00B4CC0B /* HeartRateSerializer.swift */,
-			);
-			name = Serializers;
-			path = Source/Serializers;
-			sourceTree = "<group>";
-		};
-		8D4FA76F1C9C8658000285BA /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				8D4FA7701C9C8658000285BA /* CyclingPowerService.swift */,
-				8D22FDDE1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift */,
-				8D659ADB1C9CA98B00CF3C60 /* DeviceInformationService.swift */,
-				8D22FDDA1CA097AE00B4CC0B /* HeartRateService.swift */,
-			);
-			name = Services;
-			path = Source/Services;
 			sourceTree = "<group>";
 		};
 		8D659AB71C9C8B2300CF3C60 /* SwiftySensorsExample */ = {
@@ -364,6 +370,7 @@
 					};
 					8D8140171CA59927001D75B3 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -528,21 +535,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D4FA77F1C9C87A4000285BA /* SensorManager.swift in Sources */,
-				8D22FDE11CA09E2A00B4CC0B /* CyclingSpeedCadenceSerializer.swift in Sources */,
-				8D1C70791CA3330400A72487 /* RSSINormalizer.swift in Sources */,
-				8D659ADD1C9CA98F00CF3C60 /* DeviceInformationService.swift in Sources */,
-				8D659ACA1C9C8B4000CF3C60 /* Characteristic.swift in Sources */,
-				8D22FDDB1CA097AE00B4CC0B /* HeartRateService.swift in Sources */,
-				8D22FDDF1CA09E1F00B4CC0B /* CyclingSpeedCadenceService.swift in Sources */,
-				8D5595141CA0AE1D00F8BD72 /* CoreBluetooth.swift in Sources */,
-				8D4FA77E1C9C87A2000285BA /* Sensor.swift in Sources */,
-				8D22FDD91CA07F2600B4CC0B /* CyclingPowerSerializer.swift in Sources */,
-				8D22FDE31CA0A31B00B4CC0B /* CyclingSerializer.swift in Sources */,
-				8D1C70771CA332FD00A72487 /* Operators.swift in Sources */,
-				8D22FDDD1CA0987C00B4CC0B /* HeartRateSerializer.swift in Sources */,
-				8D659A711C9C890300CF3C60 /* CyclingPowerService.swift in Sources */,
-				8D659ACB1C9C8B4000CF3C60 /* Service.swift in Sources */,
+				8D278ADD1E5D27FA0099085A /* DeviceInformationService.swift in Sources */,
+				8D278ACF1E5D27FA0099085A /* Characteristic.swift in Sources */,
+				8D278AEB1E5D27FA0099085A /* Service.swift in Sources */,
+				8D278AE71E5D27FA0099085A /* Sensor.swift in Sources */,
+				8D278ADF1E5D27FA0099085A /* HeartRateSerializer.swift in Sources */,
+				8D278ADB1E5D27FA0099085A /* CyclingSpeedCadenceService.swift in Sources */,
+				8D278AE11E5D27FA0099085A /* HeartRateService.swift in Sources */,
+				8D278AD11E5D27FA0099085A /* CoreBluetooth.swift in Sources */,
+				8D278AE31E5D27FA0099085A /* Operators.swift in Sources */,
+				8D278AE51E5D27FA0099085A /* RSSINormalizer.swift in Sources */,
+				8D278AE91E5D27FA0099085A /* SensorManager.swift in Sources */,
+				8D278AD31E5D27FA0099085A /* CyclingPowerSerializer.swift in Sources */,
+				8D278AD71E5D27FA0099085A /* CyclingSerializer.swift in Sources */,
+				8D278AD51E5D27FA0099085A /* CyclingPowerService.swift in Sources */,
+				8D278AD91E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,21 +569,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D8140201CA5994F001D75B3 /* Operators.swift in Sources */,
-				8D81402F1CA5995A001D75B3 /* HeartRateService.swift in Sources */,
-				8D8140241CA5994F001D75B3 /* Sensor.swift in Sources */,
-				8D8140221CA5994F001D75B3 /* CoreBluetooth.swift in Sources */,
-				8D8140291CA59955001D75B3 /* CyclingSpeedCadenceSerializer.swift in Sources */,
-				8D8140211CA5994F001D75B3 /* RSSINormalizer.swift in Sources */,
-				8D8140231CA5994F001D75B3 /* SensorManager.swift in Sources */,
-				8D81402C1CA5995A001D75B3 /* CyclingPowerService.swift in Sources */,
-				8D81402D1CA5995A001D75B3 /* CyclingSpeedCadenceService.swift in Sources */,
-				8D8140281CA59955001D75B3 /* CyclingPowerSerializer.swift in Sources */,
-				8D81402E1CA5995A001D75B3 /* DeviceInformationService.swift in Sources */,
-				8D81402A1CA59955001D75B3 /* HeartRateSerializer.swift in Sources */,
-				8D8140271CA59955001D75B3 /* CyclingSerializer.swift in Sources */,
-				8D8140261CA5994F001D75B3 /* Characteristic.swift in Sources */,
-				8D8140251CA5994F001D75B3 /* Service.swift in Sources */,
+				8D278ADE1E5D27FA0099085A /* DeviceInformationService.swift in Sources */,
+				8D278AD01E5D27FA0099085A /* Characteristic.swift in Sources */,
+				8D278AEC1E5D27FA0099085A /* Service.swift in Sources */,
+				8D278AE81E5D27FA0099085A /* Sensor.swift in Sources */,
+				8D278AE01E5D27FA0099085A /* HeartRateSerializer.swift in Sources */,
+				8D278ADC1E5D27FA0099085A /* CyclingSpeedCadenceService.swift in Sources */,
+				8D278AE21E5D27FA0099085A /* HeartRateService.swift in Sources */,
+				8D278AD21E5D27FA0099085A /* CoreBluetooth.swift in Sources */,
+				8D278AE41E5D27FA0099085A /* Operators.swift in Sources */,
+				8D278AE61E5D27FA0099085A /* RSSINormalizer.swift in Sources */,
+				8D278AEA1E5D27FA0099085A /* SensorManager.swift in Sources */,
+				8D278AD41E5D27FA0099085A /* CyclingPowerSerializer.swift in Sources */,
+				8D278AD81E5D27FA0099085A /* CyclingSerializer.swift in Sources */,
+				8D278AD61E5D27FA0099085A /* CyclingPowerService.swift in Sources */,
+				8D278ADA1E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +710,7 @@
 			baseConfigurationReference = AE7CD880E8101430CD349D95 /* Pods-SwiftySensors iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
@@ -716,6 +724,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinetic.SwiftySensors;
 				PRODUCT_NAME = SwiftySensors;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -728,6 +737,7 @@
 			baseConfigurationReference = 1A2D44AE2FB4B3D9723A50E4 /* Pods-SwiftySensors iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
@@ -752,6 +762,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E0CA8DA1F947A76F0DD92B2 /* Pods-SwiftySensorsExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -770,6 +781,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A93CE12FCA0CC539B7762144 /* Pods-SwiftySensorsExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -788,6 +800,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 729A82EB561939033B80C0E0 /* Pods-SwiftySensors macOS.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -804,6 +817,7 @@
 				PRODUCT_NAME = SwiftySensors;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -812,6 +826,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DEF7262D4AB6CD5A91D9E64E /* Pods-SwiftySensors macOS.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
