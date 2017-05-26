@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
     spec.name           = 'SwiftySensors'
-    spec.version        = '0.3.2'
+    spec.version        = '0.3.3'
     spec.summary        = 'BLE Fitness Sensors Communication Utilities for iOS and OSX'
 
     spec.homepage       = 'https://github.com/kinetic-fit/sensors-swift'
