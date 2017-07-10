@@ -47,10 +47,10 @@
 		8D659AD31C9C8D8E00CF3C60 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D659AD21C9C8D8E00CF3C60 /* CoreBluetooth.framework */; };
 		8D659AD71C9C8DC800CF3C60 /* SwiftySensors.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4FA7761C9C8693000285BA /* SwiftySensors.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D659ADA1C9C9AB900CF3C60 /* SensorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AD91C9C9AB900CF3C60 /* SensorDetailsViewController.swift */; };
+		8D6EC2F61F1409D3006FE4A0 /* FitnessMachineSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6EC2F51F1409D3006FE4A0 /* FitnessMachineSerializer.swift */; };
+		8D6EC2F71F1409D3006FE4A0 /* FitnessMachineSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6EC2F51F1409D3006FE4A0 /* FitnessMachineSerializer.swift */; };
 		8D7843171F0FDB920047C7F1 /* FitnessMachineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7843161F0FDB920047C7F1 /* FitnessMachineService.swift */; };
 		8D7843181F0FDB920047C7F1 /* FitnessMachineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7843161F0FDB920047C7F1 /* FitnessMachineService.swift */; };
-		8D78431A1F0FDED10047C7F1 /* FitnessMachineSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7843191F0FDED10047C7F1 /* FitnessMachineSerializer.swift */; };
-		8D78431B1F0FDED10047C7F1 /* FitnessMachineSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7843191F0FDED10047C7F1 /* FitnessMachineSerializer.swift */; };
 		8D95ED0D1E5B65AE00A91EBC /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95ED0C1E5B65AE00A91EBC /* ServiceDetailsViewController.swift */; };
 		8D95ED0F1E5B6AA400A91EBC /* CharacteristicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95ED0E1E5B6AA400A91EBC /* CharacteristicViewController.swift */; };
 		AA4D11A87E1002D5839565A1 /* Pods_SwiftySensors_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF44B2F4D7FDEC8E97B5C7F /* Pods_SwiftySensors_iOS.framework */; };
@@ -113,8 +113,8 @@
 		8D659AC41C9C8B2300CF3C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D659AD21C9C8D8E00CF3C60 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		8D659AD91C9C9AB900CF3C60 /* SensorDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorDetailsViewController.swift; sourceTree = "<group>"; };
+		8D6EC2F51F1409D3006FE4A0 /* FitnessMachineSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FitnessMachineSerializer.swift; path = Sources/FitnessMachineSerializer.swift; sourceTree = "<group>"; };
 		8D7843161F0FDB920047C7F1 /* FitnessMachineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FitnessMachineService.swift; path = Sources/FitnessMachineService.swift; sourceTree = "<group>"; };
-		8D7843191F0FDED10047C7F1 /* FitnessMachineSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FitnessMachineSerializer.swift; sourceTree = "<group>"; };
 		8D8140181CA59927001D75B3 /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D95ED0C1E5B65AE00A91EBC /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
 		8D95ED0E1E5B6AA400A91EBC /* CharacteristicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicViewController.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 				8D278AC41E5D27FA0099085A /* CyclingSerializer.swift */,
 				8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */,
 				8D278AC51E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift */,
-				8D7843191F0FDED10047C7F1 /* FitnessMachineSerializer.swift */,
+				8D6EC2F51F1409D3006FE4A0 /* FitnessMachineSerializer.swift */,
 				8D278AC81E5D27FA0099085A /* HeartRateSerializer.swift */,
 			);
 			name = Serializers;
@@ -545,7 +545,7 @@
 			files = (
 				8D278ADD1E5D27FA0099085A /* DeviceInformationService.swift in Sources */,
 				8D278ACF1E5D27FA0099085A /* Characteristic.swift in Sources */,
-				8D78431A1F0FDED10047C7F1 /* FitnessMachineSerializer.swift in Sources */,
+				8D6EC2F61F1409D3006FE4A0 /* FitnessMachineSerializer.swift in Sources */,
 				8D278AEB1E5D27FA0099085A /* Service.swift in Sources */,
 				8D278AE71E5D27FA0099085A /* Sensor.swift in Sources */,
 				8D278ADF1E5D27FA0099085A /* HeartRateSerializer.swift in Sources */,
@@ -581,7 +581,7 @@
 			files = (
 				8D278ADE1E5D27FA0099085A /* DeviceInformationService.swift in Sources */,
 				8D278AD01E5D27FA0099085A /* Characteristic.swift in Sources */,
-				8D78431B1F0FDED10047C7F1 /* FitnessMachineSerializer.swift in Sources */,
+				8D6EC2F71F1409D3006FE4A0 /* FitnessMachineSerializer.swift in Sources */,
 				8D278AEC1E5D27FA0099085A /* Service.swift in Sources */,
 				8D278AE81E5D27FA0099085A /* Sensor.swift in Sources */,
 				8D278AE01E5D27FA0099085A /* HeartRateSerializer.swift in Sources */,
