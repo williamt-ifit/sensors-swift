@@ -186,8 +186,59 @@ open class FitnessMachineSerializer {
         ]
     }
     
+    open static func requestControl() -> [UInt8] {
+        return [
+            ControlOpCode.requestControl.rawValue
+        ]
+    }
     
+    open static func reset() -> [UInt8] {
+        return [
+            ControlOpCode.reset.rawValue
+        ]
+    }
     
+    open static func startOrResume() -> [UInt8] {
+        return [
+            ControlOpCode.startOrResume.rawValue
+        ]
+    }
+    
+    open static func stop() -> [UInt8] {
+        return [
+            ControlOpCode.stopOrPause.rawValue,
+            0x01
+        ]
+    }
+    
+    open static func pause() -> [UInt8] {
+        return [
+            ControlOpCode.stopOrPause.rawValue,
+            0x02
+        ]
+    }
+    
+    open static func setTargetResistanceLevel(level: Int16) -> [UInt8] {
+        // level = unitless     res 0.1
+        return [
+            ControlOpCode.setTargetResistanceLevel.rawValue,
+            UInt8(level & 0xFF), UInt8(level >> 8)
+        ]
+    }
+    
+    open static func setTargetPower(watts: Int16) -> [UInt8] {
+        return [
+            ControlOpCode.setTargetPower.rawValue,
+            UInt8(watts & 0xFF), UInt8(watts >> 8)
+        ]
+    }
+    
+    open static func startSpinDownControl() -> [UInt8] {
+        return [
+            ControlOpCode.spinDownControl.rawValue,
+            0x01
+        ]
+    }
     
     
     public struct IndoorBikeDataFlags: OptionSet {

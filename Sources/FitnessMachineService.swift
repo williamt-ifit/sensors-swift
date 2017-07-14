@@ -65,8 +65,8 @@ open class FitnessMachineService: Service, ServiceProtocol {
             readValue()
         }
         
-        var machine: FitnessMachineSerializer.MachineFeatures?
-        var targetSettings: FitnessMachineSerializer.TargetSettingFeatures?
+        public var machine: FitnessMachineSerializer.MachineFeatures?
+        public var targetSettings: FitnessMachineSerializer.TargetSettingFeatures?
         
         override open func valueUpdated() {
             if let value = cbCharacteristic.value {
@@ -75,6 +75,10 @@ open class FitnessMachineService: Service, ServiceProtocol {
                 targetSettings = result.targetSettings
             }
             super.valueUpdated()
+            
+            if let service = service {
+                service.sensor.onServiceFeaturesIdentified => (service.sensor, service)
+            }
         }
         
     }
@@ -100,10 +104,21 @@ open class FitnessMachineService: Service, ServiceProtocol {
             super.valueUpdated()
         }
         
+        open func setTargetPower(watts: Int16) {
+            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.setTargetPower(watts: watts)), writeType: .withResponse)
+        }
+        
+        open func setTargetResistanceLevel(level: Int16) {
+            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.setTargetResistanceLevel(level: level)), writeType: .withResponse)
+        }
+        
         open func setIndoorBikeSimulationParameters(windSpeed: Int16, grade: Int16, crr: UInt8, cw: UInt8) {
             cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.setIndoorBikeSimulationParameters(windSpeed: windSpeed, grade: grade, crr: crr, cw: cw)), writeType: .withResponse)
         }
         
+        open func startSpindownProcess() {
+            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.startSpinDownControl()), writeType: .withResponse)
+        }
     }
     
     //
@@ -346,9 +361,7 @@ open class FitnessMachineService: Service, ServiceProtocol {
             readValue()
         }
         
-        
-        var data: FitnessMachineSerializer.SupportedResistanceLevelRange?
-        
+        public var data: FitnessMachineSerializer.SupportedResistanceLevelRange?
         override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 data = FitnessMachineSerializer.readSupportedResistanceLevelRange(value)
@@ -356,6 +369,18 @@ open class FitnessMachineService: Service, ServiceProtocol {
             super.valueUpdated()
         }
         
+        // -1.0 to 1.0
+        public func convert(percent: Double) -> Int16 {
+            if let data = data {
+                if data.minimumResistanceLevel >= 0 {
+                    return Int16(data.minimumResistanceLevel + (percent * (data.maximumResistanceLevel - data.minimumResistanceLevel)))
+                } else {
+                    let absMax = max(fabs(data.minimumResistanceLevel), data.maximumResistanceLevel)
+                    return Int16(max(data.minimumResistanceLevel, min(percent * absMax, data.maximumResistanceLevel)))
+                }
+            }
+            return 0
+        }
     }
     
     //
