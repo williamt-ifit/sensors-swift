@@ -220,7 +220,7 @@ extension Sensor {
         }
     }
     
-    func rssiPingTimerHandler() {
+    @objc func rssiPingTimerHandler() {
         if peripheral.state == .connected {
             peripheral.readRSSI()
         }

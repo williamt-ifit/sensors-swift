@@ -66,8 +66,14 @@ open class FitnessMachineSerializer {
     
     open static func readFeatures(_ data: Data) -> (machine: MachineFeatures, targetSettings: TargetSettingFeatures) {
         let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
-        let rawMachine: UInt32 = ((UInt32)(bytes[0])) | ((UInt32)(bytes[1])) << 8 | ((UInt32)(bytes[2])) << 16 | ((UInt32)(bytes[3])) << 24
-        let rawTargetSettings: UInt32 = ((UInt32)(bytes[4])) | ((UInt32)(bytes[5])) << 8 | ((UInt32)(bytes[6])) << 16 | ((UInt32)(bytes[7])) << 24
+        var rawMachine: UInt32 = ((UInt32)(bytes[0]))
+        rawMachine |= ((UInt32)(bytes[1])) << 8
+        rawMachine |= ((UInt32)(bytes[2])) << 16
+        rawMachine |= ((UInt32)(bytes[3])) << 24
+        var rawTargetSettings: UInt32 = ((UInt32)(bytes[4]))
+        rawTargetSettings |= ((UInt32)(bytes[5])) << 8
+        rawTargetSettings |= ((UInt32)(bytes[6])) << 16
+        rawTargetSettings |= ((UInt32)(bytes[7])) << 24
         return (MachineFeatures(rawValue: rawMachine), TargetSettingFeatures(rawValue: rawTargetSettings))
     }
     
