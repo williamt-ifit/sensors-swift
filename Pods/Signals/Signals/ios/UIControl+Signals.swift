@@ -1,11 +1,6 @@
 //
-//  UIControl+Signals.swift
-//  Signals
+//  Copyright (c) 2014 - 2017 Tuomas Artman. All rights reserved.
 //
-//  Created by Tuomas Artman on 12/23/2015.
-//  Copyright © 2015 Tuomas Artman. All rights reserved.
-//
-
 
 import UIKit
 

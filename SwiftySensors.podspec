@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
     spec.source_files           = 'Sources/**/*.swift'
     spec.pod_target_xcconfig    = { 'SWIFT_VERSION' => '4.0' }
 
-    spec.dependency     'Signals', '~> 4.0'
+    spec.dependency     'Signals', '~> 5.0'
 
 
     spec.subspec 'Serializers' do |serial|
