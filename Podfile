@@ -7,7 +7,7 @@ target 'SwiftySensors iOS' do
 end
 
 target 'SwiftySensors macOS' do
-    platform :osx, '10.11'
+    platform :osx, '10.13'
     
     pod 'Signals', '~> 5.0'
 end

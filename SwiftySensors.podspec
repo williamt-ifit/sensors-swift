@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
     spec.name                   = 'SwiftySensors'
-    spec.version                = '0.4.0'
+    spec.version                = '0.5.0'
     spec.summary                = 'BLE Fitness Sensors Communication Utilities for iOS and OSX'
 
     spec.homepage               = 'https://github.com/kinetic-fit/sensors-swift'
@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
     spec.author                 = { 'Kinetic' => 'admin@kinetic.fit' }
     
     spec.ios.deployment_target  = '8.2'
-    #spec.osx.deployment_target  = '10.11'
+    spec.osx.deployment_target  = '10.13'
 
     spec.source                 = { :git => 'https://github.com/kinetic-fit/sensors-swift.git',
                                     :tag => spec.version.to_s,
