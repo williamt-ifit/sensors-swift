@@ -135,8 +135,8 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-            }
+//            if let value = cbCharacteristic.value {
+//            }
             super.valueUpdated()
         }
         
@@ -184,9 +184,9 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-                // TODO: deserialize value
-            }
+//            if let value = cbCharacteristic.value {
+//                // TODO: deserialize value
+//            }
             super.valueUpdated()
         }
         
@@ -206,9 +206,9 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-                // TODO: deserialize value
-            }
+//            if let value = cbCharacteristic.value {
+//                // TODO: deserialize value
+//            }
             super.valueUpdated()
         }
         
@@ -228,9 +228,9 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-                // TODO: deserialize value
-            }
+//            if let value = cbCharacteristic.value {
+//                // TODO: deserialize value
+//            }
             super.valueUpdated()
         }
         
@@ -250,9 +250,9 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-                // TODO: deserialize value
-            }
+//            if let value = cbCharacteristic.value {
+//                // TODO: deserialize value
+//            }
             super.valueUpdated()
         }
         
@@ -272,9 +272,9 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-                // TODO: deserialize value
-            }
+//            if let value = cbCharacteristic.value {
+//                // TODO: deserialize value
+//            }
             super.valueUpdated()
         }
         
@@ -318,9 +318,9 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-                // TODO: deserialize value
-            }
+//            if let value = cbCharacteristic.value {
+//                // TODO: deserialize value
+//            }
             super.valueUpdated()
         }
         
@@ -340,9 +340,9 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-                // TODO: deserialize value
-            }
+//            if let value = cbCharacteristic.value {
+//                // TODO: deserialize value
+//            }
             super.valueUpdated()
         }
         
@@ -421,9 +421,9 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         override open func valueUpdated() {
-            if let value = cbCharacteristic.value {
-                // TODO: deserialize value
-            }
+//            if let value = cbCharacteristic.value {
+//                // TODO: deserialize value
+//            }
             super.valueUpdated()
         }
         
