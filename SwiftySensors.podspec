@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
     spec.name                   = 'SwiftySensors'
     spec.version                = '0.6.1'
-    spec.summary                = 'BLE Fitness Sensors Communication Utilities for iOS and OSX'
+    spec.summary                = 'BLE Fitness Sensors Communication Utilities for iOS, macOS and tvOS'
 
     spec.homepage               = 'https://github.com/kinetic-fit/sensors-swift'
     spec.license                = { :type => 'MIT', :file => 'LICENSE' }    
@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
     spec.source_files           = 'Sources/**/*.swift'
     spec.pod_target_xcconfig    = { 'SWIFT_VERSION' => '4.0' }
 
-    spec.dependency     'Signals', '~> 5.0'
+    spec.dependency             'Signals', '~> 5.0'
 
 
     spec.subspec 'Serializers' do |serial|
