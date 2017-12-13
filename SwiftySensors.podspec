@@ -10,6 +10,7 @@ Pod::Spec.new do |spec|
     
     spec.ios.deployment_target  = '8.2'
     spec.osx.deployment_target  = '10.13'
+    spec.tvos.deployment_target = '11.2'
 
     spec.source                 = { :git => 'https://github.com/kinetic-fit/sensors-swift.git',
                                     :tag => spec.version.to_s,

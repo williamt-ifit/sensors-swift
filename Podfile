@@ -12,6 +12,12 @@ target 'SwiftySensors macOS' do
     pod 'Signals', '~> 5.0'
 end
 
+target 'SwiftySensors tvOS' do
+    platform :tvos, '11.2'
+    
+    pod 'Signals', '~> 5.0'
+end
+
 target 'SwiftySensorsExample' do
     platform :ios, '8.4'
     
