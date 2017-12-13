@@ -24,6 +24,9 @@
 		8D0B37971FE18EA20073A7F7 /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC41E5D27FA0099085A /* CyclingSerializer.swift */; };
 		8D0B37981FE18EA20073A7F7 /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC31E5D27FA0099085A /* CyclingPowerService.swift */; };
 		8D0B37991FE18EA20073A7F7 /* CyclingSpeedCadenceSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC51E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift */; };
+		8D0B37AD1FE1A4F30073A7F7 /* GenericAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B37AC1FE1A4F30073A7F7 /* GenericAccessService.swift */; };
+		8D0B37AE1FE1A4F30073A7F7 /* GenericAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B37AC1FE1A4F30073A7F7 /* GenericAccessService.swift */; };
+		8D0B37AF1FE1A4F30073A7F7 /* GenericAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B37AC1FE1A4F30073A7F7 /* GenericAccessService.swift */; };
 		8D278ACF1E5D27FA0099085A /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC01E5D27FA0099085A /* Characteristic.swift */; };
 		8D278AD01E5D27FA0099085A /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC01E5D27FA0099085A /* Characteristic.swift */; };
 		8D278AD11E5D27FA0099085A /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */; };
@@ -106,6 +109,7 @@
 		7D616CD15F403945FCE530FF /* Pods-SwiftySensors iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftySensors iOS/Pods-SwiftySensors iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8BD1EBB555D9D82983EA461E /* Pods_SwiftySensors_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftySensors_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D0B37A21FE18EA20073A7F7 /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0B37AC1FE1A4F30073A7F7 /* GenericAccessService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericAccessService.swift; path = Sources/GenericAccessService.swift; sourceTree = "<group>"; };
 		8D278AC01E5D27FA0099085A /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Characteristic.swift; path = Sources/Characteristic.swift; sourceTree = "<group>"; };
 		8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreBluetooth.swift; path = Sources/CoreBluetooth.swift; sourceTree = "<group>"; };
 		8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclingPowerSerializer.swift; path = Sources/CyclingPowerSerializer.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				8D278AC61E5D27FA0099085A /* CyclingSpeedCadenceService.swift */,
 				8D278AC71E5D27FA0099085A /* DeviceInformationService.swift */,
 				8D7843161F0FDB920047C7F1 /* FitnessMachineService.swift */,
+				8D0B37AC1FE1A4F30073A7F7 /* GenericAccessService.swift */,
 				8D278AC91E5D27FA0099085A /* HeartRateService.swift */,
 			);
 			name = Services;
@@ -650,6 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D0B37891FE18EA20073A7F7 /* DeviceInformationService.swift in Sources */,
+				8D0B37AF1FE1A4F30073A7F7 /* GenericAccessService.swift in Sources */,
 				8D0B378A1FE18EA20073A7F7 /* Characteristic.swift in Sources */,
 				8D0B378B1FE18EA20073A7F7 /* FitnessMachineSerializer.swift in Sources */,
 				8D0B378C1FE18EA20073A7F7 /* Service.swift in Sources */,
@@ -674,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D278ADD1E5D27FA0099085A /* DeviceInformationService.swift in Sources */,
+				8D0B37AD1FE1A4F30073A7F7 /* GenericAccessService.swift in Sources */,
 				8D278ACF1E5D27FA0099085A /* Characteristic.swift in Sources */,
 				8D6EC2F61F1409D3006FE4A0 /* FitnessMachineSerializer.swift in Sources */,
 				8D278AEB1E5D27FA0099085A /* Service.swift in Sources */,
@@ -710,6 +717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D278ADE1E5D27FA0099085A /* DeviceInformationService.swift in Sources */,
+				8D0B37AE1FE1A4F30073A7F7 /* GenericAccessService.swift in Sources */,
 				8D278AD01E5D27FA0099085A /* Characteristic.swift in Sources */,
 				8D6EC2F71F1409D3006FE4A0 /* FitnessMachineSerializer.swift in Sources */,
 				8D278AEC1E5D27FA0099085A /* Service.swift in Sources */,
