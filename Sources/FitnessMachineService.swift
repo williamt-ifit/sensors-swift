@@ -104,6 +104,10 @@ open class FitnessMachineService: Service, ServiceProtocol {
             super.valueUpdated()
         }
         
+        open func requestControl() {
+            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.requestControl()), writeType: .withResponse)
+        }
+        
         open func setTargetPower(watts: Int16) {
             cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.setTargetPower(watts: watts)), writeType: .withResponse)
         }

@@ -65,7 +65,7 @@ open class FitnessMachineSerializer {
     }
     
     open static func readFeatures(_ data: Data) -> (machine: MachineFeatures, targetSettings: TargetSettingFeatures) {
-        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let bytes = data.map { $0 }
         var rawMachine: UInt32 = ((UInt32)(bytes[0]))
         rawMachine |= ((UInt32)(bytes[1])) << 8
         rawMachine |= ((UInt32)(bytes[2])) << 16
@@ -116,7 +116,7 @@ open class FitnessMachineSerializer {
     
     open static func readTrainingStatus(_ data: Data) -> TrainingStatus {
         var status = TrainingStatus()
-        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let bytes = data.map { $0 }
         status.flags = TrainerStatusFlags(rawValue: bytes[0])
         status.status = TrainingStatusField(rawValue: bytes[1]) ?? .other
         if status.flags.contains(.TrainingStatusStringPresent) {
@@ -168,7 +168,7 @@ open class FitnessMachineSerializer {
     }
     
     open static func readControlPointResponse(_ data: Data) -> ControlPointResponse {
-        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let bytes = data.map { $0 }
         var response = ControlPointResponse()
         // bytes[0] == 0x80
         response.requestOpCode = bytes[1]
@@ -189,8 +189,8 @@ open class FitnessMachineSerializer {
         let crwN = UInt8(crw * 100)
         return [
             ControlOpCode.setIndoorBikeSimulationParameters.rawValue,
-            UInt8(mpsN & 0xFF), UInt8(mpsN >> 8),
-            UInt8(gradeN & 0xFF), UInt8(gradeN >> 8),
+            UInt8(mpsN & 0xFF), UInt8(mpsN >> 8 & 0xFF),
+            UInt8(gradeN & 0xFF), UInt8(gradeN >> 8 & 0xFF),
             crrN,
             crwN
         ]
@@ -233,14 +233,14 @@ open class FitnessMachineSerializer {
         let levelN = level * 10
         return [
             ControlOpCode.setTargetResistanceLevel.rawValue,
-            UInt8(levelN & 0xFF), UInt8(levelN >> 8)
+            UInt8(levelN & 0xFF), UInt8(levelN >> 8 & 0xFF)
         ]
     }
     
     open static func setTargetPower(watts: Int16) -> [UInt8] {
         return [
             ControlOpCode.setTargetPower.rawValue,
-            UInt8(watts & 0xFF), UInt8(watts >> 8)
+            UInt8(watts & 0xFF), UInt8(watts >> 8 & 0xFF)
         ]
     }
     
@@ -304,7 +304,7 @@ open class FitnessMachineSerializer {
     
     open static func readIndoorBikeData(_ data: Data) -> IndoorBikeData {
         var bikeData = IndoorBikeData()
-        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let bytes = data.map { $0 }
         var index: Int = 0
         
         let rawFlags: UInt16 = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
@@ -371,7 +371,7 @@ open class FitnessMachineSerializer {
     }
     
     open static func readSupportedResistanceLevelRange(_ data: Data) -> SupportedResistanceLevelRange {
-        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let bytes = data.map { $0 }
         var response = SupportedResistanceLevelRange()
         let value1: Int16 = ((Int16)(bytes[0])) | ((Int16)(bytes[1])) << 8
         let value2: Int16 = ((Int16)(bytes[2])) | ((Int16)(bytes[3])) << 8
@@ -389,7 +389,7 @@ open class FitnessMachineSerializer {
     }
     
     open static func readSupportedPowerRange(_ data: Data) -> SupportedPowerRange {
-        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let bytes = data.map { $0 }
         var response = SupportedPowerRange()
         response.minimumPower = ((Int16)(bytes[0])) | ((Int16)(bytes[1])) << 8
         response.maximumPower = ((Int16)(bytes[2])) | ((Int16)(bytes[3])) << 8

@@ -37,7 +37,7 @@ open class HeartRateSerializer {
     open static func readMeasurement(_ data: Data) -> MeasurementData {
         var measurement = MeasurementData()
         
-        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let bytes = data.map { $0 }
         var index: Int = 0
         let flags = bytes[index];
         index += 1
@@ -65,7 +65,7 @@ open class HeartRateSerializer {
     
     
     open static func readSensorLocation(_ data: Data) -> BodySensorLocation? {
-        let bytes = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let bytes = data.map { $0 }
         return BodySensorLocation(rawValue: bytes[0])
     }
     
