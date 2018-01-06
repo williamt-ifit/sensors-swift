@@ -104,24 +104,34 @@ open class FitnessMachineService: Service, ServiceProtocol {
             super.valueUpdated()
         }
         
-        open func requestControl() {
-            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.requestControl()), writeType: .withResponse)
+        @discardableResult open func requestControl() -> [UInt8] {
+            let bytes = FitnessMachineSerializer.requestControl()
+            cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
+            return bytes
         }
         
-        open func setTargetPower(watts: Int16) {
-            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.setTargetPower(watts: watts)), writeType: .withResponse)
+        @discardableResult open func setTargetPower(watts: Int16) -> [UInt8] {
+            let bytes = FitnessMachineSerializer.setTargetPower(watts: watts)
+            cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
+            return bytes
         }
         
-        open func setTargetResistanceLevel(level: Int16) {
-            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.setTargetResistanceLevel(level: level)), writeType: .withResponse)
+        @discardableResult open func setTargetResistanceLevel(level: Int16) -> [UInt8] {
+            let bytes = FitnessMachineSerializer.setTargetResistanceLevel(level: level)
+            cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
+            return bytes
         }
         
-        open func setIndoorBikeSimulationParameters(windSpeed: Float, grade: Float, crr: Float, crw: Float) {
-            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.setIndoorBikeSimulationParameters(windSpeed: windSpeed, grade: grade, crr: crr, crw: crw)), writeType: .withResponse)
+        @discardableResult open func setIndoorBikeSimulationParameters(windSpeed: Float, grade: Float, crr: Float, crw: Float) -> [UInt8] {
+            let bytes = FitnessMachineSerializer.setIndoorBikeSimulationParameters(windSpeed: windSpeed, grade: grade, crr: crr, crw: crw)
+            cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
+            return bytes
         }
         
-        open func startSpindownProcess() {
-            cbCharacteristic.write(Data(bytes: FitnessMachineSerializer.startSpinDownControl()), writeType: .withResponse)
+        @discardableResult open func startSpindownProcess() -> [UInt8] {
+            let bytes = FitnessMachineSerializer.startSpinDownControl()
+            cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
+            return bytes
         }
     }
     
