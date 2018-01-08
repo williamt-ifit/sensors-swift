@@ -271,7 +271,7 @@ extension SensorManager: CBCentralManagerDelegate {
     
     /// :nodoc:
     public func centralManager(_ manager: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        SensorManager.logSensorMessage?("CBCentralManager: didFailToConnectPeripheral: \(peripheral)")
+        SensorManager.logSensorMessage?("CBCentralManager: didFailToConnectPeripheral: \(peripheral) :: \(error?.localizedDescription ?? "No Error Given")")
         
         if let sensor = sensorForPeripheral(peripheral, create: false) {
             onSensorConnectionFailed => sensor
