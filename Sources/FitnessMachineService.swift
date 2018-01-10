@@ -134,7 +134,7 @@ open class FitnessMachineService: Service, ServiceProtocol {
             let bytes = FitnessMachineSerializer.setTargetResistanceLevel(level: level)
             
             // Prevent flooding the characteristic with unnecessary writes
-            if let pendingTargetResistanceLevel = pendingTargetResistanceLevel, pendingTargetResistanceLevel == level {
+            if let pendingTargetResistanceLevel = pendingTargetResistanceLevel, abs(level - pendingTargetResistanceLevel) < .ulpOfOne {
                 // skipping write, still waiting on MachineStatus Message before clearing
                 return bytes
             }
@@ -147,9 +147,22 @@ open class FitnessMachineService: Service, ServiceProtocol {
             cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
             return bytes
         }
-        
-        @discardableResult open func setIndoorBikeSimulationParameters(windSpeed: Float, grade: Float, crr: Float, crw: Float) -> [UInt8] {
-            let bytes = FitnessMachineSerializer.setIndoorBikeSimulationParameters(windSpeed: windSpeed, grade: grade, crr: crr, crw: crw)
+        fileprivate var pendingTargetSimParameters: FitnessMachineSerializer.IndoorBikeSimulationParameters?
+        @discardableResult open func setIndoorBikeSimulationParameters(windSpeed: Double, grade: Double, crr: Double, crw: Double) -> [UInt8] {
+            let params = FitnessMachineSerializer.IndoorBikeSimulationParameters(windSpeed: windSpeed, grade: grade, crr: crr, crw: crw)
+            let bytes = FitnessMachineSerializer.setIndoorBikeSimulationParameters(params)
+            
+            // Prevent flooding the characteristic with unnecessary writes
+            if let pendingTargetSimParameters = pendingTargetSimParameters, pendingTargetSimParameters == params {
+                // skipping write, still waiting on MachineStatus Message before clearing
+                return bytes
+            }
+            if let targetSimParameters = (service as? FitnessMachineService)?.machineStatus?.message?.targetSimParameters, targetSimParameters == params {
+                // skipping write, targetpower is already set
+                return bytes
+            }
+            pendingTargetSimParameters = params
+            
             cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
             return bytes
         }
@@ -183,19 +196,16 @@ open class FitnessMachineService: Service, ServiceProtocol {
         public var message: FitnessMachineSerializer.MachineStatusMessage? {
             didSet {
                 // Target Power Set?
-                if let targetPower = message?.targetPower {
+                if let _ = message?.targetPower {
                     (service as? FitnessMachineService)?.controlPoint?.pendingTargetPower = nil
                 }
                 // Target Resistance Level Set?
-                if let targetResistanceLevel = message?.targetResistanceLevel {
+                if let _ = message?.targetResistanceLevel {
                     (service as? FitnessMachineService)?.controlPoint?.pendingTargetResistanceLevel = nil
                 }
                 // Target Simulation Params Set?
-                if let targetSimGrade = message?.targetSimGrade {
-                    print(targetSimGrade)
-                    print(message?.targetSimWindSpeed)
-                    print(message?.targetSimCrr)
-                    print(message?.targetSimCwr)
+                if let _ = message?.targetSimParameters {
+                    (service as? FitnessMachineService)?.controlPoint?.pendingTargetSimParameters = nil
                 }
             }
         }

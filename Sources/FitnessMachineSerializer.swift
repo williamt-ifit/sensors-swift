@@ -191,15 +191,30 @@ open class FitnessMachineSerializer {
         return response
     }
     
-    open static func setIndoorBikeSimulationParameters(windSpeed: Float, grade: Float, crr: Float, crw: Float) -> [UInt8] {
+    public struct IndoorBikeSimulationParameters: Equatable {
+        
+        let windSpeed: Double
+        let grade: Double
+        let crr: Double
+        let crw: Double
+        
+        public static func ==(lhs: FitnessMachineSerializer.IndoorBikeSimulationParameters, rhs: FitnessMachineSerializer.IndoorBikeSimulationParameters) -> Bool {
+            return abs(lhs.windSpeed - rhs.windSpeed) <= .ulpOfOne &&
+                abs(lhs.grade - rhs.grade) <= .ulpOfOne &&
+                abs(lhs.crr - rhs.crr) <= .ulpOfOne &&
+                abs(lhs.crw - rhs.crw) <= .ulpOfOne
+        }
+    }
+    
+    open static func setIndoorBikeSimulationParameters(_ parameters: IndoorBikeSimulationParameters) -> [UInt8] {
         // windSpeed = meters / second  res 0.001
         // grade = percentage           res 0.01
         // crr = unitless               res 0.0001
         // cw = kg / meter              res 0.01
-        let mpsN = Int16(windSpeed * 1000)
-        let gradeN = Int16(grade * 100)
-        let crrN = UInt8(crr * 10000)
-        let crwN = UInt8(crw * 100)
+        let mpsN = Int16(parameters.windSpeed * 1000)
+        let gradeN = Int16(parameters.grade * 100)
+        let crrN = UInt8(parameters.crr * 10000)
+        let crwN = UInt8(parameters.crw * 100)
         return [
             ControlOpCode.setIndoorBikeSimulationParameters.rawValue,
             UInt8(mpsN & 0xFF), UInt8(mpsN >> 8 & 0xFF),
@@ -456,10 +471,8 @@ open class FitnessMachineSerializer {
         public var spinDownTime: TimeInterval?
         public var targetPower: Int16?
         public var targetResistanceLevel: Double?
-        public var targetSimWindSpeed: Double?
-        public var targetSimGrade: Double?
-        public var targetSimCrr: Double?
-        public var targetSimCwr: Double?
+        public var targetSimParameters: IndoorBikeSimulationParameters?
+        
     }
     
     open static func readMachineStatus(_ data: Data) -> MachineStatusMessage {
@@ -554,10 +567,11 @@ open class FitnessMachineSerializer {
             break
         case .indoorBikeSimulationParametersChanged:
             if bytes.count > 6 {
-                 message.targetSimWindSpeed = Double(Int16(bytes[1]) | Int16(bytes[2]) << 8) / 1000
-                 message.targetSimGrade = Double(Int16(bytes[3]) | Int16(bytes[4]) << 8) / 100
-                 message.targetSimCrr = Double(bytes[5]) / 10000
-                 message.targetSimCwr = Double(bytes[6]) / 100
+                let windSpeed = Double(Int16(bytes[1]) | Int16(bytes[2]) << 8) / 1000
+                let grade = Double(Int16(bytes[3]) | Int16(bytes[4]) << 8) / 100
+                let crr = Double(bytes[5]) / 10000
+                let cwr = Double(bytes[6]) / 100
+                message.targetSimParameters = IndoorBikeSimulationParameters(windSpeed: windSpeed, grade: grade, crr: crr, crw: cwr)
             }
             break
         case .wheelCircumferenceChanged:
