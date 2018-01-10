@@ -21,7 +21,7 @@ open class FitnessMachineService: Service, ServiceProtocol {
     public static var characteristicTypes: Dictionary<String, Characteristic.Type> = [
         Feature.uuid:                       Feature.self,
         ControlPoint.uuid:                  ControlPoint.self,
-        Status.uuid:                        Status.self,
+        MachineStatus.uuid:                 MachineStatus.self,
         TreadmillData.uuid:                 TreadmillData.self,
         CrossTrainerData.uuid:              CrossTrainerData.self,
         StepClimberData.uuid:               StepClimberData.self,
@@ -38,7 +38,7 @@ open class FitnessMachineService: Service, ServiceProtocol {
     
     open var feature: Feature? { return characteristic() }
     open var controlPoint: ControlPoint? { return characteristic() }
-    open var status: Status? { return characteristic() }
+    open var machineStatus: MachineStatus? { return characteristic() }
     open var treadmillData: TreadmillData? { return characteristic() }
     open var crossTrainerData: CrossTrainerData? { return characteristic() }
     open var stepClimberData: StepClimberData? { return characteristic() }
@@ -133,12 +133,18 @@ open class FitnessMachineService: Service, ServiceProtocol {
             cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
             return bytes
         }
+        
+        @discardableResult open func ignoreSpindownRequest() -> [UInt8] {
+            let bytes = FitnessMachineSerializer.ignoreSpinDownControlRequest()
+            cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
+            return bytes
+        }
     }
     
     //
     // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.fitness_machine_status.xml
     //
-    open class Status: Characteristic {
+    open class MachineStatus: Characteristic {
         
         public static let uuid: String = "2ADA"
         
@@ -148,9 +154,11 @@ open class FitnessMachineService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
+        public var message: FitnessMachineSerializer.MachineStatusMessage?
         override open func valueUpdated() {
-//            if let value = cbCharacteristic.value {
-//            }
+            if let value = cbCharacteristic.value {
+                message = FitnessMachineSerializer.readMachineStatus(value)
+            }
             super.valueUpdated()
         }
         

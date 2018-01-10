@@ -150,6 +150,7 @@ open class FitnessMachineSerializer {
         case spinDownControl                        = 0x13
         case setTargetedCadence                     = 0x14
         case responseCode                           = 0x80
+        case unknown                                = 0xFF
     }
     
     
@@ -163,17 +164,29 @@ open class FitnessMachineSerializer {
     }
     
     public struct ControlPointResponse {
-        public var requestOpCode: UInt8 = 0
-        public var resultCode: UInt8 = 0
+        public var requestOpCode: ControlOpCode = .unknown
+        public var resultCode: ResultCode = .opCodeNotSupported
+        
+        // Target Speed Params when the request is SpinDownControler
+        public var targetSpeedLow: Float?
+        public var targetSpeedHigh: Float?
     }
     
     open static func readControlPointResponse(_ data: Data) -> ControlPointResponse {
         let bytes = data.map { $0 }
         var response = ControlPointResponse()
-        // bytes[0] == 0x80
-        response.requestOpCode = bytes[1]
-        response.resultCode = bytes[2]
-        // bytes 3-19 == response paramaters ...
+        if bytes.count > 2, bytes[0] == ControlOpCode.responseCode.rawValue {
+            response.requestOpCode = ControlOpCode(rawValue: bytes[1]) ?? .unknown
+            response.resultCode = ResultCode(rawValue: bytes[2]) ?? .opCodeNotSupported
+            
+            if response.resultCode == .success && response.requestOpCode == .spinDownControl {
+                // If success and spindown control response, the target high / low speeds are tacked onto the end
+                if bytes.count > 6 {
+                    response.targetSpeedLow =  Float(UInt16(bytes[3]) | UInt16(bytes[4]) << 8) / 100
+                    response.targetSpeedHigh = Float(UInt16(bytes[5]) | UInt16(bytes[6]) << 8) / 100
+                }
+            }
+        }
         
         return response
     }
@@ -327,7 +340,9 @@ open class FitnessMachineSerializer {
             bikeData.averageCadence = Double(value) / 2.0
         }
         if bikeData.flags.contains(.TotalDistancePresent) {
-            let value: UInt32 = ((UInt32)(bytes[index++=])) | ((UInt32)(bytes[index++=])) << 8 | ((UInt32)(bytes[index++=])) << 16
+            var value: UInt32 = (UInt32)(bytes[index++=])
+            value |= ((UInt32)(bytes[index++=])) << 8
+            value |= ((UInt32)(bytes[index++=])) << 16
             bikeData.totalDistance = value
         }
         if bikeData.flags.contains(.ResistanceLevelPresent) {
@@ -395,6 +410,157 @@ open class FitnessMachineSerializer {
         response.maximumPower = ((Int16)(bytes[2])) | ((Int16)(bytes[3])) << 8
         response.minimumIncrement = ((UInt16)(bytes[4])) | ((UInt16)(bytes[5])) << 8
         return response
+    }
+    
+    
+    
+    
+    public enum MachineStatusOpCode: UInt8 {
+        case reservedForFutureUse                       = 0x00
+        case reset                                      = 0x01
+        case stoppedOrPausedByUser                      = 0x02
+        case stoppedBySafetyKey                         = 0x03
+        case startedOrResumedByUser                     = 0x04
+        case targetSpeedChanged                         = 0x05
+        case targetInclineChanged                       = 0x06
+        case targetResistancLevelChanged                = 0x07
+        case targetPowerChanged                         = 0x08
+        case targetHeartRateChanged                     = 0x09
+        case targetedExpendedEnergyChanged              = 0x0A
+        case targetedNumberOfStepsChanged               = 0x0B
+        case targetedNumberOfStridesChanged             = 0x0C
+        case targetedDistanceChanged                    = 0x0D
+        case targetedTrainingTimeChanged                = 0x0E
+        case targetedTimeInTwoHeartRateZonesChanged     = 0x0F
+        case targetedTimeInThreeHeartRateZonesChanged   = 0x10
+        case targetedTimeInFiveHeartRateZonesChanged    = 0x11
+        case indoorBikeSimulationParametersChanged      = 0x12
+        case wheelCircumferenceChanged                  = 0x13
+        case spinDownStatus                             = 0x14
+        case targetedCadenceChanged                     = 0x15
+        case controlPermissionLost                      = 0xFF
+    }
+    
+    public struct MachineStatusMessage {
+        public var opCode: MachineStatusOpCode = .reservedForFutureUse
+        
+        public enum SpinDownStatus: UInt8 {
+            case reservedForFutureUse   = 0x00
+            case spinDownRequested      = 0x01
+            case success                = 0x02
+            case error                  = 0x03
+            case stopPedaling           = 0x04
+        }
+        
+        public var spinDownStatus: SpinDownStatus?
+        public var spinDownTime: TimeInterval?
+    }
+    
+    open static func readMachineStatus(_ data: Data) -> MachineStatusMessage {
+        var message = MachineStatusMessage()
+        
+        let bytes = data.map { $0 }
+        if bytes.count > 0 {
+            message.opCode = MachineStatusOpCode(rawValue: bytes[0]) ?? .reservedForFutureUse
+        }
+        
+        switch message.opCode {
+        case .reservedForFutureUse:
+            break
+        case .reset:
+            break
+        case .stoppedOrPausedByUser:
+            if bytes.count > 1 {
+                // 0x01 = stop
+                // 0x02 = pause
+            }
+            break
+        case .stoppedBySafetyKey:
+            break
+        case .startedOrResumedByUser:
+            break
+        case .targetSpeedChanged:
+            if bytes.count > 2 {
+                // UInt16 km / hour w/ res 0.01
+            }
+            break
+        case .targetInclineChanged:
+            if bytes.count > 2 {
+                // Int16 percent w/ res 0.1
+            }
+            break
+        case .targetResistancLevelChanged:
+            if bytes.count > 2 {
+                // ??? the spec cannot be correct here
+            }
+            break
+        case .targetPowerChanged:
+            if bytes.count > 2 {
+                // Int16 watts w/ res 1
+            }
+            break
+        case .targetHeartRateChanged:
+            if bytes.count > 1 {
+                // UInt8 bpm w/ res 1
+            }
+            break
+        case .targetedExpendedEnergyChanged:
+            if bytes.count > 2 {
+                // UInt16 cals w/ res 1
+            }
+            break
+        case .targetedNumberOfStepsChanged:
+            if bytes.count > 2 {
+                // UInt16 steps w/ res 1
+            }
+            break
+        case .targetedNumberOfStridesChanged:
+            if bytes.count > 2 {
+                // UInt16 strides w/ res 1
+            }
+            break
+        case .targetedDistanceChanged:
+            if bytes.count > 3 {
+                // UInt24 meters w/ res 1
+            }
+            break
+        case .targetedTrainingTimeChanged:
+            if bytes.count > 2 {
+                // UInt16 seconds w/ res 1
+            }
+            break
+        case .targetedTimeInTwoHeartRateZonesChanged:
+            break
+        case .targetedTimeInThreeHeartRateZonesChanged:
+            break
+        case .targetedTimeInFiveHeartRateZonesChanged:
+            break
+        case .indoorBikeSimulationParametersChanged :
+            break
+        case .wheelCircumferenceChanged:
+            if bytes.count > 2 {
+                // UInt16 mm w/ res 0.1
+            }
+            break
+        case .spinDownStatus:
+            if bytes.count > 1 {
+                message.spinDownStatus = MachineStatusMessage.SpinDownStatus(rawValue: bytes[1])
+                if message.spinDownStatus == .success, bytes.count > 3 {
+                    // Milliseconds attached: convert to seconds
+                    message.spinDownTime = TimeInterval(UInt16(bytes[2]) | UInt16(bytes[3]) << 8) / 1000
+                }
+            }
+            break
+        case .targetedCadenceChanged:
+            if bytes.count > 2 {
+                // UInt16 rpm w/ res 0.5
+            }
+            break
+        case .controlPermissionLost:
+            break
+            
+        }
+        return message
     }
     
 }
