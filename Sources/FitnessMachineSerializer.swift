@@ -241,9 +241,9 @@ open class FitnessMachineSerializer {
         ]
     }
     
-    open static func setTargetResistanceLevel(level: Int16) -> [UInt8] {
+    open static func setTargetResistanceLevel(level: Double) -> [UInt8] {
         // level = unitless     res 0.1
-        let levelN = level * 10
+        let levelN = Int16(level * 10)
         return [
             ControlOpCode.setTargetResistanceLevel.rawValue,
             UInt8(levelN & 0xFF), UInt8(levelN >> 8 & 0xFF)
@@ -454,6 +454,12 @@ open class FitnessMachineSerializer {
         
         public var spinDownStatus: SpinDownStatus?
         public var spinDownTime: TimeInterval?
+        public var targetPower: Int16?
+        public var targetResistanceLevel: Double?
+        public var targetSimWindSpeed: Double?
+        public var targetSimGrade: Double?
+        public var targetSimCrr: Double?
+        public var targetSimCwr: Double?
     }
     
     open static func readMachineStatus(_ data: Data) -> MachineStatusMessage {
@@ -482,41 +488,51 @@ open class FitnessMachineSerializer {
         case .targetSpeedChanged:
             if bytes.count > 2 {
                 // UInt16 km / hour w/ res 0.01
+                // message.targetSpeed = UInt16(bytes[1]) | UInt16(bytes[2]) << 8
             }
             break
         case .targetInclineChanged:
             if bytes.count > 2 {
                 // Int16 percent w/ res 0.1
+                // message.targetIncline = Int16(bytes[1]) | Int16(bytes[2]) << 8
             }
             break
         case .targetResistancLevelChanged:
             if bytes.count > 2 {
                 // ??? the spec cannot be correct here
+                // If we go by the Supported Resistance Level Range characteristic,
+                // this value *should* be a SInt16 w/ res 0.1
+                message.targetResistanceLevel = Double(Int16(bytes[1]) | Int16(bytes[2]) << 8) / 10
             }
             break
         case .targetPowerChanged:
             if bytes.count > 2 {
                 // Int16 watts w/ res 1
+                message.targetPower = Int16(bytes[1]) | Int16(bytes[2]) << 8
             }
             break
         case .targetHeartRateChanged:
             if bytes.count > 1 {
                 // UInt8 bpm w/ res 1
+                // message.targetHeartRate = bytes[1]
             }
             break
         case .targetedExpendedEnergyChanged:
             if bytes.count > 2 {
                 // UInt16 cals w/ res 1
+                // message.targetedExpendedEnergy = UInt16(bytes[1]) | UInt16(bytes[2]) << 8
             }
             break
         case .targetedNumberOfStepsChanged:
             if bytes.count > 2 {
                 // UInt16 steps w/ res 1
+                // message.targetedNumberOfSteps = UInt16(bytes[1]) | UInt16(bytes[2]) << 8
             }
             break
         case .targetedNumberOfStridesChanged:
             if bytes.count > 2 {
                 // UInt16 strides w/ res 1
+                // message.targetedNumberOfStrides = UInt16(bytes[1]) | UInt16(bytes[2]) << 8
             }
             break
         case .targetedDistanceChanged:
@@ -527,6 +543,7 @@ open class FitnessMachineSerializer {
         case .targetedTrainingTimeChanged:
             if bytes.count > 2 {
                 // UInt16 seconds w/ res 1
+                // message.targetedTrainingTime = UInt16(bytes[1]) | UInt16(bytes[2]) << 8
             }
             break
         case .targetedTimeInTwoHeartRateZonesChanged:
@@ -535,11 +552,18 @@ open class FitnessMachineSerializer {
             break
         case .targetedTimeInFiveHeartRateZonesChanged:
             break
-        case .indoorBikeSimulationParametersChanged :
+        case .indoorBikeSimulationParametersChanged:
+            if bytes.count > 6 {
+                 message.targetSimWindSpeed = Double(Int16(bytes[1]) | Int16(bytes[2]) << 8) / 1000
+                 message.targetSimGrade = Double(Int16(bytes[3]) | Int16(bytes[4]) << 8) / 100
+                 message.targetSimCrr = Double(bytes[5]) / 10000
+                 message.targetSimCwr = Double(bytes[6]) / 100
+            }
             break
         case .wheelCircumferenceChanged:
             if bytes.count > 2 {
                 // UInt16 mm w/ res 0.1
+                // message.wheelCircumferenceChanged = UInt16(bytes[1]) | UInt16(bytes[2]) << 8
             }
             break
         case .spinDownStatus:
@@ -554,6 +578,7 @@ open class FitnessMachineSerializer {
         case .targetedCadenceChanged:
             if bytes.count > 2 {
                 // UInt16 rpm w/ res 0.5
+                // message.targetedCadence = UInt16(bytes[1]) | UInt16(bytes[2]) << 8
             }
             break
         case .controlPermissionLost:

@@ -110,14 +110,40 @@ open class FitnessMachineService: Service, ServiceProtocol {
             return bytes
         }
         
+        fileprivate var pendingTargetPower: Int16?
         @discardableResult open func setTargetPower(watts: Int16) -> [UInt8] {
             let bytes = FitnessMachineSerializer.setTargetPower(watts: watts)
+            
+            // Prevent flooding the characteristic with unnecessary writes
+            if let pendingTargetPower = pendingTargetPower, pendingTargetPower == watts {
+                // skipping write, still waiting on MachineStatus Message before clearing
+                return bytes
+            }
+            if let targetPower = (service as? FitnessMachineService)?.machineStatus?.message?.targetPower, targetPower == watts {
+                // skipping write, targetpower is already set
+                return bytes
+            }
+            pendingTargetPower = watts
+            
             cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
             return bytes
         }
         
-        @discardableResult open func setTargetResistanceLevel(level: Int16) -> [UInt8] {
+        fileprivate var pendingTargetResistanceLevel: Double?
+        @discardableResult open func setTargetResistanceLevel(level: Double) -> [UInt8] {
             let bytes = FitnessMachineSerializer.setTargetResistanceLevel(level: level)
+            
+            // Prevent flooding the characteristic with unnecessary writes
+            if let pendingTargetResistanceLevel = pendingTargetResistanceLevel, pendingTargetResistanceLevel == level {
+                // skipping write, still waiting on MachineStatus Message before clearing
+                return bytes
+            }
+            if let targetResistanceLevel = (service as? FitnessMachineService)?.machineStatus?.message?.targetResistanceLevel, abs(level - targetResistanceLevel) < .ulpOfOne {
+                // skipping write, targetpower is already set
+                return bytes
+            }
+            pendingTargetResistanceLevel = level
+            
             cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
             return bytes
         }
@@ -154,7 +180,26 @@ open class FitnessMachineService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
-        public var message: FitnessMachineSerializer.MachineStatusMessage?
+        public var message: FitnessMachineSerializer.MachineStatusMessage? {
+            didSet {
+                // Target Power Set?
+                if let targetPower = message?.targetPower {
+                    (service as? FitnessMachineService)?.controlPoint?.pendingTargetPower = nil
+                }
+                // Target Resistance Level Set?
+                if let targetResistanceLevel = message?.targetResistanceLevel {
+                    (service as? FitnessMachineService)?.controlPoint?.pendingTargetResistanceLevel = nil
+                }
+                // Target Simulation Params Set?
+                if let targetSimGrade = message?.targetSimGrade {
+                    print(targetSimGrade)
+                    print(message?.targetSimWindSpeed)
+                    print(message?.targetSimCrr)
+                    print(message?.targetSimCwr)
+                }
+            }
+        }
+        
         override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 message = FitnessMachineSerializer.readMachineStatus(value)
@@ -392,13 +437,13 @@ open class FitnessMachineService: Service, ServiceProtocol {
         }
         
         // -1.0 to 1.0
-        public func convert(percent: Double) -> Int16 {
+        public func convert(percent: Double) -> Double {
             if let data = data {
                 if data.minimumResistanceLevel >= 0 {
-                    return Int16(data.minimumResistanceLevel + (percent * (data.maximumResistanceLevel - data.minimumResistanceLevel)))
+                    return data.minimumResistanceLevel + (percent * (data.maximumResistanceLevel - data.minimumResistanceLevel))
                 } else {
                     let absMax = max(fabs(data.minimumResistanceLevel), data.maximumResistanceLevel)
-                    return Int16(max(data.minimumResistanceLevel, min(percent * absMax, data.maximumResistanceLevel)))
+                    return max(data.minimumResistanceLevel, min(percent * absMax, data.maximumResistanceLevel))
                 }
             }
             return 0
