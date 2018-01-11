@@ -66,14 +66,14 @@ open class FitnessMachineSerializer {
     
     open static func readFeatures(_ data: Data) -> (machine: MachineFeatures, targetSettings: TargetSettingFeatures) {
         let bytes = data.map { $0 }
-        var rawMachine: UInt32 = ((UInt32)(bytes[0]))
-        rawMachine |= ((UInt32)(bytes[1])) << 8
-        rawMachine |= ((UInt32)(bytes[2])) << 16
-        rawMachine |= ((UInt32)(bytes[3])) << 24
-        var rawTargetSettings: UInt32 = ((UInt32)(bytes[4]))
-        rawTargetSettings |= ((UInt32)(bytes[5])) << 8
-        rawTargetSettings |= ((UInt32)(bytes[6])) << 16
-        rawTargetSettings |= ((UInt32)(bytes[7])) << 24
+        var rawMachine: UInt32 = UInt32(bytes[0])
+        rawMachine |= UInt32(bytes[1]) << 8
+        rawMachine |= UInt32(bytes[2]) << 16
+        rawMachine |= UInt32(bytes[3]) << 24
+        var rawTargetSettings: UInt32 = UInt32(bytes[4])
+        rawTargetSettings |= UInt32(bytes[5]) << 8
+        rawTargetSettings |= UInt32(bytes[6]) << 16
+        rawTargetSettings |= UInt32(bytes[7]) << 24
         return (MachineFeatures(rawValue: rawMachine), TargetSettingFeatures(rawValue: rawTargetSettings))
     }
     
@@ -335,46 +335,46 @@ open class FitnessMachineSerializer {
         let bytes = data.map { $0 }
         var index: Int = 0
         
-        let rawFlags: UInt16 = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+        let rawFlags: UInt16 = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         bikeData.flags = IndoorBikeDataFlags(rawValue: rawFlags)
         
         if !bikeData.flags.contains(.MoreData) {
-            let value: UInt16 = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            let value: UInt16 = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
             bikeData.instantaneousSpeed = Double(value) / 100.0
         }
         if bikeData.flags.contains(.AverageSpeedPresent) {
-            let value: UInt16 = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            let value: UInt16 = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
             bikeData.averageSpeed = Double(value) / 100.0
         }
         if bikeData.flags.contains(.InstantaneousCadencePresent) {
-            let value: UInt16 = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            let value: UInt16 = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
             bikeData.instantaneousCadence = Double(value) / 2.0
         }
         if bikeData.flags.contains(.AverageCadencePresent) {
-            let value: UInt16 = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            let value: UInt16 = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
             bikeData.averageCadence = Double(value) / 2.0
         }
         if bikeData.flags.contains(.TotalDistancePresent) {
-            var value: UInt32 = (UInt32)(bytes[index++=])
-            value |= ((UInt32)(bytes[index++=])) << 8
-            value |= ((UInt32)(bytes[index++=])) << 16
+            var value: UInt32 = UInt32(bytes[index++=])
+            value |= UInt32(bytes[index++=]) << 8
+            value |= UInt32(bytes[index++=]) << 16
             bikeData.totalDistance = value
         }
         if bikeData.flags.contains(.ResistanceLevelPresent) {
-            let value: Int16 = ((Int16)(bytes[index++=])) | ((Int16)(bytes[index++=])) << 8
+            let value: Int16 = Int16(bytes[index++=]) | Int16(bytes[index++=]) << 8
             bikeData.resistanceLevel = value
         }
         if bikeData.flags.contains(.InstantaneousPowerPresent) {
-            let value: Int16 = ((Int16)(bytes[index++=])) | ((Int16)(bytes[index++=])) << 8
+            let value: Int16 = Int16(bytes[index++=]) | Int16(bytes[index++=]) << 8
             bikeData.instantaneousPower = value
         }
         if bikeData.flags.contains(.AveragePowerPresent) {
-            let value: Int16 = ((Int16)(bytes[index++=])) | ((Int16)(bytes[index++=])) << 8
+            let value: Int16 = Int16(bytes[index++=]) | Int16(bytes[index++=]) << 8
             bikeData.averagePower = value
         }
         if bikeData.flags.contains(.ExpendedEnergyPresent) {
-            bikeData.totalEnergy = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
-            bikeData.energyPerHour = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            bikeData.totalEnergy = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
+            bikeData.energyPerHour = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
             bikeData.energyPerMinute = bytes[index++=]
         }
         if bikeData.flags.contains(.HeartRatePresent) {
@@ -385,10 +385,10 @@ open class FitnessMachineSerializer {
             bikeData.metabolicEquivalent = Double(value) / 10.0
         }
         if bikeData.flags.contains(.ElapsedTimePresent) {
-            bikeData.elapsedTime = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8            
+            bikeData.elapsedTime = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         if bikeData.flags.contains(.RemainingTimePresent) {
-            bikeData.remainingTime = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            bikeData.remainingTime = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         return bikeData
     }
@@ -403,9 +403,9 @@ open class FitnessMachineSerializer {
     open static func readSupportedResistanceLevelRange(_ data: Data) -> SupportedResistanceLevelRange {
         let bytes = data.map { $0 }
         var response = SupportedResistanceLevelRange()
-        let value1: Int16 = ((Int16)(bytes[0])) | ((Int16)(bytes[1])) << 8
-        let value2: Int16 = ((Int16)(bytes[2])) | ((Int16)(bytes[3])) << 8
-        let value3: UInt16 = ((UInt16)(bytes[4])) | ((UInt16)(bytes[5])) << 8
+        let value1: Int16 = Int16(bytes[0]) | Int16(bytes[1]) << 8
+        let value2: Int16 = Int16(bytes[2]) | Int16(bytes[3]) << 8
+        let value3: UInt16 = UInt16(bytes[4]) | UInt16(bytes[5]) << 8
         response.minimumResistanceLevel = Double(value1) / 10.0
         response.maximumResistanceLevel = Double(value2) / 10.0
         response.minimumIncrement = Double(value3) / 10.0
@@ -421,9 +421,9 @@ open class FitnessMachineSerializer {
     open static func readSupportedPowerRange(_ data: Data) -> SupportedPowerRange {
         let bytes = data.map { $0 }
         var response = SupportedPowerRange()
-        response.minimumPower = ((Int16)(bytes[0])) | ((Int16)(bytes[1])) << 8
-        response.maximumPower = ((Int16)(bytes[2])) | ((Int16)(bytes[3])) << 8
-        response.minimumIncrement = ((UInt16)(bytes[4])) | ((UInt16)(bytes[5])) << 8
+        response.minimumPower = Int16(bytes[0]) | Int16(bytes[1]) << 8
+        response.maximumPower = Int16(bytes[2]) | Int16(bytes[3]) << 8
+        response.minimumIncrement = UInt16(bytes[4]) | UInt16(bytes[5]) << 8
         return response
     }
     

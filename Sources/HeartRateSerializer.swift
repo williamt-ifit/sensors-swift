@@ -45,7 +45,7 @@ open class HeartRateSerializer {
         if flags & 0x01 == 0 {
             measurement.heartRate = UInt16(bytes[index])
         } else {
-            measurement.heartRate = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            measurement.heartRate = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         
         let contactStatusBits = (flags | 0x06) >> 1
@@ -55,10 +55,10 @@ open class HeartRateSerializer {
             measurement.contactStatus = .detected
         }
         if flags & 0x08 == 0x08 {
-            measurement.energyExpended = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            measurement.energyExpended = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         if flags & 0x10 == 0x10 {
-            measurement.rrInterval = ((UInt16)(bytes[index++=])) | ((UInt16)(bytes[index++=])) << 8
+            measurement.rrInterval = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         return measurement
     }
