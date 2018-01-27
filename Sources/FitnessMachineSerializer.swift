@@ -119,9 +119,9 @@ open class FitnessMachineSerializer {
         let bytes = data.map { $0 }
         status.flags = TrainerStatusFlags(rawValue: bytes[0])
         status.status = TrainingStatusField(rawValue: bytes[1]) ?? .other
-        if status.flags.contains(.TrainingStatusStringPresent) {
-            // ToDo: parse bytes 2-16 into a string (UTF8)
-            status.statusString = "ToDo"
+        if status.flags.contains(.TrainingStatusStringPresent), bytes.count > 2 {
+            let statusBytes = bytes.suffix(from: 2)
+            status.statusString = String(bytes: statusBytes, encoding: .utf8)
         }
         return status
     }

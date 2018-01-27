@@ -196,15 +196,15 @@ open class FitnessMachineService: Service, ServiceProtocol {
         public var message: FitnessMachineSerializer.MachineStatusMessage? {
             didSet {
                 // Target Power Set?
-                if let _ = message?.targetPower {
+                if let message = message, message.opCode == .targetPowerChanged {
                     (service as? FitnessMachineService)?.controlPoint?.pendingTargetPower = nil
                 }
                 // Target Resistance Level Set?
-                if let _ = message?.targetResistanceLevel {
+                if let message = message, message.opCode == .targetResistancLevelChanged {
                     (service as? FitnessMachineService)?.controlPoint?.pendingTargetResistanceLevel = nil
                 }
-                // Target Simulation Params Set?
-                if let _ = message?.targetSimParameters {
+                // Indoor Simulation Params Changed?
+                if let message = message, message.opCode == .indoorBikeSimulationParametersChanged {
                     (service as? FitnessMachineService)?.controlPoint?.pendingTargetSimParameters = nil
                 }
             }
