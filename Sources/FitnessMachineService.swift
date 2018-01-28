@@ -110,6 +110,12 @@ open class FitnessMachineService: Service, ServiceProtocol {
             return bytes
         }
         
+        @discardableResult open func startOrResume() -> [UInt8] {
+            let bytes = FitnessMachineSerializer.startOrResume()
+            cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
+            return bytes
+        }
+        
         fileprivate var pendingTargetPower: Int16?
         @discardableResult open func setTargetPower(watts: Int16) -> [UInt8] {
             let bytes = FitnessMachineSerializer.setTargetPower(watts: watts)
