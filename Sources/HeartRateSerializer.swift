@@ -38,13 +38,16 @@ open class HeartRateSerializer {
         var measurement = MeasurementData()
         
         let bytes = data.map { $0 }
+        if bytes.count < 2 {
+            return measurement
+        }
+        
         var index: Int = 0
-        let flags = bytes[index];
-        index += 1
+        let flags = bytes[index++=];
         
         if flags & 0x01 == 0 {
-            measurement.heartRate = UInt16(bytes[index])
-        } else {
+            measurement.heartRate = UInt16(bytes[index++=])
+        } else if bytes.count > 2 {
             measurement.heartRate = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         
@@ -54,10 +57,10 @@ open class HeartRateSerializer {
         } else if contactStatusBits == 3 {
             measurement.contactStatus = .detected
         }
-        if flags & 0x08 == 0x08 {
+        if flags & 0x08 == 0x08 && bytes.count > 4 {
             measurement.energyExpended = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
-        if flags & 0x10 == 0x10 {
+        if flags & 0x10 == 0x10 && bytes.count > 6 {
             measurement.rrInterval = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         return measurement
@@ -66,13 +69,12 @@ open class HeartRateSerializer {
     
     open static func readSensorLocation(_ data: Data) -> BodySensorLocation? {
         let bytes = data.map { $0 }
+        if bytes.count == 0 { return nil }
         return BodySensorLocation(rawValue: bytes[0])
     }
     
     open static func writeResetEnergyExpended() -> [UInt8] {
-        return [
-            0x01
-        ]
+        return [0x01]
     }
     
 }
