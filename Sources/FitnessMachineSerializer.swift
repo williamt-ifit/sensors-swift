@@ -213,8 +213,8 @@ open class FitnessMachineSerializer {
         // cw = kg / meter              res 0.01
         let mpsN = Int16(parameters.windSpeed * 1000)
         let gradeN = Int16(parameters.grade * 100)
-        let crrN = UInt8(parameters.crr * 10000)
-        let crwN = UInt8(parameters.crw * 100)
+        let crrN = UInt8(Int(parameters.crr * 10000) & 0xFF)
+        let crwN = UInt8(Int(parameters.crw * 100) & 0xFF)
         return [
             ControlOpCode.setIndoorBikeSimulationParameters.rawValue,
             UInt8(mpsN & 0xFF), UInt8(mpsN >> 8 & 0xFF),
