@@ -583,7 +583,8 @@ open class FitnessMachineSerializer {
         case .spinDownStatus:
             if bytes.count > 1 {
                 message.spinDownStatus = MachineStatusMessage.SpinDownStatus(rawValue: bytes[1])
-                if message.spinDownStatus == .success, bytes.count > 3 {
+                
+                if message.spinDownStatus == .success || message.spinDownStatus == .error, bytes.count > 3 {
                     // Milliseconds attached: convert to seconds
                     message.spinDownTime = TimeInterval(UInt16(bytes[2]) | UInt16(bytes[3]) << 8) / 1000
                 }
