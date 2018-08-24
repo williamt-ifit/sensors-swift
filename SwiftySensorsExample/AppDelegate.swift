@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SensorManager.instance.setServicesToScanFor([
             CyclingPowerService.self,
             CyclingSpeedCadenceService.self,
+            FitnessMachineService.self,
             HeartRateService.self])
         
         // Add additional services we want to have access to (but don't want to specifically scan for)
