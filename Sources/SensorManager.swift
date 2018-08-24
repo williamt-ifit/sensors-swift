@@ -230,11 +230,13 @@ extension SensorManager {
         let options: [String: AnyObject] = [
             CBCentralManagerScanOptionAllowDuplicatesKey: aggressive as AnyObject
         ]
-        let serviceUUIDs = serviceFactory.servicesToDiscover
+        let serviceUUIDs = serviceFactory.servicesToDiscover.count > 0 ? serviceFactory.servicesToDiscover : nil
         centralManager.scanForPeripherals(withServices: serviceUUIDs, options: options)
         SensorManager.logSensorMessage?("SensorManager: Scanning for Services")
-        for peripheral in centralManager.retrieveConnectedPeripherals(withServices: serviceUUIDs) {
-            let _ = sensorForPeripheral(peripheral, create: true)
+        if let serviceUUIDs = serviceUUIDs {
+            for peripheral in centralManager.retrieveConnectedPeripherals(withServices: serviceUUIDs) {
+                let _ = sensorForPeripheral(peripheral, create: true)
+            }
         }
     }
     
