@@ -250,8 +250,9 @@ extension SensorManager {
         }
     }
     
-    fileprivate func sensorForPeripheral(_ peripheral: CBPeripheral, create: Bool, advertisements: [CBUUID] = []) -> Sensor? {
+    fileprivate func sensorForPeripheral(_ peripheral: CBPeripheral, create: Bool, advertisements: [CBUUID] = [], data: [String: Any]? = nil) -> Sensor? {
         if let sensor = sensorsById[peripheral.identifier.uuidString] {
+            sensor.advertisementData = data
             return sensor
         }
         if !create {
@@ -259,6 +260,7 @@ extension SensorManager {
         }
         let sensor = SensorType.init(peripheral: peripheral, advertisements: advertisements)
         sensor.serviceFactory = serviceFactory
+        sensor.advertisementData = data
         sensorsById[peripheral.identifier.uuidString] = sensor
         onSensorDiscovered => sensor
         SensorManager.logSensorMessage?("SensorManager: Created Sensor for Peripheral: \(peripheral)")
@@ -311,7 +313,7 @@ extension SensorManager: CBCentralManagerDelegate {
     /// :nodoc:
     public func centralManager(_ manager: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let uuids = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
-            if let sensor = sensorForPeripheral(peripheral, create: true, advertisements: uuids) {
+            if let sensor = sensorForPeripheral(peripheral, create: true, advertisements: uuids, data: advertisementData) {
                 if RSSI.intValue < 0 {
                     sensor.rssi = RSSI.intValue
                     sensor.markSensorActivity()
