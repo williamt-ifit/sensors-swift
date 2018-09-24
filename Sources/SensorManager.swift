@@ -162,7 +162,7 @@ public class SensorManager: NSObject {
     // Private / Internal Classes, Properties and Constants
     //////////////////////////////////////////////////////////////////
     
-    fileprivate(set) var centralManager: CBCentralManager!
+    public fileprivate(set) var centralManager: CBCentralManager!
     
     internal class ServiceFactory {
         fileprivate(set) var serviceTypes = Dictionary<String, Service.Type>()
