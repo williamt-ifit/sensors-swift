@@ -90,6 +90,8 @@ open class FitnessMachineService: Service, ServiceProtocol {
         
         public static let uuid: String = "2AD9"
         
+        public private(set) var hasControl: Bool = false
+        
         required public init(service: Service, cbc: CBCharacteristic) {
             super.init(service: service, cbc: cbc)
             
@@ -100,6 +102,18 @@ open class FitnessMachineService: Service, ServiceProtocol {
         override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 response = FitnessMachineSerializer.readControlPointResponse(value)
+                
+                if let response = response {
+                    if response.requestOpCode == .requestControl {
+                        hasControl = response.resultCode == .success
+                    } else if response.resultCode == .controlNotPermitted {
+                        hasControl = false // ???
+                    }
+                    
+                    if response.requestOpCode == .setTargetPower {
+                        //print("control point response: set target power ACKd")
+                    }
+                }
             }
             super.valueUpdated()
         }
