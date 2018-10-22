@@ -135,7 +135,7 @@ open class FitnessMachineService: Service, ServiceProtocol {
             let bytes = FitnessMachineSerializer.setTargetPower(watts: watts)
             
             // Prevent flooding the characteristic with unnecessary writes
-            if let pendingTargetPower = pendingTargetPower, pendingTargetPower == watts {
+            if pendingTargetPower != nil {
                 // skipping write, still waiting on MachineStatus Message before clearing
                 return bytes
             }
@@ -144,8 +144,8 @@ open class FitnessMachineService: Service, ServiceProtocol {
                 return bytes
             }
             pendingTargetPower = watts
-            
             cbCharacteristic.write(Data(bytes: bytes), writeType: .withResponse)
+            
             return bytes
         }
         
@@ -154,7 +154,7 @@ open class FitnessMachineService: Service, ServiceProtocol {
             let bytes = FitnessMachineSerializer.setTargetResistanceLevel(level: level)
             
             // Prevent flooding the characteristic with unnecessary writes
-            if let pendingTargetResistanceLevel = pendingTargetResistanceLevel, abs(level - pendingTargetResistanceLevel) < .ulpOfOne {
+            if pendingTargetResistanceLevel != nil {
                 // skipping write, still waiting on MachineStatus Message before clearing
                 return bytes
             }
@@ -173,7 +173,7 @@ open class FitnessMachineService: Service, ServiceProtocol {
             let bytes = FitnessMachineSerializer.setIndoorBikeSimulationParameters(params)
             
             // Prevent flooding the characteristic with unnecessary writes
-            if let pendingTargetSimParameters = pendingTargetSimParameters, pendingTargetSimParameters == params {
+            if pendingTargetSimParameters != nil {
                 // skipping write, still waiting on MachineStatus Message before clearing
                 return bytes
             }

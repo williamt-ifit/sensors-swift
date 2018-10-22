@@ -81,7 +81,7 @@ open class CyclingPowerSerializer {
     }
     
     
-    open static func readFeatures(_ data: Data) -> Features {
+    public static func readFeatures(_ data: Data) -> Features {
         let bytes = data.map { $0 }
         var rawFeatures: UInt32 = 0
         if bytes.count > 0 { rawFeatures |= UInt32(bytes[0]) }
@@ -92,7 +92,7 @@ open class CyclingPowerSerializer {
     }
     
     
-    open static func readMeasurement(_ data: Data) -> MeasurementData {
+    public static func readMeasurement(_ data: Data) -> MeasurementData {
         var measurement = MeasurementData()
         
         let bytes = data.map { $0 }
