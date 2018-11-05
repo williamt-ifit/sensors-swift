@@ -576,14 +576,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 1010;
-				TargetAttributes = {
-					9FD8F40ACC05578C26F4FA625CE51ED6 = {
-						LastSwiftMigration = 1010;
-					};
-					C1DFDC491514C5EFD173E6AD9A522C46 = {
-						LastSwiftMigration = 1010;
-					};
-				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -826,6 +818,39 @@
 			};
 			name = Debug;
 		};
+		18F2C97D1A8B40EF770B76BD6B19AA6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4CB04466C7A14204A4BA82101CBB0B3 /* Signals-macOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Signals-macOS/Signals-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Signals-macOS/Signals-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/Signals-macOS/Signals-macOS.modulemap";
+				PRODUCT_MODULE_NAME = Signals;
+				PRODUCT_NAME = Signals;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		1ED7BBEF788FD5AD7C48BC872C9AF7E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03201CC72006CBC5F26113E94933454E /* Signals-iOS.xcconfig */;
@@ -929,72 +954,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		3922255D11595A9FEAFBDA6026641BC0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D470D3167D8ECE816AA7B6D8C9173CC2 /* Signals-tvOS.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Signals-tvOS/Signals-tvOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Signals-tvOS/Signals-tvOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Signals-tvOS/Signals-tvOS.modulemap";
-				PRODUCT_MODULE_NAME = Signals;
-				PRODUCT_NAME = Signals;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		675B337C2E13255F2C8DF606C6DB4B87 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4CB04466C7A14204A4BA82101CBB0B3 /* Signals-macOS.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Signals-macOS/Signals-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Signals-macOS/Signals-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = "Target Support Files/Signals-macOS/Signals-macOS.modulemap";
-				PRODUCT_MODULE_NAME = Signals;
-				PRODUCT_NAME = Signals;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		6B28E5575B1F76DB77CD988080A8FFFE /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1129,6 +1088,104 @@
 			};
 			name = Debug;
 		};
+		82776D48634E40894AFB5EB9A2D9A4A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4CB04466C7A14204A4BA82101CBB0B3 /* Signals-macOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Signals-macOS/Signals-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Signals-macOS/Signals-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/Signals-macOS/Signals-macOS.modulemap";
+				PRODUCT_MODULE_NAME = Signals;
+				PRODUCT_NAME = Signals;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		83F501439EE4628B45F08F2581CA59F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D470D3167D8ECE816AA7B6D8C9173CC2 /* Signals-tvOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Signals-tvOS/Signals-tvOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Signals-tvOS/Signals-tvOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Signals-tvOS/Signals-tvOS.modulemap";
+				PRODUCT_MODULE_NAME = Signals;
+				PRODUCT_NAME = Signals;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		88ED95158DE1CBE42BFB86E043E5A332 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D470D3167D8ECE816AA7B6D8C9173CC2 /* Signals-tvOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Signals-tvOS/Signals-tvOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Signals-tvOS/Signals-tvOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Signals-tvOS/Signals-tvOS.modulemap";
+				PRODUCT_MODULE_NAME = Signals;
+				PRODUCT_NAME = Signals;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		8CE137AE54698FBA7E87DECE5B8FA96C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF9C62B308929671602BB817DED9818F /* Pods-SwiftySensors tvOS.release.xcconfig */;
@@ -1163,38 +1220,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		A66BDA698062E410D84B66307FADAFC5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D470D3167D8ECE816AA7B6D8C9173CC2 /* Signals-tvOS.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Signals-tvOS/Signals-tvOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Signals-tvOS/Signals-tvOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Signals-tvOS/Signals-tvOS.modulemap";
-				PRODUCT_MODULE_NAME = Signals;
-				PRODUCT_NAME = Signals;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		CF7222D9C4619E25BC5A0212A0DEFC55 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1261,39 +1286,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F50A28DB101A0D818041501B4A4A8D53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4CB04466C7A14204A4BA82101CBB0B3 /* Signals-macOS.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Signals-macOS/Signals-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Signals-macOS/Signals-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = "Target Support Files/Signals-macOS/Signals-macOS.modulemap";
-				PRODUCT_MODULE_NAME = Signals;
-				PRODUCT_NAME = Signals;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1402,8 +1394,8 @@
 		805CB3477E841008A0F7A60A2CD07854 /* Build configuration list for PBXNativeTarget "Signals-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				675B337C2E13255F2C8DF606C6DB4B87 /* Debug */,
-				F50A28DB101A0D818041501B4A4A8D53 /* Release */,
+				82776D48634E40894AFB5EB9A2D9A4A0 /* Debug */,
+				18F2C97D1A8B40EF770B76BD6B19AA6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1429,8 +1421,8 @@
 		ED347882C2B4A5CA7E518F9E1F9BB299 /* Build configuration list for PBXNativeTarget "Signals-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A66BDA698062E410D84B66307FADAFC5 /* Debug */,
-				3922255D11595A9FEAFBDA6026641BC0 /* Release */,
+				88ED95158DE1CBE42BFB86E043E5A332 /* Debug */,
+				83F501439EE4628B45F08F2581CA59F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

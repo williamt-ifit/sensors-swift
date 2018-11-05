@@ -703,7 +703,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA15E5AF7A8ABE16C1A3E758 /* Pods-SwiftySensors tvOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -732,7 +731,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D873857A71CA4C5D8205BF83 /* Pods-SwiftySensors tvOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -864,7 +862,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D2D73EDAC08C01F7B891FC66 /* Pods-SwiftySensors iOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -891,7 +888,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7D616CD15F403945FCE530FF /* Pods-SwiftySensors iOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -917,7 +913,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A424BF11970E04291F962ABB /* Pods-SwiftySensorsExample.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -938,7 +933,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC6E45D40E62A3D07823C750 /* Pods-SwiftySensorsExample.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
