@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
     spec.source_files           = 'Sources/**/*.swift'
     spec.swift_version          = '4.2'
 
-    spec.dependency             'Signals', '~> 5.0'
+    spec.dependency             'Signals'
 
 
     spec.subspec 'Serializers' do |serial|
