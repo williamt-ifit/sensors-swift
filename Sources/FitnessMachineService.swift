@@ -390,7 +390,20 @@ open class FitnessMachineService: Service, ServiceProtocol {
             cbCharacteristic.notify(true)
         }
         
-        public var data: FitnessMachineSerializer.IndoorBikeData?
+        public var data: FitnessMachineSerializer.IndoorBikeData? {
+            didSet {
+                // the Features Characteristic does not contain a flag for "Instant Speed"
+                // ... sooooo ... when this first packet arrives, the "MoreData" bit and the
+                // instant speed value presence will indicate if this sensor provides speed.
+                // FTMS: Fix this please. This is lame.
+                if oldValue == nil && data != nil {
+                    if let service = service {
+                        service.sensor.onServiceFeaturesIdentified => (service.sensor, service)
+                    }
+                }
+            }
+        }
+        
         override open func valueUpdated() {
             if let value = cbCharacteristic.value {
                 data = FitnessMachineSerializer.readIndoorBikeData(value)
