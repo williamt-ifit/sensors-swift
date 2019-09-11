@@ -33,7 +33,7 @@ let package = Package(
         .library(name: "SwiftySensors", targets: ["SwiftySensors"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/artman/Signals", .branch("master"))
+        .package(url: "https://github.com/artman/Signals", from: Version(6, 1, 0))
     ],
     targets: [
         .target(name: "SwiftySensors", dependencies: ["Signals"])
