@@ -1,8 +1,10 @@
+// swift-tools-version:5.1
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 //
 //  SwiftySensors.swift
 //
 //	The MIT License (MIT)
-//	Copyright (c) 2017 Kurt Kinetic
+//	Copyright (c) 2019 Kurt Kinetic
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy of
 //	this software and associated documentation files (the "Software"), to deal in
@@ -26,7 +28,14 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftySensors",
+    platforms: [.macOS(SupportedPlatform.MacOSVersion.v10_13)],
+    products: [
+        .library(name: "SwiftySensors", targets: ["SwiftySensors"]),
+    ],
     dependencies: [
-        .Package(url: "https://github.com/artman/Signals", Version(6, 1, 0))
+        .package(url: "https://github.com/artman/Signals", .branch("master"))
+    ],
+    targets: [
+        .target(name: "SwiftySensors", dependencies: ["Signals"])
     ]
 )
