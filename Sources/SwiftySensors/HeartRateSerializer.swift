@@ -47,7 +47,7 @@ open class HeartRateSerializer {
         
         if flags & 0x01 == 0 {
             measurement.heartRate = UInt16(bytes[index++=])
-        } else if bytes.count > 2 {
+        } else if bytes.count > index + 1 {
             measurement.heartRate = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         
@@ -57,10 +57,10 @@ open class HeartRateSerializer {
         } else if contactStatusBits == 3 {
             measurement.contactStatus = .detected
         }
-        if flags & 0x08 == 0x08 && bytes.count > 4 {
+        if flags & 0x08 == 0x08 && bytes.count > index + 1 {
             measurement.energyExpended = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
-        if flags & 0x10 == 0x10 && bytes.count > 6 {
+        if flags & 0x10 == 0x10 && bytes.count > index + 1 {
             measurement.rrInterval = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
         return measurement
