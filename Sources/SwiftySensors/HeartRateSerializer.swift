@@ -21,7 +21,7 @@ open class HeartRateSerializer {
         public var heartRate: UInt16 = 0
         public var contactStatus: ContactStatus = .notSupported
         public var energyExpended: UInt16?
-        public var rrInterval: UInt16?
+        public var rrIntervals: [UInt16] = []
     }
     
     public enum BodySensorLocation: UInt8 {
@@ -60,8 +60,12 @@ open class HeartRateSerializer {
         if flags & 0x08 == 0x08 && bytes.count > index + 1 {
             measurement.energyExpended = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
         }
-        if flags & 0x10 == 0x10 && bytes.count > index + 1 {
-            measurement.rrInterval = UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8
+        if flags & 0x10 == 0x10 {
+            while (bytes.count > index + 1) {
+                // Resolution of 1/1024 second
+                let interval = (UInt16(bytes[index++=]) | UInt16(bytes[index++=]) << 8)
+                measurement.rrIntervals.append(interval)
+            }
         }
         return measurement
     }
