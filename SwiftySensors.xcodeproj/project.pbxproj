@@ -9,10 +9,7 @@
 /* Begin PBXBuildFile section */
 		30626BE6FCB45B3BDB22BA6A /* Pods_SwiftySensorsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85FFA2FAD24B7B41E8F76DF /* Pods_SwiftySensorsExample.framework */; };
 		8D0B37891FE18EA20073A7F7 /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC71E5D27FA0099085A /* DeviceInformationService.swift */; };
-		8D0B378A1FE18EA20073A7F7 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC01E5D27FA0099085A /* Characteristic.swift */; };
 		8D0B378B1FE18EA20073A7F7 /* FitnessMachineSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6EC2F51F1409D3006FE4A0 /* FitnessMachineSerializer.swift */; };
-		8D0B378C1FE18EA20073A7F7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACE1E5D27FA0099085A /* Service.swift */; };
-		8D0B378D1FE18EA20073A7F7 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACC1E5D27FA0099085A /* Sensor.swift */; };
 		8D0B378E1FE18EA20073A7F7 /* HeartRateSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC81E5D27FA0099085A /* HeartRateSerializer.swift */; };
 		8D0B378F1FE18EA20073A7F7 /* CyclingSpeedCadenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC61E5D27FA0099085A /* CyclingSpeedCadenceService.swift */; };
 		8D0B37901FE18EA20073A7F7 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC91E5D27FA0099085A /* HeartRateService.swift */; };
@@ -20,13 +17,10 @@
 		8D0B37921FE18EA20073A7F7 /* FitnessMachineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7843161F0FDB920047C7F1 /* FitnessMachineService.swift */; };
 		8D0B37931FE18EA20073A7F7 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACA1E5D27FA0099085A /* Operators.swift */; };
 		8D0B37941FE18EA20073A7F7 /* RSSINormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACB1E5D27FA0099085A /* RSSINormalizer.swift */; };
-		8D0B37951FE18EA20073A7F7 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACD1E5D27FA0099085A /* SensorManager.swift */; };
 		8D0B37961FE18EA20073A7F7 /* CyclingPowerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */; };
 		8D0B37971FE18EA20073A7F7 /* CyclingSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC41E5D27FA0099085A /* CyclingSerializer.swift */; };
 		8D0B37981FE18EA20073A7F7 /* CyclingPowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC31E5D27FA0099085A /* CyclingPowerService.swift */; };
 		8D0B37991FE18EA20073A7F7 /* CyclingSpeedCadenceSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC51E5D27FA0099085A /* CyclingSpeedCadenceSerializer.swift */; };
-		8D278ACF1E5D27FA0099085A /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC01E5D27FA0099085A /* Characteristic.swift */; };
-		8D278AD01E5D27FA0099085A /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC01E5D27FA0099085A /* Characteristic.swift */; };
 		8D278AD11E5D27FA0099085A /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */; };
 		8D278AD21E5D27FA0099085A /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */; };
 		8D278AD31E5D27FA0099085A /* CyclingPowerSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */; };
@@ -49,12 +43,6 @@
 		8D278AE41E5D27FA0099085A /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACA1E5D27FA0099085A /* Operators.swift */; };
 		8D278AE51E5D27FA0099085A /* RSSINormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACB1E5D27FA0099085A /* RSSINormalizer.swift */; };
 		8D278AE61E5D27FA0099085A /* RSSINormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACB1E5D27FA0099085A /* RSSINormalizer.swift */; };
-		8D278AE71E5D27FA0099085A /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACC1E5D27FA0099085A /* Sensor.swift */; };
-		8D278AE81E5D27FA0099085A /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACC1E5D27FA0099085A /* Sensor.swift */; };
-		8D278AE91E5D27FA0099085A /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACD1E5D27FA0099085A /* SensorManager.swift */; };
-		8D278AEA1E5D27FA0099085A /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACD1E5D27FA0099085A /* SensorManager.swift */; };
-		8D278AEB1E5D27FA0099085A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACE1E5D27FA0099085A /* Service.swift */; };
-		8D278AEC1E5D27FA0099085A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D278ACE1E5D27FA0099085A /* Service.swift */; };
 		8D659AB91C9C8B2300CF3C60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659AB81C9C8B2300CF3C60 /* AppDelegate.swift */; };
 		8D659ABB1C9C8B2300CF3C60 /* SensorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D659ABA1C9C8B2300CF3C60 /* SensorListViewController.swift */; };
 		8D659ABE1C9C8B2300CF3C60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D659ABC1C9C8B2300CF3C60 /* Main.storyboard */; };
@@ -107,7 +95,6 @@
 		78851472AD8662CD26BF78AD /* Pods-SwiftySensors tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftySensors tvOS.debug.xcconfig"; path = "Target Support Files/Pods-SwiftySensors tvOS/Pods-SwiftySensors tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8864A3F90834A52EDAB27096 /* Pods_SwiftySensors_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftySensors_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D0B37A21FE18EA20073A7F7 /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D278AC01E5D27FA0099085A /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Characteristic.swift; path = Sources/Characteristic.swift; sourceTree = "<group>"; };
 		8D278AC11E5D27FA0099085A /* CoreBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreBluetooth.swift; path = Sources/CoreBluetooth.swift; sourceTree = "<group>"; };
 		8D278AC21E5D27FA0099085A /* CyclingPowerSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclingPowerSerializer.swift; path = Sources/CyclingPowerSerializer.swift; sourceTree = "<group>"; };
 		8D278AC31E5D27FA0099085A /* CyclingPowerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclingPowerService.swift; path = Sources/CyclingPowerService.swift; sourceTree = "<group>"; };
@@ -119,9 +106,6 @@
 		8D278AC91E5D27FA0099085A /* HeartRateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeartRateService.swift; path = Sources/HeartRateService.swift; sourceTree = "<group>"; };
 		8D278ACA1E5D27FA0099085A /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Sources/Operators.swift; sourceTree = "<group>"; };
 		8D278ACB1E5D27FA0099085A /* RSSINormalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RSSINormalizer.swift; path = Sources/RSSINormalizer.swift; sourceTree = "<group>"; };
-		8D278ACC1E5D27FA0099085A /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sensor.swift; path = Sources/Sensor.swift; sourceTree = "<group>"; };
-		8D278ACD1E5D27FA0099085A /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorManager.swift; path = Sources/SensorManager.swift; sourceTree = "<group>"; };
-		8D278ACE1E5D27FA0099085A /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Sources/Service.swift; sourceTree = "<group>"; };
 		8D4FA7761C9C8693000285BA /* SwiftySensors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySensors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D659AB61C9C8B2300CF3C60 /* SwiftySensorsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftySensorsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D659AB81C9C8B2300CF3C60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,10 +226,6 @@
 		8D4FA7671C9C8623000285BA /* SwiftySensors */ = {
 			isa = PBXGroup;
 			children = (
-				8D278ACD1E5D27FA0099085A /* SensorManager.swift */,
-				8D278ACC1E5D27FA0099085A /* Sensor.swift */,
-				8D278ACE1E5D27FA0099085A /* Service.swift */,
-				8D278AC01E5D27FA0099085A /* Characteristic.swift */,
 				8D278AEE1E5D283B0099085A /* Services */,
 				8D278AEF1E5D28530099085A /* Utils */,
 				8D278AED1E5D28080099085A /* Serializers */,
@@ -420,7 +400,7 @@
 					};
 					8D659AB51C9C8B2300CF3C60 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = Q77W77B9BY;
+						DevelopmentTeam = ESR6X3SRBQ;
 						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -606,10 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D0B37891FE18EA20073A7F7 /* DeviceInformationService.swift in Sources */,
-				8D0B378A1FE18EA20073A7F7 /* Characteristic.swift in Sources */,
 				8D0B378B1FE18EA20073A7F7 /* FitnessMachineSerializer.swift in Sources */,
-				8D0B378C1FE18EA20073A7F7 /* Service.swift in Sources */,
-				8D0B378D1FE18EA20073A7F7 /* Sensor.swift in Sources */,
 				8D0B378E1FE18EA20073A7F7 /* HeartRateSerializer.swift in Sources */,
 				8D0B378F1FE18EA20073A7F7 /* CyclingSpeedCadenceService.swift in Sources */,
 				8D0B37901FE18EA20073A7F7 /* HeartRateService.swift in Sources */,
@@ -617,7 +594,6 @@
 				8D0B37921FE18EA20073A7F7 /* FitnessMachineService.swift in Sources */,
 				8D0B37931FE18EA20073A7F7 /* Operators.swift in Sources */,
 				8D0B37941FE18EA20073A7F7 /* RSSINormalizer.swift in Sources */,
-				8D0B37951FE18EA20073A7F7 /* SensorManager.swift in Sources */,
 				8D0B37961FE18EA20073A7F7 /* CyclingPowerSerializer.swift in Sources */,
 				8D0B37971FE18EA20073A7F7 /* CyclingSerializer.swift in Sources */,
 				8D0B37981FE18EA20073A7F7 /* CyclingPowerService.swift in Sources */,
@@ -630,10 +606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D278ADD1E5D27FA0099085A /* DeviceInformationService.swift in Sources */,
-				8D278ACF1E5D27FA0099085A /* Characteristic.swift in Sources */,
 				8D6EC2F61F1409D3006FE4A0 /* FitnessMachineSerializer.swift in Sources */,
-				8D278AEB1E5D27FA0099085A /* Service.swift in Sources */,
-				8D278AE71E5D27FA0099085A /* Sensor.swift in Sources */,
 				8D278ADF1E5D27FA0099085A /* HeartRateSerializer.swift in Sources */,
 				8D278ADB1E5D27FA0099085A /* CyclingSpeedCadenceService.swift in Sources */,
 				8D278AE11E5D27FA0099085A /* HeartRateService.swift in Sources */,
@@ -641,7 +614,6 @@
 				8D7843171F0FDB920047C7F1 /* FitnessMachineService.swift in Sources */,
 				8D278AE31E5D27FA0099085A /* Operators.swift in Sources */,
 				8D278AE51E5D27FA0099085A /* RSSINormalizer.swift in Sources */,
-				8D278AE91E5D27FA0099085A /* SensorManager.swift in Sources */,
 				8D278AD31E5D27FA0099085A /* CyclingPowerSerializer.swift in Sources */,
 				8D278AD71E5D27FA0099085A /* CyclingSerializer.swift in Sources */,
 				8D278AD51E5D27FA0099085A /* CyclingPowerService.swift in Sources */,
@@ -666,10 +638,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D278ADE1E5D27FA0099085A /* DeviceInformationService.swift in Sources */,
-				8D278AD01E5D27FA0099085A /* Characteristic.swift in Sources */,
 				8D6EC2F71F1409D3006FE4A0 /* FitnessMachineSerializer.swift in Sources */,
-				8D278AEC1E5D27FA0099085A /* Service.swift in Sources */,
-				8D278AE81E5D27FA0099085A /* Sensor.swift in Sources */,
 				8D278AE01E5D27FA0099085A /* HeartRateSerializer.swift in Sources */,
 				8D278ADC1E5D27FA0099085A /* CyclingSpeedCadenceService.swift in Sources */,
 				8D278AE21E5D27FA0099085A /* HeartRateService.swift in Sources */,
@@ -677,7 +646,6 @@
 				8D7843181F0FDB920047C7F1 /* FitnessMachineService.swift in Sources */,
 				8D278AE41E5D27FA0099085A /* Operators.swift in Sources */,
 				8D278AE61E5D27FA0099085A /* RSSINormalizer.swift in Sources */,
-				8D278AEA1E5D27FA0099085A /* SensorManager.swift in Sources */,
 				8D278AD41E5D27FA0099085A /* CyclingPowerSerializer.swift in Sources */,
 				8D278AD81E5D27FA0099085A /* CyclingSerializer.swift in Sources */,
 				8D278AD61E5D27FA0099085A /* CyclingPowerService.swift in Sources */,
@@ -931,11 +899,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q77W77B9BY;
+				DEVELOPMENT_TEAM = ESR6X3SRBQ;
 				INFOPLIST_FILE = SwiftySensorsExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kinetic.SwiftySensorsExample;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ifit.powercycle-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -950,11 +918,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q77W77B9BY;
+				DEVELOPMENT_TEAM = ESR6X3SRBQ;
 				INFOPLIST_FILE = SwiftySensorsExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kinetic.SwiftySensorsExample;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ifit.powercycle-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -141,7 +141,7 @@ public class SensorManager: NSObject {
     }
     
     /// Bluetooth State Change Signal
-    public let onBluetoothStateChange = Signal<CBCentralManagerState>()
+    public let onBluetoothStateChange = Signal<CBManagerState>()
     
     /// Sensor Discovered Signal
     public let onSensorDiscovered = Signal<Sensor>()
@@ -343,7 +343,7 @@ extension SensorManager: CBCentralManagerDelegate {
             break
         }
         
-        onBluetoothStateChange => CBCentralManagerState(rawValue: central.state.rawValue)!
+        onBluetoothStateChange => CBManagerState(rawValue: central.state.rawValue)!
     }
     
 }
