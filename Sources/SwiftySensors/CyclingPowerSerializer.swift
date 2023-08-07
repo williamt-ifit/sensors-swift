@@ -229,5 +229,42 @@ open class CyclingPowerSerializer {
         
         return vector
     }
-    
+
+    public enum ControlOpCode: UInt8 {
+        case setCumulativeValue     = 0x01
+        case responseCode           = 0x20
+        case unknown                = 0xFF
+    }
+
+
+    public enum ResultCode: UInt8 {
+        case reserved               = 0x00
+        case success                = 0x01
+        case opCodeNotSupported     = 0x02
+        case invalidParameter       = 0x03
+        case operationFailed        = 0x04
+    }
+
+    public struct ControlPointResponse {
+        public var requestOpCode: ControlOpCode = .unknown
+        public var resultCode: ResultCode = .opCodeNotSupported
+    }
+
+    public static func readControlPointResponse(_ data: Data) -> ControlPointResponse {
+        let bytes = data.map { $0 }
+        var response = ControlPointResponse()
+        if bytes.count > 2, bytes[0] == ControlOpCode.responseCode.rawValue {
+            response.requestOpCode = ControlOpCode(rawValue: bytes[1]) ?? .unknown
+            response.resultCode = ResultCode(rawValue: bytes[2]) ?? .opCodeNotSupported
+        }
+
+        return response
+    }
+
+    public static func setCumulativeValue(revolutions: UInt32) -> [UInt8] {
+        return [
+            ControlOpCode.setCumulativeValue.rawValue,
+            UInt8(revolutions & 0xFF), UInt8(revolutions >> 8 & 0xFF), UInt8(revolutions >> 16 & 0xFF), UInt8(revolutions >> 24 & 0xFF)
+        ]
+    }
 }

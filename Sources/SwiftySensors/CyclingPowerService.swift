@@ -179,10 +179,19 @@ open class CyclingPowerService: Service, ServiceProtocol {
             
             cbCharacteristic.notify(true)
         }
-        
+
+        public var response: CyclingPowerSerializer.ControlPointResponse?
         override open func valueUpdated() {
-            // TODO: Process this response
+            if let value = cbCharacteristic.value {
+                response = CyclingPowerSerializer.readControlPointResponse(value)
+            }
             super.valueUpdated()
+        }
+
+        @discardableResult open func setCumulativeValue(revolutions: UInt32) -> [UInt8] {
+            let bytes = CyclingPowerSerializer.setCumulativeValue(revolutions: revolutions)
+            cbCharacteristic.write(Data(bytes), writeType: .withResponse)
+            return bytes
         }
     }
     
